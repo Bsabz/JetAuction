@@ -2,13 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
     <title>Student Registration System -- Main</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
 <script language="javascript" type="text/javascript">
 // <!CDATA[
 
 function Button1_onclick() {
-if(document.myForm.username.value == "")
+if(document.login-form.username.value == "")
     alert("UserName Can Not Be Null!")
-javascript:myForm.submit()
+javascript:login-form.submit()
 }
 
 function Button2_onclick() {
@@ -17,33 +19,46 @@ function Button2_onclick() {
 }
 
 // ]]>
-</script>
+</script>  
+<link rel="stylesheet" href="css/bootsnip.css"></link>
+
 </head>
-<body style="font-size: 12pt; text-align: center" bgcolor="#ffff00">
-    <span style="font-family: Arial"><strong><span style="font-size: 14pt">Student Registration
-        System</span><br />
-        <br />
-        <img src="MainPage.JPG" /><br />
-        <br />
-        
-        <form name="myForm" action="login.jsp" method="post">
 
-        <span style="font-size: 10pt">User ID :</span>
-        <input id="Text1" name="username" type="text" />
-        &nbsp; <span style="font-size: 10pt">Password:</span>
-        <input id="Password1" name="userpasswd" type="password" />
-        &nbsp;
-        <input id="Button1" style="width: 70px" type="button" value="Log In" onclick="return Button1_onclick()" />
-        &nbsp;
-        <input id="Button2" style="width: 70px" type="button" value="Register" onclick="return Button2_onclick()" /><br />
-        <br />
-        </form>
-        
-        <span style="font-size: 9pt">
-            <br />
-            Shang Yang, 10/19/2006, Demo Version<br />
-            Department of Computer Science, State University of New York at Stony Brook</span></strong></span><span
-                style="font-size: 9pt"> </span>
+<body>
+<!-- Where all the magic happens -->
+<!-- LOGIN FORM -->
+<div class="text-center" style="padding:50px 0" align="center">
+<img src="JetAuction logo.jpg"/>
+	<div class="logo">JetAuction User Login</div>
+	<!-- Main Form -->
+	<div class="login-form-1">
+		<form id="login-form" action="login.jsp" class="text-left">
+			<div class="login-form-main-message"></div>
+			<div class="main-login-form">
+				<div class="login-group">
+					<div class="form-group">
+						<label for="lg_username" class="sr-only"></label>
+						<input type="text" class="form-control" id="Text1" name="username" placeholder="Username">
+					</div>
+					<div class="form-group">
+						<label for="lg_password" class="sr-only"></label>
+						<input type="password" class="form-control" id="Password1" name="userpasswd" placeholder="Password">
+					</div>
+				</div>
+				<button type="submit" class="login-button" id="Button1" value="Log In" onclick="return Button1_onclick()"></button>
+			</div>
+			<div class="etc-login-form">
+				<p>Don't have an account? <br /> Register Here: <a href="#" onclick="return Button2_onclick()">click here</a></p>
+			</div>
+		</form>
+	</div>
+	<!-- end:Main Form -->
+</div>
 
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootsnip.js"></script>
 </body>
 </html>
