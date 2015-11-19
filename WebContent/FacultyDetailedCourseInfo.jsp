@@ -44,7 +44,7 @@ response.setDateHeader("Expires",0);
                         </tr>   
 <%
 			String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
-			String mysURL = "jdbc:mysql://127.0.0.1:3306/JetAuction"; 
+			String mysURL = "jdbc:mysql://localhost:3306/jetauction_db";
 			String mysUserID = "root"; 
 			String mysPassword = "password";
   			java.sql.Connection conn=null;

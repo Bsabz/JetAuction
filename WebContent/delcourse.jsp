@@ -2,9 +2,9 @@
 		String userid = request.getParameter("userid");
 		String crscode = request.getParameter("crscode");
      	String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
-     	String mysURL = "jdbc:mysql://127.0.0.1:3306/jet"; 
+     	String mysURL = "jdbc:mysql://localhost:3306/jetauction_db"; 
      	String mysUserID = "root"; 
-    	String mysPassword = "password";
+     	String mysPassword = "password";
 
 /*    	
 	if ((username!=null) &&(userpasswd!=null))

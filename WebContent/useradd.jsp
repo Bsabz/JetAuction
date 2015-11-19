@@ -3,9 +3,10 @@
 		String Name = request.getParameter("Name");
 		String Password1 = request.getParameter("Password1");
 		String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
-     	String mysURL = "jdbc:mysql://127.0.0.1:3306/jet"; 
-     	String mysUserID = "root"; 
-    	String mysPassword = "password";
+		String mysURL = "jdbc:mysql://localhost:3306/jetauction_db";
+		String mysUserID = "root"; 
+		String mysPassword = "password";
+		
 /*    	
 	if ((username!=null) &&(userpasswd!=null))
 	{

@@ -3,9 +3,10 @@
 		String stuid =	""+	session.getValue("login");
 
 			String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
-	     	String mysURL = "jdbc:mysql://127.0.0.1:3306/jet"; 
-	     	String mysUserID = "root"; 
-	    	String mysPassword = "password";
+			String mysURL = "jdbc:mysql://localhost:3306/jetauction_db";
+			String mysUserID = "root"; 
+			String mysPassword = "password";
+			
 			java.sql.Connection conn=null;
 			try {
             	Class.forName(mysJDBCDriver).newInstance();
