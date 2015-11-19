@@ -5,7 +5,7 @@
     <title>Your Course Information -- Student Registration System</title>
 
 </head>
-<body style="text-align: center" bgcolor="#ffff00">
+<body style="text-align: center">
     <span style="font-size: 14pt; font-family: Arial"><strong>Hello, Sir. Your ID is
         <%=session.getValue("login")%>. Here is Your Course Information.<br />
         <br />
@@ -36,9 +36,9 @@
                     </tr>   
 <%
 		String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
-		String mysURL = "jdbc:mysql://sbcstldb.cs.stonybrook.edu:3306/cse305ta"; 
-		String mysUserID = "cse305ta"; 
-		String mysPassword = "107724115";
+		String mysURL = "jdbc:mysql://127.0.0.1:3306/jet"; 
+		String mysUserID = "root"; 
+		String mysPassword = "password";
         
         String stuId = ""+session.getValue("login");
   			java.sql.Connection conn=null;

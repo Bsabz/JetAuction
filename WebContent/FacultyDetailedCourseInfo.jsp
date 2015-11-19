@@ -8,43 +8,45 @@ response.setDateHeader("Expires",0);
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
-    <title>Selected Course -- Student Registration System</title>
-<%			String crscode=  request.getParameter("crscode");      %>
+    <title>View and Edit Customers -- JetAuction</title>
+
 
 </head>
-<body style="text-align: center" bgcolor="#ffff00">
-    <span style="font-size: 14pt; font-family: Arial"><strong>View and Update the Selected Course<br />
+<body style="text-align: center">
+    <span style="font-size: 14pt; font-family: Arial"><strong>View and Edit Customers<br />
         <br />
-        <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; height: 100%">
-            <tr>
-                <td style="vertical-align: top; width: 11237px; text-align: left; height: 454px;">
-                    <span style="font-size: 10pt">This is the selected course. You can check the student
-                        list and update student's GRADE here.<br />
-                        <br />
-                        <br />
-                        &nbsp;<br />
-                    </span><br />
-					<form action="mark.jsp" method="post">
-						<input type="hidden" name=crscode value=<%=crscode%>>
-                    <table border="8" id="TABLE1" onclick="return TABLE1_onclick()">
+        
+            
+
+                    <table border="1" id="TABLE1" onclick="return TABLE1_onclick()" align="center">
                     <tr>
-                      <td style="width: 84px">
+                      <td>
                           <span style="font-size: 10pt">
-                          Course Code</span></td>
-                      <td style="width: 187px">
-                          <span style="font-size: 10pt">Course Name</span></td>
-                        <td style="width: 74px">
-                            <span style="font-size: 10pt">Student ID</span></td>
+                          customer_id</span></td>
+                      <td>
+                          <span style="font-size: 10pt">Last Name</span></td>
                         <td>
-                            <span style="font-size: 10pt">Student Name</span></td>
-                        <td style="width: 7px">
-                            <span style="font-size: 10pt">Grade</span></td>
+                            <span style="font-size: 10pt">First Name</span></td>
+                        <td>
+                            <span style="font-size: 10pt">Address</span></td>
+                        <td>
+                            <span style="font-size: 10pt">Zip Code</span></td>
+                        <td>
+                            <span style="font-size: 10pt">Telephone</span></td>
+                        <td>
+                            <span style="font-size: 10pt">Email</span></td>
+                        <td >
+                            <span style="font-size: 10pt">CCN</span></td>
+                        <td>
+                            <span style="font-size: 10pt">Rating</span></td>
+                        <td>
+                            <span style="font-size: 10pt">Edit</span></td>
                         </tr>   
 <%
 			String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
-			String mysURL = "jdbc:mysql://sbcstldb.cs.stonybrook.edu:3306/cse305ta"; 
-			String mysUserID = "cse305ta"; 
-			String mysPassword = "107724115";
+			String mysURL = "jdbc:mysql://127.0.0.1:3306/JetAuction"; 
+			String mysUserID = "root"; 
+			String mysPassword = "password";
   			java.sql.Connection conn=null;
 			try 
 			{
@@ -59,25 +61,34 @@ response.setDateHeader("Expires",0);
             
             			java.sql.Statement stmt1=conn.createStatement();
         
-					java.sql.ResultSet rs = stmt1.executeQuery("select Course.CrsCode, Course.CrsName, Student.Id, Student.Name, Transcript.Grade from Course,Student,Transcript where Course.CrsCode=Transcript.CrsCode and Student.Id = Transcript.StudId and Transcript.CrsCode='"+crscode+"'");
+					java.sql.ResultSet rs = stmt1.executeQuery("SELECT C.customer_id, P.LastName, P.FirstName, P.Address, P.ZipCode, P.Telephone, P.Email, C.CreditCardNum, C.Rating FROM Customer as C, Person as P WHERE C.SSN = P.SSN GROUP BY customer_id;");
  
      	  while(rs.next())                
         	{
 %>
                     <tr>
-                      <td style="width: 84px">
+                      <td>
                           <span style="font-size: 10pt"><%=rs.getString(1)%></span></td>
-                      <td style="width: 187px">
+                      <td>
                           <span style="font-size: 10pt"><%=rs.getString(2)%></span></td>
-                        <td style="width: 74px">
+                        <td>
                             <span style="font-size: 10pt"><%=rs.getString(3)%></span></td>
                         <td>
                             <span style="font-size: 10pt"><%=rs.getString(4)%></span></td>
                         <td>
-                        		<input type="text" name="stu_<%=rs.getString(3)%>" value=<%=(rs.getString(5).trim().equals("-1"))?"":rs.getString(5)%>>
-                        
+                        	<!-- <input type="text" name="stu_<%=rs.getString(3)%>" value=<%=(rs.getString(5).trim().equals("-1"))?"":rs.getString(5)%>> -->
+                        	<span style="font-size: 10pt"><%=rs.getString(5)%></span>
                         </td>
-                        	
+                        <td>
+                            <span style="font-size: 10pt"><%=rs.getString(6)%></span></td>
+                        <td>
+                            <span style="font-size: 10pt"><%=rs.getString(7)%></span></td>
+                        <td>
+                            <span style="font-size: 10pt"><%=rs.getString(8)%></span></td>
+                        <td>
+                            <span style="font-size: 10pt"><%=rs.getString(9)%></span></td>
+                        <td>
+                        <input type=button  onclick="" value="DELETE"></td>	
                     </tr>
 <%      		
         	}
@@ -96,6 +107,7 @@ response.setDateHeader("Expires",0);
                     <br />
                     <br />
                     <br />
+                    <input id="Button0" type="button" value="Generate Mailing List" onclick="window.open('MailingList.jsp','_self');return;" />
                     <br />
                     <br />
                     <br />
@@ -103,17 +115,9 @@ response.setDateHeader("Expires",0);
                     <input id="Button1" type="button" onclick="javascript:history.back();" value="<--Prev" />
                     <input id="Button2" type="submit" value="Submit" />
                     <input id="Button3" type="button" onclick="window.open('index.htm','_self');" value="Logout" /><br />
-                    <span style="font-size: 8pt">
-                        <br />
-                        Shang Yang, 10/19/2006, Demo Version<br />
-                        Department of Computer Science,<br />
-                        SUNY at Stony Brook</span></td>
-                <td style="width: 292px; height: 454px; vertical-align: top; text-align: left;">
-                    <img src="Bridge.JPG" /></td>
-            </tr>
-                  </form>
-        </table>
-    </strong></span>
+
+
+
 
 </body>
 </html>

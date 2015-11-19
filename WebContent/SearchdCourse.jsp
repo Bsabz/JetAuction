@@ -12,7 +12,7 @@ response.setDateHeader("Expires",0);
     <title>Searched Course -- Student Registration System</title>
 
 </head>
-<body style="text-align: center" bgcolor="#ffff00">
+<body style="text-align: center">
     <span style="font-size: 14pt; font-family: Arial"><strong>Searched Courses According
         to your Preference<br />
         <br />
@@ -47,10 +47,9 @@ String strProfName = request.getParameter("profname");
 String strId;
 
 		String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
-		String mysURL = "jdbc:mysql://sbcstldb.cs.stonybrook.edu:3306/cse305ta"; 
-		String mysUserID = "cse305ta"; 
-		String mysPassword = "107724115";
-        
+     	String mysURL = "jdbc:mysql://127.0.0.1:3306/jet"; 
+     	String mysUserID = "root"; 
+    	String mysPassword = "password";
         String stuId = ""+session.getValue("login");
   			
   
