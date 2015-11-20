@@ -13,8 +13,8 @@ response.setDateHeader("Expires",0);
 	<style> th {text-align: center;}</style>
 </head>
 <body style="text-align: center">
-    <span style="font-size: 14pt; font-family: Arial"><strong>Hello, Professor. Your ID is
-        <%=session.getValue("login")%>. Here is Your Course Information.</strong><br />
+    <span style="font-size: 14pt; font-family: Arial"><strong>Hello, <%=session.getValue("login")%>. 
+    	Here is Your Employee Control Panel.</strong><br />
         <br />
 
 <%
@@ -106,18 +106,9 @@ response.setDateHeader("Expires",0);
 	  				</form>
   					
                     <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
+               		<br />
+               		<br />
+               		
                     <input id="Button1" type="button" value="Logout" onclick="window.open('index.htm','_self');" /><br />
                    
                  
