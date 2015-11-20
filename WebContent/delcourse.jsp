@@ -4,7 +4,7 @@
      	String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
      	String mysURL = "jdbc:mysql://127.0.0.1:3306/course_reg"; 
      	String mysUserID = "root"; 
-    	String mysPassword = "password";
+     	String mysPassword = "password";
 
 /*    	
 	if ((username!=null) &&(userpasswd!=null))

@@ -6,6 +6,7 @@
 	     	String mysURL = "jdbc:mysql://127.0.0.1:3306/course_reg"; 
 	     	String mysUserID = "root"; 
 	    	String mysPassword = "password";
+
 			java.sql.Connection conn=null;
 			try {
             	Class.forName(mysJDBCDriver).newInstance();

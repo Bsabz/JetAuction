@@ -24,7 +24,7 @@ response.setDateHeader("Expires",0);
      	String mysURL = "jdbc:mysql://127.0.0.1:3306/course_reg"; 
      	String mysUserID = "root"; 
     	String mysPassword = "password";
-        
+    	
         String profId = ""+session.getValue("login");
   			java.sql.Connection conn=null;
 			try 
