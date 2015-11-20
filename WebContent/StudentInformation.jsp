@@ -36,7 +36,7 @@
                     </tr>   
 <%
 		String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
-		String mysURL = "jdbc:mysql://127.0.0.1:3306/jet"; 
+		String mysURL = "jdbc:mysql://127.0.0.1:3306/course_reg"; 
 		String mysUserID = "root"; 
 		String mysPassword = "password";
         

@@ -3,7 +3,7 @@
 		String Name = request.getParameter("Name");
 		String Password1 = request.getParameter("Password1");
 		String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
-     	String mysURL = "jdbc:mysql://127.0.0.1:3306/jet"; 
+     	String mysURL = "jdbc:mysql://127.0.0.1:3306/course_reg"; 
      	String mysUserID = "root"; 
     	String mysPassword = "password";
 /*    	

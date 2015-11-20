@@ -35,7 +35,7 @@ System.out.println(strItmID + strBuyerID + strSellerID + strAuctionID+ strClosin
 String strId;
 
 		String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
-     	String mysURL = "jdbc:mysql://127.0.0.1:3306/JetAuction"; 
+     	String mysURL = "jdbc:mysql://127.0.0.1:3306/jetauction_db"; 
      	String mysUserID = "root"; 
     	String mysPassword = "password";
         String stuId = ""+session.getValue("login");
