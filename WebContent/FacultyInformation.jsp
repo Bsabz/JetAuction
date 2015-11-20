@@ -9,11 +9,12 @@ response.setDateHeader("Expires",0);
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
     <title>Your Course Information -- Student Registration System</title>
-
+	<link rel="stylesheet" href="css/bootstrap.css" ></link>
+	<style> th {text-align: center;}</style>
 </head>
 <body style="text-align: center">
     <span style="font-size: 14pt; font-family: Arial"><strong>Hello, Professor. Your ID is
-        <%=session.getValue("login")%>. Here is Your Course Information.<br />
+        <%=session.getValue("login")%>. Here is Your Course Information.</strong><br />
         <br />
 
 <%
@@ -44,10 +45,9 @@ response.setDateHeader("Expires",0);
         	{
 %>
 
-            	<input type=button  onclick="javascript:window.open('FacultyDetailedCourseInfo.jsp?crscode=<%=rs.getString(1).trim()%>','_self');return;" value="View and Edit Customers">
+            	<input type=button  onclick="javascript:window.open('FacultyDetailedCourseInfo.jsp','_self');return;" value="View and Edit Customers">
 				<p>
-				<input type=button  onclick="" value="Record Sales">
-				
+				<p>				
 <%      		
         	}
   			} catch(Exception e)
@@ -62,7 +62,49 @@ response.setDateHeader("Expires",0);
 
   %>
   			
-                    
+                    <!-- START INSERT SALES TABLE -->
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h2></>Insert a Sales Record</h2>
+  					
+  					<table class="table table-striped table-hover" id="TABLE1">
+                    <thead>
+                    <tr>
+                      	<th >
+                            <span style="font-size: 12pt" >item_id</span></th>
+                      	<th>
+                            <span style="font-size: 12pt">buyer_id</span></th>
+                        <th>
+                            <span style="font-size: 12pt">seller_id</span></th>
+                        <th>
+                            <span style="font-size: 12pt">auction_id</span></th>
+                        <th>
+                            <span style="font-size: 12pt">ClosingPrice</span></th>
+  					</tr>
+  					</thead>
+  					<tbody>
+  					<tr>
+  						<form action="RecordSale.jsp" method="get">
+	  					<td>
+	                        <input type="text" name="item_id" id="item_id"></input></td>
+	                    <td>
+	                        <input type="text" name="buyer_id" id="buyer_id"></input></td>
+	                    <td>
+	                        <input type="text" name="seller_id" id="seller_id"></input></td>
+	                    <td>
+	                        <input type="text" name="auction_id" id="auction_id"></input></td>
+	                        <td>
+	                        <input type="text" name="ClosingPrice" id="ClosingPrice"></input></td>
+  					</tr>
+  					</tbody>
+  					</table>
+  					<p>
+					<p>
+					<input type="submit"  onclick="javascript:window.open('RecordSale.jsp','_self');return;" value="Record Sales">
+	  				</form>
+  					
                     <br />
                     <br />
                     <br />

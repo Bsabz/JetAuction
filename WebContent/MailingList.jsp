@@ -5,27 +5,31 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="css/bootstrap.css" ></link>
+<style> th {text-align: center;}</style>
 </head>
 <body style="text-align: center">
-<span style="font-size: 14pt; font-family: Arial"><strong>Customer Mailing List<br />
+<span style="font-size: 14pt; font-family: Arial"><strong>Customer Mailing List</strong><br />
         <br />
         
             
 					
-                    <table border="1" id="TABLE1" onclick="return TABLE1_onclick()" align="center">
+                    <table id="TABLE1" class="table table-striped table-hover" align="center">
+                    <thead>
                     <tr>
-                      <td>
-                          <span style="font-size: 10pt">
-                          First Name</span></td>
-                      <td>
-                          <span style="font-size: 10pt">Last Name</span></td>
-                        <td>
-                            <span style="font-size: 10pt">Email</span></td>
-                        <td>
-                            <span style="font-size: 10pt">Address</span></td>
-                        <td>
-                            <span style="font-size: 10pt">Zip Code</span></td>
+                      <th>
+                          <span style="font-size: 12pt">First Name</span></th>
+                      <th>
+                          <span style="font-size: 12pt">Last Name</span></th>
+                        <th>
+                            <span style="font-size: 12pt">Email</span></th>
+                        <th>
+                            <span style="font-size: 12pt">Address</span></th>
+                        <th>
+                            <span style="font-size: 12pt">Zip Code</span></th>
                         </tr>   
+                     </thead>
+                     <tbody>
 <%
 			String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
 			String mysURL = "jdbc:mysql://127.0.0.1:3306/JetAuction"; 
@@ -46,10 +50,11 @@
             			java.sql.Statement stmt1=conn.createStatement();
         
 					java.sql.ResultSet rs = stmt1.executeQuery("SELECT P.FirstName, P.LastName, P.Email, P.Address, P.ZipCode FROM Customer C, Person P WHERE C.SSN = P.SSN GROUP BY  P.FirstName;");
- 
+ 			
      	  while(rs.next())                
         	{
 %>
+					
                     <tr>
                       <td>
                           <span style="font-size: 10pt"><%=rs.getString(1)%></span></td>
@@ -64,6 +69,7 @@
                         	<span style="font-size: 10pt"><%=rs.getString(5)%></span>
                         </td>
                     </tr>
+                    
 <%      		
         	}
   			} catch(Exception e)
@@ -77,6 +83,7 @@
 			}
 
   %>
+  					</tbody>
   					</table>
                     <br />
                     <br />
