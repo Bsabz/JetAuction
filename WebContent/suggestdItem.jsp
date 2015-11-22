@@ -5,9 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="css/bootstrap.css" ></link>
-<link rel="stylesheet" href="css/sidebar.css" ></link>
-<style> th {text-align: center;}</style>
+	<link rel="stylesheet" href="css/bootstrap.css" ></link>
+	<link rel="stylesheet" href="css/sidebar.css" ></link>
+	<style> th {text-align: center;}</style>
 </head>
 <body>
 <div id="wrapper">
@@ -21,54 +21,52 @@
                         <img src="JetAuctionLogo.png" height="72">
                     </a>
                 </li>
-                <br><br>    
-                <li>
+                <br><br>   
+        		<li>
                     <a onclick="window.open('FacultyInformation.jsp','_self');return;">Record Sale</a>
                 </li>
                 <li>
                     <a onclick="window.open('FacultyDetailedCourseInfo.jsp','_self');return;">View/Edit Customers</a>
                 </li>
-                <li class=".sidebar-nav li a disabled">
-                    <a>Mailing List</a>
+                <li>
+                    <a onclick="window.open('MailingList.jsp','_self');return;">Mailing List</a>
                 </li>
-                 <li>
-                    <a onclick="window.open('itemSuggest.jsp','_self');return;">Suggest Items</a>
+                 <li class=".sidebar-nav li a disabled">
+                    <a>Suggest Items</a>
                 </li>
-             </ul>
         </div>
         <!-- /#sidebar-wrapper -->
-        
+
         <!-- Page Content -->
         <div id="page-content-wrapper"  style="text-align: center">
             <div class="container-fluid">
                 <div class="row">
-<span style="font-size: 14pt; font-family: Arial"><h2><strong>Customer Mailing List</strong></h2><br />
+                   
+
+    <span style="font-size: 14pt; font-family: Arial" ><h2><strong>Item Suggestions for <%=request.getParameter("customer_id")%></strong></h2><br />
         <br />
         
             
-					
-                    <table id="TABLE1" class="table table-striped table-hover" align="center">
+
+                    <table class="table table-striped table-hover" id="TABLE1">
                     <thead>
                     <tr>
-                      <th>
-                          <span style="font-size: 12pt">First Name</span></th>
-                      <th>
-                          <span style="font-size: 12pt">Last Name</span></th>
+                      	<th >
+                            <span style="font-size: 12pt" >item_id</span></th>
+                      	<th>
+                            <span style="font-size: 12pt">Item Name</span></th>
                         <th>
-                            <span style="font-size: 12pt">Email</span></th>
+                            <span style="font-size: 12pt">Copies Sold</span></th>
                         <th>
-                            <span style="font-size: 12pt">Address</span></th>
-                        <th>
-                            <span style="font-size: 12pt">Zip Code</span></th>
-                        </tr>   
-                     </thead>
-                     <tbody>
+                            <span style="font-size: 12pt">Description</span></th>
+                    </tr>   
+                    </thead>
 <%
+String customer_id = request.getParameter("customer_id");
 			String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
 			String mysURL = "jdbc:mysql://127.0.0.1:3306/jetauction_db"; 
 			String mysUserID = "root"; 
 			String mysPassword = "password";
-			
   			java.sql.Connection conn=null;
 			try 
 			{
@@ -83,27 +81,29 @@
             
             			java.sql.Statement stmt1=conn.createStatement();
         
-					java.sql.ResultSet rs = stmt1.executeQuery("SELECT P.FirstName, P.LastName, P.Email, P.Address, P.ZipCode FROM Customer C, Person P WHERE C.SSN = P.SSN GROUP BY  P.FirstName;");
- 			
+					java.sql.ResultSet rs = stmt1.executeQuery(
+						"SELECT * FROM ItemsSold ISo " +
+						"WHERE NOT EXISTS( " +
+							"SELECT  I.item_id, I.itemName " +	 
+							"FROM SALES S, Item I " +
+							"WHERE ISo.item_id = I.item_id " +
+							"AND S.item_id = ISo.item_id " +
+							"AND S.buyer_id LIKE \"" + customer_id + "\"" +
+						") ORDER BY ISo.Copies_Sold DESC;");
+ 
      	  while(rs.next())                
         	{
 %>
-					
                     <tr>
-                      <td>
-                          <span style="font-size: 10pt"><%=rs.getString(1)%></span></td>
-                      <td>
-                          <span style="font-size: 10pt"><%=rs.getString(2)%></span></td>
-                        <td>
+                      	<td style="vertical-align:middle;">
+                         	<span style="font-size: 10pt;"><%=rs.getString(1)%></span></td>
+                      	<td style="vertical-align:middle;">
+                          	<span style="font-size: 10pt"><%=rs.getString(2)%></span></td>
+                        <td style="vertical-align:middle;">
                             <span style="font-size: 10pt"><%=rs.getString(3)%></span></td>
-                        <td>
+                        <td style="vertical-align:middle;">
                             <span style="font-size: 10pt"><%=rs.getString(4)%></span></td>
-                        <td>
-                        	<!-- <input type="text" name="stu_<%=rs.getString(3)%>" value=<%=(rs.getString(5).trim().equals("-1"))?"":rs.getString(5)%>> -->
-                        	<span style="font-size: 10pt"><%=rs.getString(5)%></span>
-                        </td>
                     </tr>
-                    
 <%      		
         	}
   			} catch(Exception e)
@@ -117,8 +117,10 @@
 			}
 
   %>
-  					</tbody>
   					</table>
+  					
+  					
+  					
                     <br />
                     <br />
                     <br />
@@ -127,13 +129,15 @@
                     <br />
                     <br />
                     <input id="Button1" type="button" onclick="javascript:history.back();" value="<--Prev" />
+                    <input id="Button2" type="submit" value="Submit" />
                     <input id="Button3" type="button" onclick="window.open('index.htm','_self');" value="Logout" /><br />
-                    <span style="font-size: 8pt">
+
                 </div>
             </div>
         </div>
         <!-- /#page-content-wrapper -->
 
-    </div> 
+    </div>
+
 </body>
 </html>

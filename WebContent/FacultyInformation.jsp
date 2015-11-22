@@ -10,12 +10,42 @@ response.setDateHeader("Expires",0);
 <head>
     <title>Your Course Information -- Student Registration System</title>
 	<link rel="stylesheet" href="css/bootstrap.css" ></link>
+	<link rel="stylesheet" href="css/sidebar.css" ></link>
 	<style> th {text-align: center;}</style>
 </head>
-<body style="text-align: center">
-    <span style="font-size: 14pt; font-family: Arial"><strong>Hello, Professor. Your ID is
-        <%=session.getValue("login")%>. Here is Your Course Information.</strong><br />
-        <br />
+<body>
+<div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+           
+            <ul class="sidebar-nav">
+                <p><br>
+                <li class="sidebar-brand">
+                    <a href="#">
+                        <img src="JetAuctionLogo.png" height="72">
+                    </a>
+                </li>
+                <br><br>    
+                <li  class=".sidebar-nav li a disabled">
+                    <a>Record Sale</a>
+                </li>
+                <li>
+                    <a onclick="window.open('FacultyDetailedCourseInfo.jsp','_self');return;">View/Edit Customers</a>
+                </li>
+                <li>
+                    <a onclick="window.open('MailingList.jsp','_self');return;">Mailing List</a>
+                </li>
+                 <li>
+                    <a onclick="window.open('itemSuggest.jsp','_self');return;">Suggest Items</a>
+                </li>
+             </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        
+        <!-- Page Content -->
+        <div id="page-content-wrapper"  style="text-align: center">
+            <div class="container-fluid">
+                <div class="row">
 
 <%
 		String crscode=request.getParameter("crscode");
@@ -45,9 +75,7 @@ response.setDateHeader("Expires",0);
         	{
 %>
 
-            	<input type=button  onclick="javascript:window.open('FacultyDetailedCourseInfo.jsp','_self');return;" value="View and Edit Customers">
-				<p>
-				<p>				
+            				
 <%      		
         	}
   			} catch(Exception e)
@@ -61,14 +89,11 @@ response.setDateHeader("Expires",0);
 			}
 
   %>
-  			
+
                     <!-- START INSERT SALES TABLE -->
-                    <br/>
-                    <br/>
-                    <br/>
-                    <br/>
-                    <h2></>Insert a Sales Record</h2>
-  					
+                    <h2><strong></>Insert a Sales Record</strong></h2>
+  					<br/>
+       				<br/> 
   					<table class="table table-striped table-hover" id="TABLE1">
                     <thead>
                     <tr>
@@ -118,8 +143,14 @@ response.setDateHeader("Expires",0);
                     <br />
                     <br />
                     <br />
+                    <input id="Button1" type="button" onclick="javascript:history.back();" value="<--Prev" />
                     <input id="Button1" type="button" value="Logout" onclick="window.open('index.htm','_self');" /><br />
-                   
+                </div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>                   
                  
 
 </body>

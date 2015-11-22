@@ -8,8 +8,7 @@
 		String username = request.getParameter("username");
 		String userpasswd = request.getParameter("userpasswd");
      	String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
-     	
-     	String mysURL = "jdbc:mysql://127.0.0.1:3306/course_reg"; 
+     	String mysURL = "jdbc:mysql://127.0.0.1:3306/jetauction_db"; 
      	String mysUserID = "root"; 
     	String mysPassword = "password";
 
@@ -17,6 +16,7 @@
 	session.putValue("login","");
 	if ((username!=null) &&(userpasswd!=null))
 	{
+		System.out.println(username + " " + userpasswd);
 		if (username.trim().equals("") || userpasswd.trim().equals(""))
 		{
 			response.sendRedirect("index.htm");
@@ -37,7 +37,7 @@
             
             			conn.setAutoCommit(false);
             			java.sql.Statement stmt1=conn.createStatement();
-				java.sql.ResultSet rs = stmt1.executeQuery(" select * from Student where Id='"+username+"' and Pswd='"+userpasswd+"'");
+				java.sql.ResultSet rs = stmt1.executeQuery("SELECT * FROM Customer WHERE customer_id='"+username+"' and Passwrd='"+userpasswd+"'");
 				if (rs.next())
 				{
 					// login success
@@ -46,7 +46,7 @@
 				}
 				else
 				{
-					rs = stmt1.executeQuery(" select * from Professor where Id='"+username+"' and Pswd='"+userpasswd+"'");
+					rs = stmt1.executeQuery("SELECT * FROM Employee WHERE employee_id='"+username+"' and Passwrd='"+userpasswd+"'");
 					if(rs.next())
 					{
 						session.putValue("login", username);
