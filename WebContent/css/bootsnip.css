@@ -32,7 +32,7 @@ a {
   transition: all ease-in-out 200ms;
 }
 a:hover {
-  color: #333333;
+  color: #772722;
   text-decoration: none;
 }
 /*=== 3. Text Outside the Box ===*/
@@ -90,6 +90,7 @@ a:hover {
 }
 /*=== 5. Login Button ===*/
 .login-form-1 .login-button {
+  font-weight: 900;
   position: absolute;
   right: -25px;
   top: 50%;

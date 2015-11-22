@@ -13,6 +13,7 @@ response.setDateHeader("Expires",0);
 	<link rel="stylesheet" href="css/sidebar.css" ></link>
 	<style> th {text-align: center;}</style>
 </head>
+
 <body>
 <div id="wrapper">
         <!-- Sidebar -->
@@ -46,6 +47,11 @@ response.setDateHeader("Expires",0);
         <div id="page-content-wrapper"  style="text-align: center">
             <div class="container-fluid">
                 <div class="row">
+
+<body style="text-align: center">
+    <span style="font-size: 14pt; font-family: Arial"><strong>Hello, <%=session.getValue("login")%>. 
+    	Here is Your Employee Control Panel.</strong><br />
+        <br />
 
 <%
 		String crscode=request.getParameter("crscode");
