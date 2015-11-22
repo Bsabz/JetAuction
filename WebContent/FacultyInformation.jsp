@@ -48,10 +48,9 @@ response.setDateHeader("Expires",0);
             <div class="container-fluid">
                 <div class="row">
 
-<body style="text-align: center">
-    <span style="font-size: 14pt; font-family: Arial"><strong>Hello, <%=session.getValue("login")%>. 
+    <!--  <span style="font-size: 14pt; font-family: Arial"><strong>Hello, <%=session.getValue("login")%>. 
     	Here is Your Employee Control Panel.</strong><br />
-        <br />
+        <br />-->
 
 <%
 		String crscode=request.getParameter("crscode");
