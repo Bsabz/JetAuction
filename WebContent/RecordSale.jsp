@@ -31,7 +31,7 @@ String strBuyerID = request.getParameter("buyer_id");
 String strSellerID = request.getParameter("seller_id");
 String strAuctionID = request.getParameter("auction_id");
 String strClosingPrice = request.getParameter("ClosingPrice");
-System.out.println(strItmID + strBuyerID + strSellerID + strAuctionID+ strClosingPrice);
+System.out.println(strItmID +" "+ strBuyerID +" "+ strSellerID +" "+ strAuctionID+" "+ strClosingPrice);
 String strId;
 
 		String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
@@ -54,21 +54,50 @@ String strId;
             			conn=java.sql.DriverManager.getConnection(mysURL,sysprops);
             			System.out.println("Connected successfully to database using JConnect");
             
-            			java.sql.Statement stmt=conn.createStatement();
+        java.sql.Statement stmt=conn.createStatement();
         java.sql.Statement stmt1=conn.createStatement();
-									java.sql.Statement stmt2=conn.createStatement();
-									  
+									 
 		
 		 		   			int r = stmt.executeUpdate("INSERT INTO SALES VALUES ('"+strItmID+"','"+strBuyerID+"','"+strSellerID+"','"+strAuctionID+"','"+strClosingPrice+"')");
+		 		   		java.sql.ResultSet rs = stmt1.executeQuery("SELECT item_id, buyer_id, seller_id, auction_id, ClosingPrice FROM Sales as S GROUP BY auction_id;");
 		 		   		
-		 		   		}
-		 		   	
+		 		   	 while(rs.next())                
+		         	{
+%>
+	                    <tr>
+	                      	<td style="vertical-align:middle;">
+	                         	<span style="font-size: 10pt;"><%=rs.getString(1)%></span></td>
+	                      	<td style="vertical-align:middle;">
+	                          	<span style="font-size: 10pt"><%=rs.getString(2)%></span></td>
+	                        <td style="vertical-align:middle;">
+	                            <span style="font-size: 10pt"><%=rs.getString(3)%></span></td>
+	                        <td style="vertical-align:middle;">
+	                            <span style="font-size: 10pt"><%=rs.getString(4)%></span></td>
+	                        <td style="vertical-align:middle;">
+	                        	<span style="font-size: 10pt"><%=rs.getString(5)%></span></td>
+	                    </tr>
+<%      		
+	        	}
+	  			} catch(Exception e){
+					e.printStackTrace();
+					out.print(e.toString());
+				}	   	
 			finally{
 			
 				try{conn.close();}catch(Exception ee){};
 			}
 %>            
  						</tbody>
-                    </table>        
+                    </table>    
+                    
+					<br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <input id="Button1" type="button" onclick="javascript:history.back();" value="<--Prev" />
+                    <input id="Button3" type="button" onclick="window.open('index.htm','_self');" value="Logout" /><br />    
 </body>
 </html>
