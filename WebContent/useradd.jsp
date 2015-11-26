@@ -1,25 +1,23 @@
 <%
 		String Id = request.getParameter("Id");
-		String Name = request.getParameter("Name");
+		String fname = request.getParameter("fname");
+		String lname = request.getParameter("lname");
+		String Address = request.getParameter("address");
+		String Zip = request.getParameter("zip");
+		String SSN = request.getParameter("ssn");
+		String Phone = request.getParameter("phone");
+		String Email = request.getParameter("email");
+		String CreditCard = request.getParameter("credit");
+		int Rating = 1;
 		String Password1 = request.getParameter("Password1");
 		String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
-     	String mysURL = "jdbc:mysql://127.0.0.1:3306/course_reg"; 
+     	String mysURL = "jdbc:mysql://127.0.0.1:3306/jetauction_db"; 
      	String mysUserID = "root"; 
     	String mysPassword = "password";
-/*    	
-	if ((username!=null) &&(userpasswd!=null))
-	{
-		if (username.trim().equals("") || userpasswd.trim().equals(""))
-		{
-			response.sendRedirect("index.htm");
-		}
-		else
-		{
-*/
+
 			// code start here
 			java.sql.Connection conn=null;
-			try 
-			{
+			try {
             	Class.forName(mysJDBCDriver).newInstance();
     			java.util.Properties sysprops=System.getProperties();
     			sysprops.put("user",mysUserID);
@@ -30,20 +28,43 @@
             			System.out.println("Connected successfully to database using JConnect");
             
             			java.sql.Statement stmt1=conn.createStatement();
-           if (request.getParameter("target").trim().equals("student"))
-           {
-							stmt1.executeUpdate("insert into Student values('"+Id+"','"+Password1+"','"+Name+"','"+request.getParameter("status")+"')");
-//							out.print("insert into Student values('"+Id+"','"+Password1+"','"+Name+"','"+request.getParameter("status")+"')");
-							stmt1.close();
+            			java.sql.Statement stmt2=conn.createStatement();
+            			java.sql.Statement stmt3=conn.createStatement();
+            			
+            			java.sql.ResultSet rs = stmt1.executeQuery("SELECT SSN FROM Person WHERE SSN='"+SSN+"' ");
+            			String SSNstr = "";
+            			
+						if(rs.next()){
+							SSNstr = rs.getString("SSN");
 						}
-					else
-           {
-							stmt1.executeUpdate("insert into Professor values('"+Id+"','"+Password1+"','"+Name+"','"+request.getParameter("DepID")+"')");
-//							out.print("insert into Professor values('"+Id+"','"+Password1+"','"+Name+"','"+request.getParameter("DepID")+"')");;
-							stmt1.close();
-						}
-			} catch(Exception e)
-			{
+            			
+        	            stmt1.close();
+        	            
+        				if (SSNstr.equals(SSN))
+        				{
+        					response.sendRedirect("RegisterPage.htm");
+        				}
+        				
+            			
+	           if (request.getParameter("target").trim().equals("Customer"))
+	           {
+	        	   
+								stmt2.executeUpdate("insert into Person values('"+SSN+"','"+lname+"','"+fname+"','"+Address+"','"+Zip+"','"+Phone+"','"+Email+"')");
+	//							out.print("insert into Student values('"+Id+"','"+Password1+"','"+Name+"','"+request.getParameter("status")+"')");
+								stmt3.executeUpdate("insert into customer values('"+Rating+"','"+CreditCard+"','"+Id+"','"+SSN+"','"+Password1+"')");
+	//							out.print("insert into Professor values('"+Id+"','"+Password1+"','"+Name+"','"+request.getParameter("DepID")+"')");;
+								stmt2.close();
+								stmt3.close();
+								
+								
+				}
+	           else{
+								stmt3.executeUpdate("insert into customer values('"+Rating+"','"+CreditCard+"','"+Id+"','"+SSN+"','"+Password1+"')");
+	//							out.print("insert into Professor values('"+Id+"','"+Password1+"','"+Name+"','"+request.getParameter("DepID")+"')");;
+								stmt3.close();
+				}
+			} 
+			catch(Exception e){
 				e.printStackTrace();
 				out.print(e.toString());
 			}
@@ -51,9 +72,6 @@
 			
 				try{conn.close();}catch(Exception ee){};
 			}
-/*
-	}
-*/
 %>
 
 User Added!
