@@ -8,7 +8,7 @@ response.setDateHeader("Expires",0);
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
-    <title>View and Edit Customers -- JetAuction</title>
+    <title>Sales Report by Customer Name</title>
 	<link rel="stylesheet" href="css/bootstrap.css" ></link>
 	<link rel="stylesheet" href="css/sidebar.css" ></link>
 	<style> th {text-align: center;}</style>
@@ -27,16 +27,22 @@ response.setDateHeader("Expires",0);
                 </li>
                 <br><br>    
                 <li>
-                    <a onclick="window.open('FacultyInformation.jsp','_self');return;">Record Sale</a>
+                    <a onclick="window.open('Manager.jsp','_self');return;">View/Edit Employees</a>
+                </li>
+                <li class=".sidebar-nav li a disabled">
+                    <a onclick="window.open('ItemSalesList.jsp','_self');return;">Sales Report</a>
                 </li>
                 <li>
-                    <a onclick="window.open('FacultyDetailedCourseInfo.jsp','_self');return;">View/Edit Customers</a>
+                    <a onclick="window.open('ItemSalesList.jsp','_self');return;">Sales List</a>
+                </li>
+                 <li>
+                    <a onclick="window.open('ItemList.jsp','_self');return;">Item List</a>
                 </li>
                 <li>
-                    <a onclick="window.open('MailingList.jsp','_self');return;">Mailing List</a>
+                    <a onclick="window.open('TotalRevenue.jsp','_self');return;">Total Revenue</a>
                 </li>
-                 <li class=".sidebar-nav li a disabled">
-                    <a>Suggest Items</a>
+                <li>
+                    <a onclick="window.open('ItemBestSeller.jsp','_self');return;">Item Best-Sellers</a>
                 </li>
              </ul>
         </div>
@@ -48,36 +54,31 @@ response.setDateHeader("Expires",0);
                 <div class="row">
                    
 
-    <span style="font-size: 14pt; font-family: Arial" ><h2><strong>Item Suggestion</strong></h2>
-    	<br/>
-        <br/>           
+    <span style="font-size: 14pt; font-family: Arial" ><h2><strong>Sales Report for Month of <%=request.getParameter("month") %></strong></h2><br />
+        <br />       
 
                     <table class="table table-striped table-hover" id="TABLE1">
                     <thead>
                     <tr>
-                    	<th>
-                            <span style="font-size: 12pt;">Pick</span></th>
                       	<th >
-                            <span style="font-size: 12pt;" >customer_id</span></th>
+                            <span style="font-size: 12pt">item_id</span></th>
                       	<th>
-                            <span style="font-size: 12pt;">Last Name</span></th>
+                            <span style="font-size: 12pt">Item Name</span></th>
                         <th>
-                            <span style="font-size: 12pt;">First Name</span></th>
+                            <span style="font-size: 12pt">buyer_id</span></th>
                         <th>
-                            <span style="font-size: 12pt;">Address</span></th>
+                            <span style="font-size: 12pt">seller_id</span></th>
                         <th>
-                            <span style="font-size: 12pt;">Zip Code</span></th>
+                            <span style="font-size: 12pt">Closing Price</span></th>
                         <th>
-                            <span style="font-size: 12pt;">Telephone</span></th>
+                            <span style="font-size: 12pt">Post Date</span></th>
                         <th>
-                            <span style="font-size: 12pt;">Email</span></th>
-                        <th >
-                            <span style="font-size: 12pt;">CCN</span></th>
-                        <th>
-                            <span style="font-size: 12pt;">Rating</span></th>
+                            <span style="font-size: 12pt">Expire Date</span></th>
                     </tr>   
                     </thead>
 <%
+String month = request.getParameter("month");
+
 			String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
 			String mysURL = "jdbc:mysql://127.0.0.1:3306/jetauction_db"; 
 			String mysUserID = "root"; 
@@ -96,33 +97,32 @@ response.setDateHeader("Expires",0);
             
             			java.sql.Statement stmt1=conn.createStatement();
         
-					java.sql.ResultSet rs = stmt1.executeQuery("SELECT C.customer_id, P.LastName, P.FirstName, P.Address, P.ZipCode, P.Telephone, P.Email, C.CreditCardNum, C.Rating FROM Customer as C, Person as P WHERE C.SSN = P.SSN GROUP BY customer_id;");
+					java.sql.ResultSet rs = stmt1.executeQuery("SELECT I.item_id, I.ItemName, S.buyer_id, S.seller_id, S.ClosingPrice, PO.PostDate, PO.ExpireDate " +
+							"FROM SALES S, Auction A, Item I, Post PO " +
+							"WHERE monthname(PO.ExpireDate) = '"+ month + "' " +
+								"AND PO.auction_id = A.auction_id " +
+							    "AND S.auction_id = PO.auction_id " +
+							    "AND S.item_id = I.item_id " +
+							    "AND A.item_id = S.item_id");
  
      	  while(rs.next())                
         	{
 %>
                     <tr>
-                    	<td style="vertical-align:middle;">
-                        	<input type=button  onclick="window.open('suggestdItem.jsp?customer_id=<%=rs.getString(1)%>','_self');return;" value="x"></td>	
                       	<td style="vertical-align:middle;">
                          	<span style="font-size: 10pt;"><%=rs.getString(1)%></span></td>
                       	<td style="vertical-align:middle;">
                           	<span style="font-size: 10pt;"><%=rs.getString(2)%></span></td>
                         <td style="vertical-align:middle;">
-                            <span style="font-size: 10pt"><%=rs.getString(3)%></span></td>
+                            <span style="font-size: 10pt;"><%=rs.getString(3)%></span></td>	
                         <td style="vertical-align:middle;">
-                            <span style="font-size: 10pt;"><%=rs.getString(4)%></span></td>
+                         	<span style="font-size: 10pt;"><%=rs.getString(4)%></span></td>
+                      	<td style="vertical-align:middle;">
+                          	<span style="font-size: 10pt;"><%=rs.getString(5)%></span></td>
                         <td style="vertical-align:middle;">
-                        	<!-- <input type="text" name="stu_<%=rs.getString(3)%>" value=<%=(rs.getString(5).trim().equals("-1"))?"":rs.getString(5)%>> -->
-                        	<span style="font-size: 10pt"><%=rs.getString(5)%></span></td>
+                            <span style="font-size: 10pt;"><%=rs.getString(6)%></span></td>	
                         <td style="vertical-align:middle;">
-                            <span style="font-size: 10pt;"><%=rs.getString(6)%></span></td>
-                        <td style="vertical-align:middle;">
-                            <span style="font-size: 10pt;"><%=rs.getString(7)%></span></td>
-                        <td style="vertical-align:middle;">
-                            <span style="font-size: 10pt;"><%=rs.getString(8)%></span></td>
-                        <td style="vertical-align:middle;">
-                            <span style="font-size: 10pt;"><%=rs.getString(9)%></span></td>
+                         	<span style="font-size: 10pt;"><%=rs.getString(7)%></span></td>
                     </tr>
 <%      		
         	}
@@ -138,7 +138,7 @@ response.setDateHeader("Expires",0);
 
   %>
   					</table>
-  					
+
   					
   					
                     <br />
@@ -153,7 +153,7 @@ response.setDateHeader("Expires",0);
 
                 </div>
             </div>
-        </div>
+        </div> 
         <!-- /#page-content-wrapper -->
 
     </div>

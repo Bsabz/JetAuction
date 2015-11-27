@@ -1,0 +1,75 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>Sales Report by Month</title>
+	<link rel="stylesheet" href="css/bootstrap.css" ></link>
+	<link rel="stylesheet" href="css/sidebar.css" ></link>
+	<style> th {text-align: center;}</style>
+</head>
+<body>
+<div id="wrapper">
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+           
+            <ul class="sidebar-nav">
+                <p><br>
+                <li class="sidebar-brand">
+                    <a href="#">
+                        <img src="JetAuctionLogo.png" height="72">
+                    </a>
+                </li>
+                <br><br>    
+                <li>
+                    <a onclick="window.open('Manager.jsp','_self');return;">View/Edit Employees</a>
+                </li>
+                <li class=".sidebar-nav li a disabled">
+                    <a onclick="window.open('ItemSalesList.jsp','_self');return;">Sales Report</a>
+                </li>
+                <li>
+                    <a onclick="window.open('ItemSalesList.jsp','_self');return;">Sales List</a>
+                </li>
+                 <li>
+                    <a onclick="window.open('ItemList.jsp','_self');return;">Item List</a>
+                </li>
+                <li>
+                    <a onclick="window.open('TotalRevenue.jsp','_self');return;">Total Revenue</a>
+                </li>
+                <li>
+                    <a onclick="window.open('ItemBestSeller.jsp','_self');return;">Item Best-Sellers</a>
+                </li>
+             </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper"  style="text-align: center">
+            <div class="container-fluid">
+                <div class="row">
+                <form action="SalesReportMonth.jsp" method="get">
+                	<br />
+                    <br />
+                    <br />
+                    <br />
+             		<h3><strong></>Select A Month:</strong></h3> <br />
+                	<input name="month" style="font-weight: bold; font-size: 10pt; width: 145px; left: 1px; position: relative; top: 0px;" type="text" />
+					<input id="Button3" type="submit" value="Submit" />
+  					
+  				</form>
+                    <br />
+                    <br />
+                    <br />
+                    
+                    <input id="Button1" type="button" onclick="javascript:history.back();" value="<--Prev" />
+                    <input id="Button3" type="button" onclick="window.open('index.htm','_self');" value="Logout" /><br />
+
+                </div>
+            </div>
+        </div> 
+        <!-- /#page-content-wrapper -->
+
+    </div>
+
+
+</body>
+</html>

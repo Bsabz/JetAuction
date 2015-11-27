@@ -49,15 +49,21 @@
 					rs = stmt1.executeQuery("SELECT * FROM Employee WHERE employee_id='"+username+"' and Passwrd='"+userpasswd+"'");
 					if(rs.next())
 					{
-						session.putValue("login", username);
-						response.sendRedirect("FacultyInformation.jsp");
+						if(rs.getString(3).equals("1")){
+							session.putValue("login", username);
+							response.sendRedirect("FacultyInformation.jsp");
+						}
+						else{
+							session.putValue("login", username);
+							response.sendRedirect("Manager.jsp");
+						}
 					}
 						
 					else
 					{
 						// username or password mistake
 						response.sendRedirect("passMistake.jsp");
-					}
+					} 
 				}
 			} catch(Exception e)
 			{
