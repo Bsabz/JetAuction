@@ -26,6 +26,11 @@
 
 <body style="text-align: center">
 <div class="container">
+	<nav>
+		<input id="NewAuctionButton" type="button" style="display:inline" value="Make New Auction" onclick="window.open('NewAuction.htm','_self');" />
+    	<input id="LogoutButton" type="button" style="display:inline" value="Logout" onclick="Logout_onclick();" /><br />
+    	<input id="HelpButton" type="button" style="display:inline" value="Help" onclick="window.open('HelpMenu.htm','_self')" />
+	</nav>
 	<div class="col-lg-12 well">
 	<span style="font-size: 14pt; font-family: Arial"><strong>
         <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; height: 100%">
@@ -134,10 +139,6 @@
                     <br />
                     <br />
                     <br />
-                    <input id="Button1" type="button" value="Make New Auction" onclick="window.open('NewAuction.htm','_self');" />
-                    <input id="Button1" type="button" value="Logout" onclick="Logout_onclick();" /><br />
-                    <td style="width: 292px; height: 454px; vertical-align: top; text-align: left;">
-                    <img src="Hospital.JPG" /></td>
             </tr>
         </table>
     </strong></span>
