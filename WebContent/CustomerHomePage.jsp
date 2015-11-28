@@ -40,9 +40,29 @@
 			<input id="searchAuctions" type="button" style="display:inline" value="Search auctions!" onclick="window.open('SearchResults.jsp','_self');" />
     	</div>
 		<div class="col-sm-4 form-group">
-			<input name="BrowseAuction" type="text" placeholder="Browse current auctions now!" class="form-control"/>
+			<input name="auctionSearchName" type="text" placeholder="Browse current auctions now!" class="form-control"/>
 		</div>
 	</div>
+	
+	<br />
+	
+	<!-- The list of categories to shop by. This should later be dynamic. For now just make it static as a sample -->
+	<%int numItemsToDisplay = 5;
+	  int numLeftToPrint = numItemsToDisplay;
+	  if(numItemsToDisplay > 0) {%>
+	  <div class="row">
+		<div class="well">
+			<ul>
+			<%while(numLeftToPrint > 0){%>
+				<li style="display:inline;padding:20px"><a href="#" onclick="window.open('SearchResults.jsp','_self')">
+					<font color="Blue"><%out.print("category " + numLeftToPrint);%></font></a></li>
+				<%if(numLeftToPrint > 1){%> 
+					<li style="display:inline;padding:20px">|</li>
+				<%}numLeftToPrint--; 
+			   }}%>
+			</ul>
+		</div>
+	  </div>
 						
 	<br />
 	
@@ -52,8 +72,8 @@
 	<div class="col-lg-12 well">
 	<div class="row" style="alignment:center">
 		<div class="col-sm-6 form-group">
-		    <%int numItemsToDisplay = 0;
-  			  int numLeftToPrint = numItemsToDisplay;
+		    <%numItemsToDisplay = 0;
+  			  numLeftToPrint = numItemsToDisplay;
   			  if(numItemsToDisplay > 0) {%>
   			  	<h2>Current Auctions</h2>
         

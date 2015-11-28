@@ -56,7 +56,6 @@
 		
 		<div class="form-group">
 			<label>Address Line 1:</label>
-			<label><u>123 Sesame Street</u></label>
 			<input name="AddressLine1" type="text" placeholder="123 Sesame Street" class="form-control">
 		</div>
 		<div class="form-group">
