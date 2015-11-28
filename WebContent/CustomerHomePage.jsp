@@ -123,7 +123,7 @@ function Logout_onclick()
                     <br />
                     <br />
                     <br />
-                    <input id="Button1" type="button" value="Make New Auction" onclick="window.open('SearchCourse.htm','_self');" />
+                    <input id="Button1" type="button" value="Make New Auction" onclick="window.open('NewAuction.htm','_self');" />
                     <input id="Button1" type="button" value="Logout" onclick="Logout_onclick();" /><br />
                     <td style="width: 292px; height: 454px; vertical-align: top; text-align: left;">
                     <img src="Hospital.JPG" /></td>
