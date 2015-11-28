@@ -101,5 +101,89 @@
 		</div>	
 	</div>
 	</div>
+	
+	<div class="col-lg-12 well">
+	<div class="row" style="alignment:center">
+	
+		<div class="col-sm-6 form-group">
+		    <%int numItemsToDisplay = 0;
+  			  int numLeftToPrint = numItemsToDisplay;
+  			  if(numItemsToDisplay > 0) {%>
+  			  	<h3>Items Sold</h3>
+        
+			<table border="8" id="TABLE1" onclick="return TABLE1_onclick()">
+            <tr>
+            	<td style="width: 84px" align="center">
+            		<span style="font-size: 10pt">Auction Name</span>
+            	</td>
+            	<td style="width: 187px" align="center">
+            		<span style="font-size: 10pt">Current high bid</span>
+            	</td>
+            	<td style="width: 74px" align="center">
+            		<span style="font-size: 10pt">Closing bid time</span>
+            	</td>
+            	<td align="center">
+            		<span style="font-size: 10pt">Thinking of putting "bid now!" button here</span>
+            	</td>
+            </tr>   
+			</table>
+			<%}else{%>
+				<h4 style='text-align:center'>You haven't sold anything you bitch. How are we supposed to make money if you just sit on you ass. The Internet isn't free you hick :(</h4>
+				<p>Get started by posting an auction now!</p>
+				
+				<br />
+				<br />
+				
+				<div class="row">
+					<div class="col-sm-6 form-group">
+						<input id="makeNewAuction" type="button" style="display:inline" value="Make new auction!" onclick="window.open('NewAuction.htm','_self');" />
+		    		</div>
+				</div>
+			<%}%>
+		</div>
+		<div class="col-sm-6 form-group">
+			<%numItemsToDisplay = 5;
+  			  numLeftToPrint = numItemsToDisplay;
+  			  if(numItemsToDisplay > 0) {%>
+  			  <h3>Items Bought</h3>
+			  <ul style="list-style: none;">
+			<%}%>
+			<%while(numLeftToPrint > 0){%>
+			  	<li>
+					<h4>Item Name</h4>
+					<p>Item Price</p>
+					<p>Item Expiration Date</p>
+					<input id="GoToItemButton" type="button" style="display:inline" value="Check Out Item" onclick="window.open('Auction.jsp','_self');" />
+					<input id="BidNowButton" type="button" style="display:inline" value="Bid now!" onclick="alert('Bid now feature not implemented yet.');" />
+    		  	</li>
+    		<%	
+    		  	if(numLeftToPrint > 1)
+    				out.print("<br />");
+    		  	numLeftToPrint--;
+      		  }
+     		%>
+			<%if(numItemsToDisplay > 0) {%>
+				</ul>
+			<%}else{%>
+				<h4 style='text-align:center'>You haven't bought anything you bitch. How are we supposed to make money if you just sit on you ass. The Internet isn't free you hick :(</h4>
+				<p>Get started by posting an auction now!</p>
+				
+				<br />
+				<br />
+				
+				<div class="row">
+					<div class="col-sm-6 form-group">
+						<input id="searchAuctions" type="button" style="display:inline" value="Search auctions!" onclick="window.open('SearchResults.jsp','_self');" />
+		    		</div>
+					<div class="col-sm-6 form-group">
+						<input name="BrowseAuction" type="text" placeholder="Browse current auctions now!" class="form-control"/>
+					</div>
+				</div>
+			<%}%>
+		</div>
+	
+	</div>
+	</div>
+	
 </body>
 </html>
