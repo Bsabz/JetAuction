@@ -30,7 +30,6 @@
 		<input id="LogoutButton" type="button" style="display:inline" value="Logout" onclick="Logout_onclick();" />
     	<input id="HelpButton" type="button" style="display:inline" value="Help" onclick="window.open('HelpMenu.htm','_self')" />
     	<input id="GoHomeButton" type="button" style="display:inline" value="Go Home" onclick="window.open('CustomerHomePage.jsp','_self')" />
-    	<input id="EditFirstNameButton" type="button" style="display:inline" value="Update Profile" onclick="alert('NOT IMPLEMENTED');" />
     </nav>
 	
 	<br />
@@ -39,6 +38,10 @@
 	
 	<div class="col-lg-12 well">
 	<div class="row" style="alignment:center">
+		<div class="form-group">
+			<input id="EditProfileButton" type="button" style="display:inline" value="Update Profile" onclick="window.open('CustomerProfileUpdatePage.jsp','_self');" />
+    	</div>	
+		<br />
 		<div class="form-group">
 				<label>Last Name:</label>
 				<label><u>Nikonorov</u></label>
