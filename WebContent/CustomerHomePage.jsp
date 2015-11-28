@@ -3,22 +3,24 @@
 
 <head>
     <title>Jet Auction - Home</title>
-</head>
 
-
-<script language="javascript" type="text/javascript">
-function Logout_onclick() 
-{
-	var quitting = window.confirm("Do you really wish to logout?")
+	<script language="javascript" type="text/javascript">
+	function Logout_onclick() 
+	{
+		var quitting = window.confirm("Do you really wish to logout?")
 	
-	if(quitting == true)
-		window.open('index.htm','_self');
-}
-</script>
+		if(quitting == true)
+			window.open('index.htm','_self');
+	}
+	</script>
 
-<!-- All the files that are required -->
-<link rel="stylesheet" href="css/bootstrap.css" ></link>
-<link rel="stylesheet" href="css/reg-theme.css" ></link>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+
+	<!-- All the files that are required -->
+	<link rel="stylesheet" href="css/bootsnip.css" ></link>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"></link>
+	<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'></link>
+</head>
 
 <body style="text-align: center">
 <div class="container">
@@ -35,19 +37,26 @@ function Logout_onclick()
                     <br />
                     <table border="8" id="TABLE1" onclick="return TABLE1_onclick()">
                     <tr>
-                      <td style="width: 84px">
+                      <td style="width: 84px" align="center">
                           <span style="font-size: 10pt">
-                          Course Code</span></td>
-                      <td style="width: 187px">
-                          <span style="font-size: 10pt">Course Name</span></td>
-                        <td style="width: 74px">
-                            <span style="font-size: 10pt">Department</span></td>
-                        <td>
-                            <span style="font-size: 10pt">Professor</span></td>
-                        <td style="width: 7px">
-                            <span style="font-size: 10pt">Grade</span></td>
-                        <td style="width: 7px">
-                            <span style="font-size: 10pt">Oper</span></td>
+                          	Auction Name
+                          </span>
+                      </td>
+                      <td style="width: 187px" align="center">
+                          <span style="font-size: 10pt">
+                          	Current high bid
+                          </span>
+                      </td>
+                      <td style="width: 74px" align="center">
+                            <span style="font-size: 10pt">
+                            	Closing bid time
+                            </span>
+                      </td>
+                      <td align="center">
+                            <span style="font-size: 10pt">
+                            	Thinking of putting "bid now!" button here
+                            </span>
+                      </td>
                     </tr>   
 <%
 		String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
