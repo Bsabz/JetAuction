@@ -51,44 +51,47 @@
 	<div class="col-lg-12 well">
 	<div class="row" style="alignment:center">
 		<div class="col-sm-6 form-group">
-			<h2>
-            	All current actions customer is in would go here
-            </h2>
-        	<table border="0" cellpadding="0" cellspacing="0" style="width: 100%; height: 100%">
+		    <%int numItemsToDisplay = 0;
+  			  int numLeftToPrint = numItemsToDisplay;
+  			  if(numItemsToDisplay > 0) {%>
+  			  	<h2>Current Auctions</h2>
+        
+			<table border="8" id="TABLE1" onclick="return TABLE1_onclick()">
             <tr>
-                <td style="vertical-align: top; width: 11237px; text-align: left; height: 454px;">
-                    <br />
-                    <table border="8" id="TABLE1" onclick="return TABLE1_onclick()">
-                    <tr>
-                      <td style="width: 84px" align="center">
-                          <span style="font-size: 10pt">
-                          	Auction Name
-                          </span>
-                      </td>
-                      <td style="width: 187px" align="center">
-                          <span style="font-size: 10pt">
-                          	Current high bid
-                          </span>
-                      </td>
-                      <td style="width: 74px" align="center">
-                            <span style="font-size: 10pt">
-                            	Closing bid time
-                            </span>
-                      </td>
-                      <td align="center">
-                            <span style="font-size: 10pt">
-                            	Thinking of putting "bid now!" button here
-                            </span>
-                      </td>
-                    </tr>   
-					</table>
-            </tr>
-            </table>
+            	<td style="width: 84px" align="center">
+            		<span style="font-size: 10pt">Auction Name</span>
+            	</td>
+            	<td style="width: 187px" align="center">
+            		<span style="font-size: 10pt">Current high bid</span>
+            	</td>
+            	<td style="width: 74px" align="center">
+            		<span style="font-size: 10pt">Closing bid time</span>
+            	</td>
+            	<td align="center">
+            		<span style="font-size: 10pt">Thinking of putting "bid now!" button here</span>
+            	</td>
+            </tr>   
+			</table>
+			<%}else{%>
+				<h2 style='text-align:center'>You're not in any auctions yet :(</h2>
+				<p>Get started by checking out a few by searching below!</p>
+				<br />
+				<br />
+				
+				<div class="row">
+					<div class="col-sm-6 form-group">
+						<input id="searchAuctions" type="button" style="display:inline" value="Search auctions!" onclick="window.open('SearchResults.jsp','_self');" />
+		    		</div>
+					<div class="col-sm-6 form-group">
+						<input name="BrowseAuction" type="text" placeholder="Browse current auctions now!" class="form-control"/>
+					</div>
+				</div>
+			<%}%>
 		</div>
 		<div class="col-sm-6 form-group">
 			<h3>Best sellers list</h3>
-			<%int numItemsToDisplay = 3;
-  			  int numLeftToPrint = numItemsToDisplay;
+			<%numItemsToDisplay = 3;
+  			  numLeftToPrint = numItemsToDisplay;
   			  if(numItemsToDisplay > 0) {%>
 			  <ol>
 			<%}%>
