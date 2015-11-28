@@ -22,7 +22,7 @@
 			{
             	Class.forName(mysJDBCDriver).newInstance();
     			java.util.Properties sysprops=System.getProperties();
-    			sysprops.put("user",mysUserID);
+    			sysprops.put("root",mysUserID);
     			sysprops.put("password",mysPassword);
         
 				//connect to the database

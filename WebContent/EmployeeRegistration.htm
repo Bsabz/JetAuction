@@ -1,14 +1,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
-    <title>Registration for Faculty  -- Student Registration System</title>
+    <title>Registration for Customer  -- JetAuction</title>
 <script language="javascript" type="text/javascript">
 // <!CDATA[
 
 function Button1_onclick() {
-//if(document.myForm.username.value == "")
-//    alert("UserName Can Not Be Null!")
-document.myForm.submit()
+if(document.myForm.id.value == "")
+		alert("Your Username must not be null!!!")
+else if(document.myForm.name.value == "")
+		alert("Your Name must not be null!!!")
+else if(document.myForm.Password1.value == "")
+		alert("Your Password must not be null!!!")
+else if(document.myForm.Password1.value != document.myForm.Password2.value)
+    alert("The Two Passwords Should Be the SAME!!!")
+    
+  else{document.myForm.submit()}
 }
 
 function Button2_onclick() {
@@ -19,69 +26,72 @@ function Button2_onclick() {
 // ]]>
 </script>
 
-</head>
-<body style="text-align: center">
+<!-- All the files that are required -->
+<link rel="stylesheet" href="css/bootstrap.css" ></link>
+<link rel="stylesheet" href="css/reg-theme.css" ></link>
 
-  <span><strong><span style="font-size: 14pt; font-family: Arial">
-    <table border="0" cellpadding="0" cellspacing="0" style="font-size: 14pt; width: 100%;
-        height: 100%" id="TABLE1" onclick="return TABLE1_onclick()">
-        <tr>
-            <td colspan="2" style="height: 63px; text-align: center; background-color: yellow;">
-                Faculty Registration</td>
-        </tr>
-        <tr>
-        	<form name="myForm" action="useradd.jsp" method="post">
-        		<input type="hidden" name="target" value="professor">
-            <td style="width: 220px; height: 426px; background-color: yellow; vertical-align: top; text-align: left;">
-                <span style="font-size: 10pt"><strong>Your ID: &nbsp; &nbsp;<br />
-                </strong></span><input name="Id" style="font-weight: bold; font-size: 10pt; width: 145px; left: 1px; position: relative; top: 0px;" type="text" /><span
-                    style="font-size: 10pt"><strong>
-                        <br />
-                        PassWord:&nbsp;<br />
-                    </strong></span><input
-                            name="Password1" style="font-weight: bold; font-size: 10pt; width: 145px; left: 0px; position: relative; top: 0px;" type="password" /><br />
-                <span style="font-size: 10pt"></span><span style="font-size: 10pt"><strong>ReEnterPassWord:<br />
-                </strong></span><input id="Password2" style="font-weight: bold; font-size: 10pt;
-                        width: 145px" type="password" /><br />
-                <span style="font-size: 10pt"><strong>Your Name:<br />
-                    <input id="Text2" name="Name" style="font-weight: bold; font-size: 10pt; width: 145px"
-                        type="text" /><br />
-                    Your Department CODE:<br />
-                    <input id="Text3" name="DepID" style="width: 145px" type="text" /><br />
-                    Your Address: &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;
-                    <br />
-                    <textarea id="TextArea1" style="width: 200px; height: 96px"></textarea><br />
-                    <br />
-                    <input id="Button2" type="button" value="Finish"  onclick="return Button1_onclick()" />
-                    &nbsp;
-                    <input id="Button3" type="button" value="Cancel"  onclick="window.open('index.htm','_self');" /><br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <br />
-                    <span style="font-size: 8pt; font-family: Arial">
-                        <br />
-                        Shang Yang, 10/19/2006, Demo Version<br />
-                        Department of Computer Science,<br />
-                        SUNY at Stony Brook</span>
-                </strong></span>
-            </td>
-            <td style="vertical-align: top; background-color: yellow; text-align: justify; width: 355px; height: 426px;">
-                <img src="WangCenter.JPG" /></td>
-					</form>          
-        </tr>
-        <tr>
-            <td style="width: 220px; background-color: yellow;">
-            </td>
-            <td style="vertical-align: top; background-color: yellow; text-align: justify; width: 355px;">
-            </td>
-        </tr>
-    </table>
-</span></strong>
+</head>
+<body>
+
+<div class="container">
+    <h1 class="well" style="text-align:center">Employee Registration</h1>
+	<div class="col-lg-12 well">
+	<div class="row">
+				<form name="myForm" action="useradd.jsp" method="post">
+				<input type="hidden" name="target" value="Customer"></input>
+					<div class="col-sm-12">
+						<div class="row">
+							<div class="col-sm-6 form-group">
+								<label>First Name</label>
+								<input name="fname" type="text" placeholder="Enter First Name Here.." class="form-control">
+							</div>
+							<div class="col-sm-6 form-group">
+								<label>Last Name</label>
+								<input name="lname" type="text" placeholder="Enter Last Name Here.." class="form-control">
+							</div>
+						</div>					
+						<div class="form-group">
+							<label>Address</label>
+							<textarea name="address" placeholder="Enter Address Here.." rows="3" class="form-control"></textarea>
+						</div>	
+						<div class="row">
+							<div class="col-sm-4 form-group">
+								<label>Zip</label>
+								<input name="zip" type="text" placeholder="Enter Zip Code Here.." class="form-control">
+							</div>
+							<div class="col-sm-4 form-group">
+								<label>SSN</label>
+								<input name="ssn" type="text" placeholder="Enter SSN Here.." class="form-control">
+							</div>		
+						</div>
+						<div class="row">
+							<div class="col-sm-6 form-group">
+								<label>Enter desired password:</label>
+								<input name="Password1" type="password" placeholder="Enter Password Here.." class="form-control">
+							</div>		
+							<div class="col-sm-6 form-group">
+								<label>Re-type password:</label>
+								<input name="Password2" type="password" placeholder="Re-type Password Here.." class="form-control">
+							</div>	
+						</div>						
+					<div class="form-group">
+						<label>Phone Number</label>
+						<input name="phone" type="text" placeholder="Enter Phone Number Here.." class="form-control">
+					</div>		
+					<div class="form-group">
+						<label>Email Address</label>
+						<input name="email" type="text" placeholder="Enter Email Address Here.." class="form-control">
+					</div>	
+						<div align="center">
+						<button type="button" class="btn btn-lg btn-danger" onclick="window.open('RegisterPage.htm','_self');">Back</button>			
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<button type="button" class="btn btn-lg btn-info" onclick="return Button1_onclick()">Submit</button>
+						</div>
+					</div>
+				</form> 
+				</div>
+	</div>
+	</div>
 
 </body>
 </html>
