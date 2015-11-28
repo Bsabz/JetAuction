@@ -31,6 +31,7 @@
     	<input id="LogoutButton" type="button" style="display:inline" value="Logout" onclick="Logout_onclick();" />
     	<input id="HelpButton" type="button" style="display:inline" value="Help" onclick="window.open('HelpMenu.htm','_self')" />
     </nav>
+	
 	<br />
 	
 	<div class="row">
@@ -45,7 +46,7 @@
 	<br />
 	
 	<h2 class="well" style="text-align:center">Welcome to Jet Auction, get started by checking out some ongoing bids or placing 
-                    a few of your own.</h1>
+                    a few of your own.</h2>
 	
 	<div class="col-lg-12 well">
 	<div class="row" style="alignment:center">
