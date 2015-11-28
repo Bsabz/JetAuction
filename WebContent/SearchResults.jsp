@@ -33,9 +33,18 @@
 	<br />
 	<br />
 	
+	<div class="row">
+		<div class="col-sm-4 form-group">
+			<input id="searchAuctions" type="button" style="display:inline" value="Search auctions!" onclick="window.open('SearchResults.jsp','_self');" />
+    	</div>
+		<div class="col-sm-4 form-group">
+			<input name="BrowseAuction" type="text" placeholder="Browse current auctions now!" class="form-control"/>
+		</div>
+	</div>
+	
 	<h2 class="well" style="text-align:center">Search Results</h2>
 	
-<%int numItemsToDisplay = 0;
+<%int numItemsToDisplay = 5;
   int numLeftToPrint = numItemsToDisplay;
   if(numItemsToDisplay > 0) {%>
 	<ol>
@@ -45,7 +54,7 @@
 			<h4>Item Name</h3>
 			<h2>Item Price</h2>
 			<h2>Item Expiration Date</h2>
-			<input id="GoToItemButton" type="button" style="display:inline" value="Check Out Item" onclick="alert('Go to item not implemented yet.');" />
+			<input id="GoToItemButton" type="button" style="display:inline" value="Check Out Item" onclick="window.open('Auction.jsp','_self');" />
 			<input id="BidNowButton" type="button" style="display:inline" value="Bid now!" onclick="alert('Bid now feature not implemented yet.');" />
     	</li>
     <%	
@@ -58,6 +67,7 @@
 	</ol>
 <%}else{
 	out.print("<h2 class='well' style='text-align:center'>No Items :(</h2>");
+	out.print("<p class='well'>Try searching again, or <a href='#' onclick='window.open(window.open('CustomerHomePage.jsp','_self')><font color='Blue'>go back to the home page</font></a></p>");
 }
 %>
 </div>

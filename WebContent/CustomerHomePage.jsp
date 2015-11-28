@@ -87,18 +87,60 @@
 		</div>
 		<div class="col-sm-6 form-group">
 			<h3>Best sellers list</h3>
-			<ul>
-				<li>we'd put</li>
-				<li>best sellers</li>
-				<li>here</li>	
-			</ul>
+			<%int numItemsToDisplay = 3;
+  			  int numLeftToPrint = numItemsToDisplay;
+  			  if(numItemsToDisplay > 0) {%>
+			  <ol>
+			<%}%>
+			<%while(numLeftToPrint > 0){%>
+			  	<li>
+					<h4>Item Name</h4>
+					<p>Item Price</p>
+					<p>Item Expiration Date</p>
+					<input id="GoToItemButton" type="button" style="display:inline" value="Check Out Item" onclick="window.open('Auction.jsp','_self');" />
+					<input id="BidNowButton" type="button" style="display:inline" value="Bid now!" onclick="alert('Bid now feature not implemented yet.');" />
+    		  	</li>
+    		<%	
+    		  	if(numLeftToPrint > 1)
+    				out.print("<br />");
+    		  	numLeftToPrint--;
+      		  }
+     		%>
+			<%if(numItemsToDisplay > 0) {%>
+				</ol>
+			<%}else{
+				out.print("<h4 style='text-align:center'>No best sellers yet :(</h4>");
+				out.print("<p>Check back soon</p>");
+			  }
+			%>
 			<br />
 			<h3>Suggested items list</h3>
-			<ul>
-				<li>we'd put</li>
-				<li>suggested items</li>
-				<li>here</li>	
-			</ul>
+			<%numItemsToDisplay = 0;
+  			  numLeftToPrint = numItemsToDisplay;
+  			  if(numItemsToDisplay > 0) {%>
+			  <ul style="list-style: none;">
+			<%}%>
+			<%while(numLeftToPrint > 0){%>
+			  	<li>
+					<h4>Item Name</h4>
+					<p>Item Price</p>
+					<p>Item Expiration Date</p>
+					<input id="GoToItemButton" type="button" style="display:inline" value="Check Out Item" onclick="window.open('Auction.jsp','_self');" />
+					<input id="BidNowButton" type="button" style="display:inline" value="Bid now!" onclick="alert('Bid now feature not implemented yet.');" />
+    		  	</li>
+    		<%	
+    		  	if(numLeftToPrint > 1)
+    				out.print("<br />");
+    		  	numLeftToPrint--;
+      		  }
+     		%>
+			<%if(numItemsToDisplay > 0) {%>
+				</ul>
+			<%}else{
+				out.print("<h4 style='text-align:center'>No suggested items yet :(</h4>");
+				out.print("<p>Check back soon</p>");
+			  }
+			%>
 		</div>
 	</div>
 	</div>

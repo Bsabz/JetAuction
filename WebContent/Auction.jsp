@@ -4,6 +4,16 @@
     <title>New Auction -- Jet Auction</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
+	<script language="javascript" type="text/javascript">
+		function Logout_onclick() 
+		{
+			var quitting = window.confirm("Do you really wish to logout?")
+	
+			if(quitting == true)
+				window.open('index.htm','_self');
+		}
+	</script>
+
 	<!-- All the files that are required -->
 	<link rel="stylesheet" href="css/bootstrap.css" ></link>
 	<link rel="stylesheet" href="css/reg-theme.css" ></link>
@@ -29,7 +39,7 @@
     <br />
 	<p>Item description goes here: e/g fancy shit</p>
 	<br />
-    <input id="PlaceBidButton" type="button" value="Place bid" onclick="alert(TODO: IMPLEMENT FEATURE)" />
+    <input id="PlaceBidButton" type="button" value="Place bid" onclick="window.alert('TODO: IMPLEMENT FEATURE')" />
 </div>
 </div>
 </div>

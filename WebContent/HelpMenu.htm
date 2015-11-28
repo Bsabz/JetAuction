@@ -4,6 +4,16 @@
     <title>New Auction -- Jet Auction</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
+	<script language="javascript" type="text/javascript">
+		function Logout_onclick() 
+		{
+			var quitting = window.confirm("Do you really wish to logout?")
+	
+			if(quitting == true)
+				window.open('index.htm','_self');
+		}
+	</script>
+
 	<!-- All the files that are required -->
 	<link rel="stylesheet" href="css/bootstrap.css" ></link>
 	<link rel="stylesheet" href="css/reg-theme.css" ></link>
@@ -14,6 +24,12 @@
 <body style="text-align: center">
 <div class="container">
 <div class="login-form-1">
+	<input id="LogoutButton" type="button" value="Logout" onclick="Logout_onclick();" />
+    <input id="HomeButton" type="button" value="Go Home" onclick="window.open('CustomerHomePage.jsp', '_self')" />
+    
+    <br />
+    <br />
+    
 	<p>
 		Welcome to Jet Auctions help menu! Here you can get help on all things JetAuciton. Select a topic from our drop
 		down list to continue.
