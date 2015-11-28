@@ -28,19 +28,30 @@
 <div class="container">
 	<nav>
 		<input id="NewAuctionButton" type="button" style="display:inline" value="Make New Auction" onclick="window.open('NewAuction.htm','_self');" />
-    	<input id="LogoutButton" type="button" style="display:inline" value="Logout" onclick="Logout_onclick();" /><br />
+    	<input id="LogoutButton" type="button" style="display:inline" value="Logout" onclick="Logout_onclick();" />
     	<input id="HelpButton" type="button" style="display:inline" value="Help" onclick="window.open('HelpMenu.htm','_self')" />
-	</nav>
+    </nav>
+	<br />
+	
+	<div class="row">
+		<div class="col-sm-4 form-group">
+			<input id="searchAuctions" type="button" style="display:inline" value="Search auctions!" onclick="window.open('SearchResults.jsp','_self');" />
+    	</div>
+		<div class="col-sm-4 form-group">
+			<input name="BrowseAuction" type="text" placeholder="Browse current auctions now!" class="form-control"/>
+		</div>
+	</div>
+						
+	<br />
+	
+	<h2 class="well" style="text-align:center">Welcome to Jet Auction, get started by checking out some ongoing bids or placing 
+                    a few of your own.</h1>
+	
 	<div class="col-lg-12 well">
 	<span style="font-size: 14pt; font-family: Arial"><strong>
         <table border="0" cellpadding="0" cellspacing="0" style="width: 100%; height: 100%">
             <tr>
                 <td style="vertical-align: top; width: 11237px; text-align: left; height: 454px;">
-                    <span style="font-size: 10pt">
-                    Welcome to Jet Auction, get started by checking out some ongoing bids or placing 
-                    a few of your own.
-                    <br />
-                    </span>
                     <br />
                     <table border="8" id="TABLE1" onclick="return TABLE1_onclick()">
                     <tr>
