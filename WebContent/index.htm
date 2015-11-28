@@ -9,11 +9,9 @@
 
 function Button1_onclick() 
 {
-	alert("username: " + document.login-form.username.value + "\n pw " + document.login-form.password.value)
-	
-	if(document.login-form.username.value == "")
+	if(document.login-form.username.value == "Username")
     	alert("UserName Can Not Be Null!")
-	else if(document.login-form.password.value == "")
+	else if(document.login-form.password.value == "Password")
 		alert("Password Can Not Be NUll!")
 	else
 		javascript:login-form.submit()
@@ -61,7 +59,7 @@ function Button2_onclick()
 			</div>
 			<div class="etc-login-form">
 				<p style="color:black">Don't have an account?<br />Register Here: 
-					<a href="#" onclick="return Button2_onclick()">click here</a></p>
+					<a href="#" onclick="return Button2_onclick()"><font color="Blue">click here</font></a></p>
 			</div>
 		</form>
 	</div>
