@@ -26,6 +26,8 @@
 
 <body style="text-align: center">
 <div class="container">
+	<!-- Laeve in for testing purposes. -->
+	<%boolean isOwner = true; %>
 	<nav>
 		<input id="LogoutButton" type="button" style="display:inline" value="Logout" onclick="Logout_onclick();" />
     	<input id="HelpButton" type="button" style="display:inline" value="Help" onclick="window.open('HelpMenu.htm','_self')" />
@@ -38,10 +40,12 @@
 	
 	<div class="col-lg-12 well">
 	<div class="row" style="alignment:center">
-		<div class="form-group">
-			<input id="EditProfileButton" type="button" style="display:inline" value="Update Profile" onclick="window.open('CustomerProfileUpdatePage.jsp','_self');" />
-    	</div>	
-		<br />
+		<%if(isOwner){ %>
+			<div class="form-group">
+				<input id="EditProfileButton" type="button" style="display:inline" value="Update Profile" onclick="window.open('CustomerProfileUpdatePage.jsp','_self');" />
+    		</div>	
+			<br />
+		<%}%>
 		<div class="form-group">
 				<label>Last Name:</label>
 				<label><u>Nikonorov</u></label>
@@ -101,7 +105,13 @@
 		<div class="form-group">
 				<label>Rating:</label>
 				<label><u>5</u></label>
-		</div>	
+				
+				<br />
+				<%if(!isOwner){%>
+					<input id="AddRatingField" type="text" style="display:inline" placeholder="Rate me" />
+    				<input id="RateButton" type="button" style="display:inline" value="Submit rating" onclick="alert('TODO:Add in update rating functionality');" />
+    			<%}%>
+    	</div>	
 	</div>
 	</div>
 	
