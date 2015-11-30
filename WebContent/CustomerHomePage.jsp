@@ -47,7 +47,7 @@
 	<br />
 	
 	<!-- The list of categories to shop by. This should later be dynamic. For now just make it static as a sample -->
-	<%int numItemsToDisplay = 5;
+	<%int numItemsToDisplay = 0;
 	  int numLeftToPrint = numItemsToDisplay;
 	  if(numItemsToDisplay > 0) {%>
 	  <div class="row">

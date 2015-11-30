@@ -12,6 +12,11 @@
 			if(quitting == true)
 				window.open('index.htm','_self');
 		}
+		
+		function goHome()
+		{
+			window.open('CustomerHomePage.jsp','self');
+		}
 	</script>
 
 	<!-- All the files that are required -->
@@ -44,7 +49,7 @@
 	
 	<h2 class="well" style="text-align:center">Search Results</h2>
 	
-<%int numItemsToDisplay = 5;
+<%int numItemsToDisplay = 0;
   int numLeftToPrint = numItemsToDisplay;
   if(numItemsToDisplay > 0) {%>
 	<ol>
@@ -67,7 +72,7 @@
 	</ol>
 <%}else{
 	out.print("<h2 class='well' style='text-align:center'>No Items :(</h2>");
-	out.print("<p class='well'>Try searching again, or <a href='#' onclick='window.open(window.open('CustomerHomePage.jsp','_self')><font color='Blue'>go back to the home page</font></a></p>");
+	out.print("<p class='well'>Try searching again, or <a href='#' onclick='goHome()'><font color='Blue'>go back to the home page</font></a></p>");
 }
 %>
 </div>
