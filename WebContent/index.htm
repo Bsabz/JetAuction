@@ -9,10 +9,10 @@
 
 function Button1_onclick() 
 {
-	if(document.login-form.username.value == "")
-    	javascript:window.alert("UserName Can Not Be Null!");
-	else if(document.login-form.userpasswd.value == "")
-		javascript:window.alert("Password Can Not Be NUll!");
+	if(document.userLoginForm.username.value == "")
+    	javascript:window.alert("Please supply a username.");
+	else if(document.userLoginForm.userpasswd.value == "")
+		javascript:window.alert("Please supply a password.");
 	else
 		javascript:login-form.submit()
 }
@@ -41,7 +41,7 @@ function Button2_onclick()
 	<!-- Main Form -->
 	<div class="login-form-1">
 		<p><p></>User Login
-		<form id="login-form" action="login.jsp" class="text-left">
+		<form name ="userLoginForm" id="login-form" action="login.jsp" class="text-left">
 			<div class="login-form-main-message"></div>
 			<div class="main-login-form">
 				<div class="login-group">

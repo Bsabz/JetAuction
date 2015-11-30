@@ -12,6 +12,25 @@
 			if(quitting == true)
 				window.open('index.htm','_self');
 		}
+		
+		function SubmitButton_onclick()
+		{
+			if(document.createAuctionForm.auction_name.value == "")
+				alert("You must give an auction name!!!")
+			else if(document.createAuctionForm.auction_item.value == "")
+				alert("You must give an auction item!!!")
+			else if(document.createAuctionForm.open_date_time.value == "")
+				alert("You must give an opening date/time!!!")
+			else if(document.createAuctionForm.close_date_time.value == "")
+				alert("You must give a closing date/time!!!")
+			else if(document.createAuctionForm.min_bid.value == "")
+				alert("You must give a minimum bid!!!")
+			else if(document.createAuctionForm.reserve_price.value == "")
+				alert("You must give a reserve price!!!")
+			else 
+				window.open('Auction.jsp','_self');
+		}
+		
 	</script>
 
 	<!-- All the files that are required -->
@@ -30,7 +49,7 @@
     <input id="HomeButton" type="button" value="Go Home" onclick="window.open('CustomerHomePage.jsp', '_self')" />
     
     </br>
-	<form action="Auction.jsp" method="post">
+	<form name = "createAuctionForm" action="Auction.jsp" method="post">
 	<input type="hidden" name="target" value="Customer"></input>
 	<div class="col-sm-12">
 		<h2 style="text-align:center">Fill in the following information so we can make your new auction:</h2>
@@ -58,8 +77,8 @@
 				<label>Reserve price</label>
                	<input name="reserve_price" type="text" placeholder="e/g $10" class="form-control"/>
             </div>
-        <input id="Button1" type="button" value="Submit" onclick="window.open('Auction.jsp','_self');" />
-        <input id="Button1" type="button" value="Cancel" onclick="window.open('CustomerHomePage.jsp','_self');" /><br />
+        <input id="SubmitButton" type="button" value="Submit" onclick="return SubmitButton_onclick();" />
+        <input id="CancelButton" type="button" value="Cancel" onclick="window.open('CustomerHomePage.jsp','_self');" /><br />
         </div>
 		</form>
 </div>
