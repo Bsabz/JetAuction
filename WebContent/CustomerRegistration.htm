@@ -6,14 +6,34 @@
 // <!CDATA[
 
 function Button1_onclick() {
-if(document.myForm.id.value == "")
-		alert("Your Username must not be null!!!")
-else if(document.myForm.name.value == "")
-		alert("Your Name must not be null!!!")
+if(document.myForm.Id.value == "")
+		alert("You must give a username!!!")
+else if(document.myForm.fname.value == "")
+		alert("You must give your first name!!!")
+else if(document.myForm.lname.value == "")
+		alert("You must give your last name!!!")
+else if(document.myForm.address_line_1.value == "")
+		alert("You must give your address!!!")
+else if(document.myForm.state.value == "")
+    alert("You must give your state!!!")
+else if(document.myForm.zip.value == "")
+    alert("You must give your zip code!!!")
+else if(document.myForm.city.value == "")
+    alert("You must give your city!!!")
+else if(document.myForm.ssn.value == "")
+    alert("You must give your SSN!!!")
+else if(document.myForm.credit.value == "")
+    alert("You must give your credit card number!!!!")
 else if(document.myForm.Password1.value == "")
-		alert("Your Password must not be null!!!")
+		alert("You must give a password!!!")
+else if(document.myForm.Password2.value == "")
+	alert("Youmust confirm your password!!!!")
 else if(document.myForm.Password1.value != document.myForm.Password2.value)
-    alert("The Two Passwords Should Be the SAME!!!")
+    alert("Your provided passwords do not match!!!!")
+else if(document.myForm.phone.value == "")
+    alert("You must provide your phone number!!!!")
+else if(document.myForm.email.value == "")
+    alert("You must give an email!!!!")
     
   else{document.myForm.submit()}
 }
@@ -66,11 +86,11 @@ function Button2_onclick() {
 			<div class="row">
 				<div class="col-sm-4 form-group">
 					<label>City</label>
-					<input name="zip" type="text" placeholder="Enter City Code Here.." class="form-control">
+					<input name="city" type="text" placeholder="Enter City Code Here.." class="form-control">
 				</div>
 				<div class="col-sm-4 form-group">
 					<label>State</label>
-					<input name="zip" type="text" placeholder="Enter State Here.." class="form-control">
+					<input name="state" type="text" placeholder="Enter State Here.." class="form-control">
 				</div>
 				<div class="col-sm-4 form-group">
 					<label>Zip</label>

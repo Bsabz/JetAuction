@@ -9,10 +9,10 @@
 
 function Button1_onclick() 
 {
-	if(document.login-form.username.value == "Username")
-    	alert("UserName Can Not Be Null!")
-	else if(document.login-form.password.value == "Password")
-		alert("Password Can Not Be NUll!")
+	if(document.login-form.username.value == "")
+    	javascript:window.alert("UserName Can Not Be Null!");
+	else if(document.login-form.userpasswd.value == "")
+		javascript:window.alert("Password Can Not Be NUll!");
 	else
 		javascript:login-form.submit()
 }

@@ -27,7 +27,7 @@
 <body style="text-align: center">
 <div class="container">
 	<!-- Laeve in for testing purposes. -->
-	<%boolean isOwner = true; %>
+	<%boolean isOwner = false; %>
 	<nav>
 		<input id="LogoutButton" type="button" style="display:inline" value="Logout" onclick="Logout_onclick();" />
     	<input id="HelpButton" type="button" style="display:inline" value="Help" onclick="window.open('HelpMenu.htm','_self')" />
