@@ -19,8 +19,6 @@
 		
 		if(searchQuery != "")
 			window.open('SearchResults.jsp','_self');
-		else
-			alert("testing - no input given");
 	}
 	
 	function SearchAuctions()
@@ -29,9 +27,15 @@
 		
 		if(searchQuery != "")
 			window.open('SearchResults.jsp','_self');
-		else
-			alert("testing - no input given");
 	}
+	
+	function redirectToAuction()
+	{
+		alert("TODO: actually get auction info for now it just recircts");
+		
+		window.open('Auction.jsp','_self');
+	}
+	
 	</script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -92,27 +96,28 @@
 	<div class="col-lg-12 well">
 	<div class="row" style="alignment:center">
 		<div class="col-sm-6 form-group">
-		    <%numItemsToDisplay = 0;
+		    <%numItemsToDisplay = 2;
   			  numLeftToPrint = numItemsToDisplay;
   			  if(numItemsToDisplay > 0) {%>
   			  	<h2>Current Auctions</h2>
-        
-			<table border="8" id="TABLE1" onclick="return TABLE1_onclick()">
-            <tr>
-            	<td style="width: 84px" align="center">
-            		<span style="font-size: 10pt">Auction Name</span>
-            	</td>
-            	<td style="width: 187px" align="center">
-            		<span style="font-size: 10pt">Current high bid</span>
-            	</td>
-            	<td style="width: 74px" align="center">
-            		<span style="font-size: 10pt">Closing bid time</span>
-            	</td>
-            	<td align="center">
-            		<span style="font-size: 10pt">Thinking of putting "bid now!" button here</span>
-            	</td>
-            </tr>   
-			</table>
+        	  	<table border="8" id="row">
+              <%while(numLeftToPrint > 0){%>
+			  	<tr>
+            		<td style="width: 175px" align="center">
+            			<span style="font-size: 10pt">Auction Name</span>
+            		</td>
+            		<td style="width: 175px" align="center">
+            			<span style="font-size: 10pt">Current high bid</span>
+            		</td>
+            		<td style="width: 175px" align="center">
+            			<span style="font-size: 10pt">Closing bid time</span>
+            		</td>
+            		<td style="width:175px;padding:10px" align="center">
+            			<input id="GoToAuctionButton" type="button" style="display:inline" value="Check it out!" onclick="redirectToAuction();" />
+    		  		</td>
+            	</tr>   
+				<%numLeftToPrint--; }%>
+				</table>
 			<%}else{%>
 				<h2 style='text-align:center'>You're not in any auctions yet :(</h2>
 				<p>Get started by checking out a few by searching below!</p>
@@ -131,10 +136,10 @@
 		</div>
 		<div class="col-sm-6 form-group">
 			<h3>Best sellers list</h3>
-			<%numItemsToDisplay = 0;
+			<%numItemsToDisplay = 2;
   			  numLeftToPrint = numItemsToDisplay;
   			  if(numItemsToDisplay > 0) {%>
-			  <ol>
+			  <ul style="list-style: none;">
 			<%}%>
 			<%while(numLeftToPrint > 0){%>
 			  	<li>
@@ -151,7 +156,7 @@
       		  }
      		%>
 			<%if(numItemsToDisplay > 0) {%>
-				</ol>
+				</ul>
 			<%}else{
 				out.print("<h4 style='text-align:center'>No best sellers yet :(</h4>");
 				out.print("<p>Check back soon</p>");
@@ -159,7 +164,7 @@
 			%>
 			<br />
 			<h3>Suggested items list</h3>
-			<%numItemsToDisplay = 0;
+			<%numItemsToDisplay = 2;
   			  numLeftToPrint = numItemsToDisplay;
   			  if(numItemsToDisplay > 0) {%>
 			  <ul style="list-style: none;">

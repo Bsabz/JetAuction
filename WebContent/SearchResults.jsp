@@ -20,11 +20,6 @@
 			if(searchQuery != "")
 				window.open('SearchResults.jsp','_self');
 		}
-		
-		function goHome()
-		{
-			window.open('CustomerHomePage.jsp','self');
-		}
 	</script>
 
 	<!-- All the files that are required -->
@@ -80,7 +75,7 @@
 	</ol>
 <%}else{
 	out.print("<h2 class='well' style='text-align:center'>No Items :(</h2>");
-	out.print("<p class='well'>Try searching again, or <a href='#' onclick='goHome()'><font color='Blue'>go back to the home page</font></a></p>");
+	out.print("<p class='well'>Try searching again, or <a href='CustomerHomePage.jsp'><font color='Blue'>go back to the home page</font></a></p>");
 }
 %>
 </div>

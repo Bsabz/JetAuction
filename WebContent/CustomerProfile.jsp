@@ -168,10 +168,8 @@
 				<br />
 				
 				<div class="row">
-					<div class="col-sm-6 form-group">
 						<input id="makeNewAuction" type="button" style="display:inline" value="Make new auction!" onclick="window.open('NewAuction.htm','_self');" />
-		    		</div>
-				</div>
+		    	</div>
 			<%}%>
 		</div>
 		<div class="col-sm-6 form-group">
