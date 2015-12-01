@@ -12,6 +12,43 @@
 			if(quitting == true)
 				window.open('index.htm','_self');
 		}
+		
+		function Verify_BidAmt()
+		{
+			var isValid = true;
+			var bidAmt = document.getElementById("PlaceBidField").value;
+			
+			if(bidAmt == "")
+				isValid = false;
+			
+			if( isNaN(+bidAmt) )
+				isValid = false;
+			
+			//check if there are more than 2 nums after .
+			var bidAmtArr = bidAmt.split(".");
+			alert(bidAmtArr.length + "")
+			if(bidAmtArr.len > 2)
+				isValid = false;
+			else if(bidAmtArr.length == 2)
+			{
+				if(bidAmtArr[1].length != 2)
+					isValid = false;
+			}
+			
+			//check if it is a number
+			//credit card is properly formatted
+			for(var i = 0; i < bidAmt.length; i++)
+			{
+				//if not a number return false
+				if( isNaN(bidAmt[i]) && bidAmt[i] != '.')
+					isValid = false;
+			}
+			
+			if(!isValid)
+				alert("Invalid bid amount, please re enter");
+			else
+				window.alert('TODO: verify against current bid and submit bid')
+		}
 	</script>
 
 	<!-- All the files that are required -->
@@ -30,6 +67,9 @@
 	<input id="LogoutButton" type="button" value="Logout" onclick="Logout_onclick();" />
     <input id="HelpButton" type="button" value="Help" onclick="window.open('HelpMenu.htm','_self')" />
     <input id="HomeButton" type="button" value="Go Home" onclick="window.open('CustomerHomePage.jsp', '_self')" />
+    
+    <%boolean isOwner =false;%>
+    
     <h2>Auction Name: (would go here)</h2>
     <h2>Item name: (Would go here)</h2>
     <h2>Item condition (new/used)</h2>
@@ -39,7 +79,14 @@
     <br />
 	<p>Item description goes here: e/g fancy shit</p>
 	<br />
-    <input id="PlaceBidButton" type="button" value="Place bid" onclick="window.alert('TODO: IMPLEMENT FEATURE')" />
+	<%if(!isOwner){%>
+		<div class="form-group">
+			<input id="PlaceBidField" type="text" style="display:inline" placeholder="We should show the current min bid as suggestion" class="form-control"/>
+		</div>
+		<div class="form-group">
+			<input id="PlaceBidButton" type="button" value="Place bid" style="display:inline" onclick="Verify_BidAmt()"/>
+		</div>	
+	<%}%>
 </div>
 </div>
 </div>

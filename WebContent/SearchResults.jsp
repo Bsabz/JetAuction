@@ -13,6 +13,14 @@
 				window.open('index.htm','_self');
 		}
 		
+		function SearchAuctions()
+		{
+			var searchQuery = document.getElementById("searchPane").value;
+			
+			if(searchQuery != "")
+				window.open('SearchResults.jsp','_self');
+		}
+		
 		function goHome()
 		{
 			window.open('CustomerHomePage.jsp','self');
@@ -40,10 +48,10 @@
 	
 	<div class="row">
 		<div class="col-sm-4 form-group">
-			<input id="searchAuctions" type="button" style="display:inline" value="Search auctions!" onclick="window.open('SearchResults.jsp','_self');" />
+			<input id="searchAuctions" type="button" style="display:inline" value="Search auctions!" onclick="SearchAuctions()" />
     	</div>
 		<div class="col-sm-4 form-group">
-			<input name="BrowseAuction" type="text" placeholder="Browse current auctions now!" class="form-control"/>
+			<input id="searchPane" name="BrowseAuction" type="text" placeholder="Browse current auctions now!" class="form-control"/>
 		</div>
 	</div>
 	
