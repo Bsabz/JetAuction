@@ -5,35 +5,226 @@
 <script language="javascript" type="text/javascript">
 // <!CDATA[
 
-function Button1_onclick() {
-if(document.myForm.Id.value == "")
+function Button1_onclick() 
+{
+var wasFilledInProperly = checkIfFieldsNull();  
+	
+	//cehck for valid SSN
+	if(wasFilledInProperly && !checkSSNValid() )
+	{
+	
+		alert("Bad SSN provided!");
+		
+		wasFilledInProperly = false;
+	}
+	
+	//check fro valid ZIP
+	if(wasFilledInProperly && !checkIfZIPValid() )
+	{
+		alert("Bad zip code provided");
+		
+		wasFilledInProperly = false;
+	}
+	
+	//check for valid telephone
+	if(wasFilledInProperly && !checkIfTelephoneValid() )
+	{
+		alert("Bad phone number provided");
+		
+		wasFilledInProperly = false;
+	}
+	
+	if(wasFilledInProperly && !checkIfEmailValid() )
+	{
+		alert("Bad email given.");
+		
+		wasFilledInProperly = false;
+	}
+	
+	if(wasFilledInProperly)
+		document.myForm.submit();
+}
+
+//check to see if email was valid (xxxx@xxxx.xxx)
+function checkIfEmailValid()
+{
+	var emailString = document.myForm.email.value;
+	var splitEmail;
+	
+	if( (splitEmail = emailString.split("@")).length != 2 )
+		return false;
+	if(splitEmail[1].split(".").length != 2)
+		return false;
+	
+	return true;
+}
+
+//check to see if user provided a valid telephone num
+//format of (xxx)-xxx-xxxx
+function checkIfTelephoneValid()
+{
+	var phoneNumArr = document.myForm.phone.value.split("-");
+	
+	if(phoneNumArr.length != 3)
+		return false;
+	
+	if(phoneNumArr[0].length != 5 || phoneNumArr[1].length != 3 || phoneNumArr[2].length != 4)
+		return false;
+	
+	if(phoneNumArr[0][0] != '(' || phoneNumArr[0][4] != ')')
+		return false;
+	
+	phoneNumArr[0] = phoneNumArr[0].substring(1 , 4); 		//remove ( ) 
+	
+	//phoneNum is properly formatted
+	for(var i = 0; i < phoneNumArr.length; i++)
+	{
+		for(var u = 0; u < phoneNumArr[i].length; u++)
+		{
+			//if not a number return false
+			if( isNaN(phoneNumArr[i][u]) )
+				return false;
+		}
+	}
+	
+	return true;
+}
+
+//cehck to see if user provided a vlid zip code
+function checkIfZIPValid()
+{
+	var zipCode = document.myForm.zip.value;
+	
+	if(zipCode.length != 5)
+		return false;
+	
+	for(var i = 0; i < zipCode.length; i++)
+	{
+		//if not a number return false
+		if(isNaN(zipCode[i]))
+			return false;
+	}
+	
+	return true;
+}
+
+//check to see if user provided a valid SSN
+function checkSSNValid()
+{
+	//split on - if present
+	var SSN = document.myForm.ssn.value.split("-");
+	
+	if(SSN.length != 1 && SSN.length != 3)
+		return false;
+	
+	//should be of form xxx-xx-xxx
+	if(SSN.length == 3)
+	{
+		if(SSN[0].length != 3 || SSN[1].length != 2 || SSN[2].length !=3)
+			return false;
+	}
+	else if(SSN.length == 1)
+	{
+		if(SSN[0].length != 8)
+			return false;
+	}
+	
+	//SSN is properly formatted
+	for(var i = 0; i < SSN.length; i++)
+	{
+		for(var u = 0; u < SSN[i].length; u++)
+		{
+			//if not a number return false
+			if( isNaN(SSN[i][u]) )
+				return false;
+		}
+	}
+	
+	return true;
+}
+
+function checkIfFieldsNull()
+{
+	if(document.myForm.Id.value == "")
+	{
 		alert("You must give a username!!!")
-else if(document.myForm.fname.value == "")
+		
+		return false;
+	}
+	else if(document.myForm.fname.value == "")
+	{
 		alert("You must give your first name!!!")
-else if(document.myForm.lname.value == "")
+		
+		return false;
+	}
+	else if(document.myForm.lname.value == "")
+	{
 		alert("You must give your last name!!!")
-else if(document.myForm.address_line_1.value == "")
+		
+		return false;
+	}
+	else if(document.myForm.address_line_1.value == "")
+	{
 		alert("You must give your address!!!")
-else if(document.myForm.state.value == "")
-    	alert("You must give your state!!!")
-else if(document.myForm.zip.value == "")
+		
+		return false;
+	}
+	else if(document.myForm.state.value == "")
+	{
+		alert("You must give your state!!!")
+		
+		return false;
+	}
+    else if(document.myForm.zip.value == "")
+	{
     	alert("You must give your zip code!!!")
-else if(document.myForm.city.value == "")
+    	
+    	return false;
+	}
+    else if(document.myForm.city.value == "")
+	{
     	alert("You must give your city!!!")
-else if(document.myForm.ssn.value == "")
+    	
+    	return false;
+	}
+    else if(document.myForm.ssn.value == "")
+	{
     	alert("You must give your SSN!!!")
-else if(document.myForm.Password1.value == "")
-		alert("You must give a password!!!")
-else if(document.myForm.Password2.value == "")
+    	
+    	return false;
+	}
+    else if(document.myForm.Password1.value == "")
+	{
+    	alert("You must give a password!!!")
+    	
+    	return false;
+	}
+	else if(document.myForm.Password2.value == "")
+	{
 		alert("Youmust confirm your password!!!!")
-else if(document.myForm.Password1.value != document.myForm.Password2.value)
-    	alert("Your provided passwords do not match!!!!")
-else if(document.myForm.phone.value == "")
+		
+		return false;
+	}
+	else if(document.myForm.Password1.value != document.myForm.Password2.value)
+	{
+		alert("Your provided passwords do not match!!!!")
+		
+		return false;
+	}
+    else if(document.myForm.phone.value == "")
+	{
     	alert("You must provide your phone number!!!!")
-else if(document.myForm.email.value == "")
+    	
+    	return false;
+	}
+    else if(document.myForm.email.value == "")
+	{
     	alert("You must give an email!!!!")
-    
-  else{document.myForm.submit()}
+		
+    	return false;
+	}
+	
+	return true;
 }
 
 function Button2_onclick() {
