@@ -15,20 +15,106 @@
 		
 		function SubmitButton_onclick()
 		{
-			if(document.createAuctionForm.auction_name.value == "")
-				alert("You must give an auction name!!!")
-			else if(document.createAuctionForm.auction_item.value == "")
-				alert("You must give an auction item!!!")
-			else if(document.createAuctionForm.open_date_time.value == "")
-				alert("You must give an opening date/time!!!")
-			else if(document.createAuctionForm.close_date_time.value == "")
-				alert("You must give a closing date/time!!!")
-			else if(document.createAuctionForm.min_bid.value == "")
-				alert("You must give a minimum bid!!!")
-			else if(document.createAuctionForm.reserve_price.value == "")
-				alert("You must give a reserve price!!!")
-			else 
+			alert("TODO: put in opening date/time and closing date/time in SQL db")
+			
+			var isValid = verifyNotNull();
+			
+			if(isValid && !verifyMinBid())
+			{
+				alert("Invalid minimum bid given.")
+				
+				isValid = false;
+			}
+			
+			if(isValid && !verifyReservePrice() )
+			{
+				alert("Invalid reserve price given");
+				
+				isValid = false;
+			}
+			
+			if(isValid)
 				window.open('Auction.jsp','_self');
+		}
+		
+		//can be in form $float or float
+		function verifyMinBid()
+		{
+			var minBid = document.createAuctionForm.min_bid.value;
+			
+			if(minBid[0] == '$')
+				minBid = minBid.substring(1 , minBid.length);
+			
+			for(var i = 0; i < minBid.length; i++)
+			{
+				if( isNaN(minBid[i]) )	//reserve price was nota number
+					return false;
+			}
+			
+			return true;
+		}
+		
+		function verifyReservePrice()
+		{
+			var reservePrice = document.createAuctionForm.reserve_price.value;
+			
+			if(reservePrice[0] == '$')
+				reservePrice = reservePrice.substring(1 , reservePrice.length);
+			
+			if(reservePrice[0] == '%')
+				return false;			//still parses it as percent
+			
+			for(var i = 0; i < reservePrice.length; i++)
+			{
+				if( isNaN(reservePrice[i]) )	//reserve price was nota number
+					return false;
+			}
+			
+			alert("checking reserve price for > 0")
+			
+			return true;
+		}
+		
+		function verifyNotNull()
+		{
+			if(document.createAuctionForm.auction_name.value == "")
+			{
+				alert("You must give an auction name!!!")
+				
+				return false;
+			}
+			else if(document.createAuctionForm.auction_item.value == "")
+			{
+				alert("You must give an auction item!!!")
+				
+				return false;
+			}
+			else if(document.createAuctionForm.open_date_time.value == "")
+			{
+				alert("You must give an opening date/time!!!")
+				
+				return false;
+			}
+			else if(document.createAuctionForm.close_date_time.value == "")
+			{
+				alert("You must give a closing date/time!!!")
+				
+				return false;
+			}
+			else if(document.createAuctionForm.min_bid.value == "")
+			{
+				alert("You must give a minimum bid!!!")
+				
+				return false;
+			}
+			else if(document.createAuctionForm.reserve_price.value == "")
+			{
+				alert("You must give a reserve price!!!")
+				
+				return false;
+			}
+			
+			return true;	
 		}
 		
 	</script>
