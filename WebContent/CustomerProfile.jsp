@@ -12,6 +12,26 @@
 		if(quitting == true)
 			window.open('index.htm','_self');
 	}
+	
+	function updateRating()
+	{
+		alert('TODO:Add in update rating functionality, parsing works');
+		
+		var newRating = document.getElementById("AddRatingField").value
+		
+		var canUpdate = true;
+		for(var i = 0; i < newRating.length; i++)
+		{
+			if( isNaN(newRating[i]) )	//reserve price was nota number
+			{
+				canUpdate = false;
+				break;		
+			}
+		}
+		
+		if(!canUpdate)
+			alert("Bad rating parameters given, try again");
+	}
 	</script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
@@ -109,7 +129,7 @@
 				<br />
 				<%if(!isOwner){%>
 					<input id="AddRatingField" type="text" style="display:inline" placeholder="Rate me" />
-    				<input id="RateButton" type="button" style="display:inline" value="Submit rating" onclick="alert('TODO:Add in update rating functionality');" />
+    				<input id="RateButton" type="button" style="display:inline" value="Submit rating" onclick="updateRating();" />
     			<%}%>
     	</div>	
 	</div>
