@@ -157,7 +157,7 @@ function checkSSNValid()
 	}
 	else if(SSN.length == 1)
 	{
-		if(SSN[0].length != 8)
+		if(SSN[0].length != 9)
 			return false;
 	}
 	
@@ -240,7 +240,7 @@ function checkIfFieldsNull()
 	}
 	else if(document.myForm.Password2.value == "")
 	{
-		alert("Youmust confirm your password!!!!")
+		alert("You must confirm your password!!!!")
 		
 		return false;	
 	}
@@ -327,7 +327,7 @@ function Button2_onclick() {
 			</div>
 			<div class="row">
 				<div class="col-sm-6 form-group">
-					<label>SSN</label>
+					<label>SSN [XXX-XX-XXXX]:</label>
 					<input name="ssn" type="text" placeholder="Enter SSN here.." class="form-control">
 				</div>
 				<div class="col-sm-6 form-group">
@@ -344,11 +344,11 @@ function Button2_onclick() {
 				<input name="Password2" type="password" placeholder="Re-type Password Here.." class="form-control">
 			</div>	
 			<div class="form-group">
-				<label>Phone Number</label>
+				<label>Phone Number [(xxx)-xxx-xxxx]:</label>
 				<input name="phone" type="text" placeholder="Enter Phone Number Here.." class="form-control">
 			</div>		
 			<div class="form-group">
-				<label>Email Address</label>
+				<label>Email Address [youremail@examplesite.com]:</label>
 				<input name="email" type="text" placeholder="Enter Email Address Here.." class="form-control">
 			</div>	
 				<div align="center">
