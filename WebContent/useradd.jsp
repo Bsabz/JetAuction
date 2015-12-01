@@ -12,17 +12,30 @@
 
 <div class="text-center" style="padding:50px 0" align="center">
 	<%
+	
+		java.util.Date currentDateTime = new java.util.Date();  	
+		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+		String currentDate = sdf.format(currentDateTime);
+	
 		String Id = request.getParameter("Id");
 		String fname = request.getParameter("fname");
 		String lname = request.getParameter("lname");
-		String Address = request.getParameter("address");
+		String Address = request.getParameter("address_line_1");
+		String Address2 = request.getParameter("address_line_2");
+		String City = request.getParameter("city");
+		String State = request.getParameter("state");
 		String Zip = request.getParameter("zip");
 		String SSN = request.getParameter("ssn");
 		String Phone = request.getParameter("phone");
 		String Email = request.getParameter("email");
 		String CreditCard = request.getParameter("credit");
 		int Rating = 1;
+		int defaultManagerRate = 60;
+		int defaultEmpRate = 10;
+		int mgrLevel = 2;
 		String Password1 = request.getParameter("Password1");
+		Address = Address + " " + Address2 + " " + City + ", " + State;
+		
 		String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
      	String mysURL = "jdbc:mysql://127.0.0.1:3306/jetauction_db"; 
      	String mysUserID = "root"; 
@@ -57,19 +70,22 @@
        		if (SSNstr.equals(SSN))
        			response.sendRedirect("RegisterPage.htm");
         				
-            			
+        	stmt2.executeUpdate("insert into Person values('"+SSN+"','"+lname+"','"+fname+"','"+Address+"','"+Zip+"','"+Phone+"','"+Email+"')");
+       		
 	        if (request.getParameter("target").trim().equals("Customer"))
 	        {
-	        	stmt2.executeUpdate("insert into Person values('"+SSN+"','"+lname+"','"+fname+"','"+Address+"','"+Zip+"','"+Phone+"','"+Email+"')");
-				stmt3.executeUpdate("insert into customer values('"+Rating+"','"+CreditCard+"','"+Id+"','"+SSN+"','"+Password1+"')");
-				stmt2.close();
-				stmt3.close();
+				stmt3.executeUpdate("insert into Customer values('"+Rating+"','"+CreditCard+"','"+Id+"','"+SSN+"','"+Password1+"')");
+				
 			}
-	        else
+	        else if(request.getParameter("target").trim().equals("Manager"))
 	        {
-				stmt3.executeUpdate("insert into customer values('"+Rating+"','"+CreditCard+"','"+Id+"','"+SSN+"','"+Password1+"')");
-				stmt3.close();
+				stmt3.executeUpdate("insert into Employee values('"+currentDate+"','"+defaultManagerRate+"','"+mgrLevel+"','"+SSN+"','"+Password1+"')");
 			}
+	        else{
+	        	stmt3.executeUpdate("insert into Employee values('"+currentDate+"','"+defaultEmpRate+"','"+Rating+"','"+SSN+"','"+Password1+"')");
+	        }
+	        stmt2.close();
+			stmt3.close();
 		} 
 		catch(Exception e)
 		{
