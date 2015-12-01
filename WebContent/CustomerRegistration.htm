@@ -149,10 +149,10 @@ function checkSSNValid()
 	if(SSN.length != 1 && SSN.length != 3)
 		return false;
 	
-	//should be of form xxx-xx-xxx
+	//should be of form xxx-xx-xxxx
 	if(SSN.length == 3)
 	{
-		if(SSN[0].length != 3 || SSN[1].length != 2 || SSN[2].length !=3)
+		if(SSN[0].length != 3 || SSN[1].length != 2 || SSN[2].length != 4)
 			return false;
 	}
 	else if(SSN.length == 1)
@@ -171,6 +171,13 @@ function checkSSNValid()
 				return false;
 		}
 	}
+	
+	//format into DB style (remove -)
+	var formattedSSN = "";
+	for(var i = 0; i < SSN.length; i++)
+		formattedSSN = formattedSSN.concat(SSN[i]);		
+	
+	document.myForm.ssn.value = formattedSSN;
 	
 	return true;
 }

@@ -116,10 +116,10 @@ function checkSSNValid()
 	if(SSN.length != 1 && SSN.length != 3)
 		return false;
 	
-	//should be of form xxx-xx-xxx
+	//should be of form xxx-xx-xxxx
 	if(SSN.length == 3)
 	{
-		if(SSN[0].length != 3 || SSN[1].length != 2 || SSN[2].length !=3)
+		if(SSN[0].length != 3 || SSN[1].length != 2 || SSN[2].length != 4)
 			return false;
 	}
 	else if(SSN.length == 1)
@@ -138,6 +138,13 @@ function checkSSNValid()
 				return false;
 		}
 	}
+	
+	//format into DB style (remove -)
+	var formattedSSN = "";
+	for(var i = 0; i < SSN.length; i++)
+		formattedSSN = formattedSSN.concat(SSN[i]);		
+	
+	document.myForm.ssn.value = formattedSSN;
 	
 	return true;
 }
@@ -247,7 +254,7 @@ function Button2_onclick() {
     <h1 class="well" style="text-align:center">Employee Registration</h1>
 	<div class="col-lg-12 well">
 	<div class="row">
-				<form name="myForm" action="useradd.jsp" method="post">
+				<form name="myForm" action="employeeadd.jsp" method="post">
 				<input type="hidden" name="target" value="Employee"></input>
 					<div class="col-sm-12">
 						<div class="form-group">
