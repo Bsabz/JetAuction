@@ -80,7 +80,7 @@ response.setDateHeader("Expires",0);
                         <th>
                             <span style="font-size: 12pt">Hourly Rate</span></th>
                         <th >
-                            <span style="font-size: 12pt">Levels</span></th>
+                            <span style="font-size: 12pt">Status</span></th>
                         <th>
                             <span style="font-size: 12pt">Edit</span></th>
                     </tr>   
@@ -128,7 +128,7 @@ response.setDateHeader("Expires",0);
                         <td style="vertical-align:middle;">
                             <span style="font-size: 10pt"><%=rs.getString(8)%></span></td>
                         <td style="vertical-align:middle;">
-                            <span style="font-size: 10pt"><%=rs.getString(9)%></span></td>
+                            <span style="font-size: 10pt"><%=rs.getString(9).equals("1")?"Customer Rep":"Manager"%></span></td>
                         <td style="vertical-align:middle;">
                             <span style="font-size: 10pt"><%=rs.getString(10)%></span></td>
                         <td style="vertical-align:middle;">
