@@ -78,7 +78,7 @@ response.setDateHeader("Expires",0);
                     </thead>
 <%
 String month = request.getParameter("month");
-
+String year = request.getParameter("year");
 			String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
 			String mysURL = "jdbc:mysql://127.0.0.1:3306/jetauction_db"; 
 			String mysUserID = "root"; 
@@ -103,7 +103,8 @@ String month = request.getParameter("month");
 								"AND PO.auction_id = A.auction_id " +
 							    "AND S.auction_id = PO.auction_id " +
 							    "AND S.item_id = I.item_id " +
-							    "AND A.item_id = S.item_id");
+							    "AND A.item_id = S.item_id " + 
+							    "AND YEAR(PO.ExpireDate) = '" + year + "'");
  
      	  while(rs.next())                
         	{

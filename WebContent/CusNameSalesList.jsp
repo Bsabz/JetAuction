@@ -93,7 +93,7 @@ response.setDateHeader("Expires",0);
 							"AND O.auction_id = A.auction_id " +
 							"AND O.customer_id = C.customer_id " + 
 							"AND C.SSN = P.SSN " +
-							"GROUP BY P.FirstName, P.LastName, I.ItemName");
+							"GROUP BY P.FirstName, P.LastName");
  
      	  while(rs.next())                
         	{
