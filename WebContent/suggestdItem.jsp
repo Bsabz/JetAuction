@@ -29,6 +29,9 @@
                     <a onclick="window.open('FacultyDetailedCourseInfo.jsp','_self');return;">View/Edit Customers</a>
                 </li>
                 <li>
+                    <a onclick="window.open('FacultyView.jsp','_self');return;">View Employees</a>
+                </li>
+                <li>
                     <a onclick="window.open('MailingList.jsp','_self');return;">Mailing List</a>
                 </li>
                  <li class=".sidebar-nav li a disabled">
