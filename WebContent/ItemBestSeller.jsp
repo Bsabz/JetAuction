@@ -32,7 +32,7 @@
                     <a onclick="window.open('ItemSalesList.jsp','_self');return;">Sales List</a>
                 </li>
                  <li>
-                    <a onclick="window.open('','_self');return;">Item List</a>
+                    <a onclick="window.open('ItemList.jsp','_self');return;">Item List</a>
                 </li>
                 <li>
                     <a onclick="window.open('TotalRevenue.jsp','_self');return;">Total Revenue</a>

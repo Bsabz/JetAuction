@@ -113,7 +113,6 @@ response.setDateHeader("Expires",0);
                         <td style="vertical-align:middle;">
                             <span style="font-size: 10pt;"><%=rs.getString(4)%></span></td>
                         <td style="vertical-align:middle;">
-                        	<!-- <input type="text" name="stu_<%=rs.getString(3)%>" value=<%=(rs.getString(5).trim().equals("-1"))?"":rs.getString(5)%>> -->
                         	<span style="font-size: 10pt"><%=rs.getString(5)%></span></td>
                         <td style="vertical-align:middle;">
                             <span style="font-size: 10pt;"><%=rs.getString(6)%></span></td>
