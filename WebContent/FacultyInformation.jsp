@@ -56,7 +56,7 @@ response.setDateHeader("Expires",0);
 		String crscode=request.getParameter("crscode");
         
 		String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
-     	String mysURL = "jdbc:mysql://127.0.0.1:3306/course_reg"; 
+     	String mysURL = "jdbc:mysql://127.0.0.1:3306/jetauction_db"; 
      	String mysUserID = "root"; 
     	String mysPassword = "password";
     	
@@ -73,16 +73,6 @@ response.setDateHeader("Expires",0);
             			conn=java.sql.DriverManager.getConnection(mysURL,sysprops);
             			System.out.println("Connected successfully to database using JConnect");
             
-            			java.sql.Statement stmt1=conn.createStatement();
-        
-					java.sql.ResultSet rs = stmt1.executeQuery("select * from Course where Course.InsNo='"+profId+"'");
-      	  while(rs.next())
-        	{
-%>
-
-            				
-<%      		
-        	}
   			} catch(Exception e)
 			{
 				e.printStackTrace();

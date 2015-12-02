@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
-    <title>Error adding employee!</title> 
+    <title>Error adding user</title> 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
 	<!-- All the files that are required -->
@@ -101,8 +101,8 @@
 	
 	<!--if we didn't raise an exception, display "User added successfully -->
 	<%if(!caughtException){%>
-		<h2>Employee Added!</h2>
-		<a href="FacultyInformation.jsp"><font color="Blue">Continue to JetAuction</font></a>
+		<h2>Manager Added!</h2>
+		<a href="Manager.jsp"><font color="Blue">Continue to JetAuction</font></a>
 	<%}else{%>
 		<h2>Oops :(</h2>
 		<h2>Something went wrong. <a href="index.htm"><font color="Blue">Let's try that again</font></a></h2>
