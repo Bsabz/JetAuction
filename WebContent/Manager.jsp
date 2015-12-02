@@ -128,7 +128,7 @@ response.setDateHeader("Expires",0);
                         <td style="vertical-align:middle;">
                             <span style="font-size: 10pt"><%=rs.getString(8)%></span></td>
                         <td style="vertical-align:middle;">
-                            <span style="font-size: 10pt"><%=rs.getString(10)%></span></td>
+                            <span style="font-size: 10pt"><%=rs.getString(9)%></span></td>
                         <td style="vertical-align:middle;">
                         	<span style="font-size: 10pt"><%=rs.getString(10).equals("1")?"Customer Rep":"Manager"%></span></td>
                         <td style="vertical-align:middle;">
