@@ -166,6 +166,8 @@
             
             			java.sql.Statement stmt1=conn.createStatement();
             			java.sql.Statement stmt2=conn.createStatement();
+            			java.sql.Statement stmt3=conn.createStatement();
+            			java.sql.Statement stmt4=conn.createStatement();
         
 					java.sql.ResultSet rs = stmt1.executeQuery("SELECT A.auction_id as 'Auction', A.BidIncrement, A.OpenBid, I.Description FROM jetauction_db.Auction as A, jetauction_db.Item as I WHERE A.item_id = I.item_id;");
  
@@ -222,9 +224,47 @@
 <%      	} %>
             </table>
             
-            
 <%     	  
 		}
+		java.sql.ResultSet rs3 = stmt3.executeQuery("SELECT customer_id, rating FROM Customer ORDER BY Rating DESC");
+%>
+  					
+		</div>
+		<div class="col-sm-6 form-group">
+			<h3>Best sellers list</h3>
+			
+			  <ul style="list-style: none;">
+			
+			<%while(rs3.next()){%>
+			  	<li>
+					<h4>Seller: <%= rs3.getString(1)%></h4>
+					<p>Rating: <%= rs3.getString(2) %></p>
+    		  	</li>
+    		<%	
+    		  	
+      		  }
+			java.sql.ResultSet rs4 = stmt4.executeQuery(
+					"SELECT * FROM ItemsSold ISo " +
+					"WHERE NOT EXISTS( " +
+						"SELECT  I.item_id, I.itemName " +	 
+						"FROM SALES S, Item I " +
+						"WHERE ISo.item_id = I.item_id " +
+						"AND S.item_id = ISo.item_id " +
+						"AND S.buyer_id LIKE \"" + user + "\"" +
+					") ORDER BY ISo.Copies_Sold DESC;");
+     		%>
+			
+			<br />
+			<h3>Suggested items list</h3>
+			
+			<%while(rs4.next()){%>
+			  	<li>
+					<h4><%=rs4.getString(2) %></h4>
+					<p>ID: <%=rs4.getString(1) %></p>
+					<p>Desc: <%=rs4.getString(4) %></p>
+    		  	</li>
+    		
+			<%}
 			}
 			catch(Exception e)
 			{
@@ -233,67 +273,8 @@
 			}
 			finally
 			{
-			
 				try{conn.close();}catch(Exception ee){};
 			}
-%>
-  					
-		</div>
-		<div class="col-sm-6 form-group">
-			<h3>Best sellers list</h3>
-			<%int numItemsToDisplay = 2;
-  			  int numLeftToPrint = numItemsToDisplay;
-  			  if(numItemsToDisplay > 0) {%>
-			  <ul style="list-style: none;">
-			<%}%>
-			<%while(numLeftToPrint > 0){%>
-			  	<li>
-					<h4>Item Name</h4>
-					<p>Item Price</p>
-					<p>Item Expiration Date</p>
-					<input id="GoToItemButton" type="button" style="display:inline" value="Check Out Item" onclick="window.open('Auction.jsp','_self');" />
-					<input id="BidNowButton" type="button" style="display:inline" value="Bid now!" onclick="alert('Bid now feature not implemented yet.');" />
-    		  	</li>
-    		<%	
-    		  	if(numLeftToPrint > 1)
-    				out.print("<br />");
-    		  	numLeftToPrint--;
-      		  }
-     		%>
-			<%if(numItemsToDisplay > 0) {%>
-				</ul>
-			<%}else{
-				out.print("<h4 style='text-align:center'>No best sellers yet :(</h4>");
-				out.print("<p>Check back soon</p>");
-			  }
-			%>
-			<br />
-			<h3>Suggested items list</h3>
-			<%numItemsToDisplay = 2;
-  			  numLeftToPrint = numItemsToDisplay;
-  			  if(numItemsToDisplay > 0) {%>
-			  <ul style="list-style: none;">
-			<%}%>
-			<%while(numLeftToPrint > 0){%>
-			  	<li>
-					<h4>Item Name</h4>
-					<p>Item Price</p>
-					<p>Item Expiration Date</p>
-					<input id="GoToItemButton" type="button" style="display:inline" value="Check Out Item" onclick="window.open('Auction.jsp','_self');" />
-					<input id="BidNowButton" type="button" style="display:inline" value="Bid now!" onclick="alert('Bid now feature not implemented yet.');" />
-    		  	</li>
-    		<%	
-    		  	if(numLeftToPrint > 1)
-    				out.print("<br />");
-    		  	numLeftToPrint--;
-      		  }
-     		%>
-			<%if(numItemsToDisplay > 0) {%>
-				</ul>
-			<%}else{
-				out.print("<h4 style='text-align:center'>No suggested items yet :(</h4>");
-				out.print("<p>Check back soon</p>");
-			  }
 			%>
 		</div>
 	</div>
