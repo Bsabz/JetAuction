@@ -49,14 +49,15 @@
 	<!-- Laeve in for testing purposes. -->
 	<%boolean isOwner = false; %>
 	<nav>
+	<%String usernameCust = request.getParameter("username"); %>
 		<input id="LogoutButton" type="button" style="display:inline" value="Logout" onclick="Logout_onclick();" />
-    	<input id="HelpButton" type="button" style="display:inline" value="Help" onclick="window.open('HelpMenu.htm','_self')" />
-    	<input id="GoHomeButton" type="button" style="display:inline" value="Go Home" onclick="window.open('CustomerHomePage.jsp','_self')" />
+    	<input id="HelpButton" type="button" style="display:inline" value="Help" onclick="window.open('HelpMenu.jsp?username=<%=usernameCust%>','_self')" />
+    	<input id="GoHomeButton" type="button" style="display:inline" value="Go Home" onclick="window.open('CustomerHomePage.jsp?username=<%=usernameCust%>','_self')" />
     </nav>
 	
 	<br />
 	
-	<h2 class="well" style="text-align:center">Welcome to your Profile! - Note, is not actually reading data, just looks complete to see if pretty</h2>
+	<h2 class="well" style="text-align:center">Welcome to your Profile!</h2>
 	
 	<div class="col-lg-12 well">
 	<div class="row" style="alignment:center">
@@ -66,72 +67,105 @@
     		</div>	
 			<br />
 		<%}%>
-		<div class="form-group">
-				<label>Last Name:</label>
-				<label><u>Nikonorov</u></label>
-		</div>	
-		<div class="form-group">
-				<label>First Name:</label>
-				<label><u>Gleb</u></label>
-		</div>
 		
-		<br />
-		
-		<div class="form-group">
-			<label>Address Line 1:</label>
-			<label><u>123 Sesame Street.</u></label>
-		</div>
-		<div class="form-group">
-			<label>Address Line 2:</label>
-			<label><u>Apartment ABC</u></label>
-		</div>
-		<div class="row">
-				<div class="col-sm-4 form-group">
-					<label>City:</label>
-					<label><u>Narnia</u></label>
-				</div>
-				<div class="col-sm-4 form-group">
-					<label>State:</label>
-					<label><u>AL</u></label>
-				</div>
-				<div class="col-sm-4 form-group">
-					<label>Zip:</label>
-					<label><u>11111</u></label>
-				</div>
-		</div>
-		
-		<br />
-		
-		<div class="row">
-			<div class="col-sm-6 form-group">
-				<label>Phone #:</label>
-				<label><u>212-501-0551</u></label>
-			</div>
-			<div class="col-sm-6 form-group">
-				<label>E-mail:</label>
-				<label><u>myFakeEmail@someDomain.com</u></label>
-			</div>	
-		</div>
+		<%
+
+			String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
+			String mysURL = "jdbc:mysql://127.0.0.1:3306/jetauction_db"; 
+			String mysUserID = "root"; 
+			String mysPassword = "password";
+			
+  			java.sql.Connection conn=null;
+			try 
+			{
+            	Class.forName(mysJDBCDriver).newInstance();
+    			java.util.Properties sysprops=System.getProperties();
+    			sysprops.put("user",mysUserID);
+    			sysprops.put("password",mysPassword);
+        
+				//connect to the database
+            			conn=java.sql.DriverManager.getConnection(mysURL,sysprops);
+            			System.out.println("Connected successfully to database using JConnect");
+            
+            			java.sql.Statement stmt1=conn.createStatement();
+        
+				java.sql.ResultSet rs = stmt1.executeQuery("SELECT P.LastName, P.FirstName, P.Address, P.ZipCode, P.Telephone, P.Email, C.CreditCardNum, C.Rating "
+						+ "FROM Person as P, Customer as C "
+						+ "WHERE P.SSN = C.SSN "
+						+ "AND C.customer_id = " + "'" + usernameCust + "'" + ";");
 				
-		<br />
+		     	  while(rs.next())                
+		        	{
+		%>
+							<div class="form-group">
+									<label>Last Name:</label>
+									<label><u><%=rs.getString(1)%></u></label>
+							</div>	
+							<div class="form-group">
+									<label>First Name:</label>
+									<label><u><%=rs.getString(2)%></u></label>
+							</div>
+							
+							<br />
+							
+							<div class="form-group">
+								<label>Address:</label>
+								<label><u><%=rs.getString(3)%></u></label>
+							</div>
+							<div class="form-group">
+								<label>Zip:</label>
+								<label><u><%=rs.getString(4)%></u></label>
+							</div>
+							
+							<br />
+							
+							<div class="row">
+								<div class="col-sm-6 form-group">
+									<label>Phone #:</label>
+									<label><u><%=rs.getString(5)%></u></label>
+								</div>
+								<div class="col-sm-6 form-group">
+									<label>E-mail:</label>
+									<label><u><%=rs.getString(6)%></u></label>
+								</div>	
+							</div>
+									
+							<br />
+							
+							<div class="form-group">
+									<label>Credit card #:</label>
+									<label><u><%=rs.getString(7)%></u></label>
+							</div>	
+							
+							<br />     
+							<div class="form-group">
+								<label>Rating:</label>
+								<label><u><%=rs.getString(8)%></u></label>
+								
+								<br />
+								<%if(!isOwner){%>
+									<input id="AddRatingField" type="text" style="display:inline" placeholder="Rate me" />
+				    				<input id="RateButton" type="button" style="display:inline" value="Submit rating" onclick="updateRating();" />
+				    			<%}%>
+				    		</div>          
+		<%      		
+		        	}
+		  			} catch(Exception e)
+					{
+						e.printStackTrace();
+						out.print(e.toString());
+					}
+					finally{
+					
+						try{conn.close();}catch(Exception ee){};
+					}
+
+		  %>
+		  			
 		
-		<div class="form-group">
-				<label>Credit card #:</label>
-				<label><u>1111-1111-1111-1111</u></label>
-		</div>	
 		
-		<br />
 		
-		<div class="form-group">
-				<label>Rating:</label>
-				<label><u>5</u></label>
-				
-				<br />
-				<%if(!isOwner){%>
-					<input id="AddRatingField" type="text" style="display:inline" placeholder="Rate me" />
-    				<input id="RateButton" type="button" style="display:inline" value="Submit rating" onclick="updateRating();" />
-    			<%}%>
-    	</div>	
+			
 	</div>
 	</div>
 	

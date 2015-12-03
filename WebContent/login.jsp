@@ -38,7 +38,7 @@
 				if (rs.next()) {
 					// login success
 					session.putValue("login", username);
-					response.sendRedirect("CustomerHomePage.jsp");
+					response.sendRedirect("CustomerHomePage.jsp?username="+username);
 				} else {
 					rs = stmt1.executeQuery("SELECT * FROM Employee WHERE employee_id='" + username
 							+ "' and Passwrd='" + userpasswd + "'");
