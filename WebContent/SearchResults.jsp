@@ -52,7 +52,7 @@
 	
 	<h2 class="well" style="text-align:center">Search Results</h2>
 	
-<%int numItemsToDisplay = 0;
+<%int numItemsToDisplay = 3;
   int numLeftToPrint = numItemsToDisplay;
   if(numItemsToDisplay > 0) {%>
 	<ol>

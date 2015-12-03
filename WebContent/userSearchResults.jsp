@@ -3,10 +3,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>User Auction History</title>
-<link rel="stylesheet" href="css/bootstrap.css" ></link>
-<style> th {text-align: center;}</style>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>User Auction History</title>
+	<link rel="stylesheet" href="css/bootstrap.css" ></link>
+	<style> th {text-align: center;}</style>
+
+	<!-- All the files that are required -->
+	<link rel="stylesheet" href="css/bootstrap.css" ></link>
+	<link rel="stylesheet" href="css/bootsnip.css" ></link>
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"></link>
+	<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'></link>
 </head>
 <body>
 <div id="wrapper">

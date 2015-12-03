@@ -123,7 +123,7 @@
 					</select>
 			</div>
 			<div class="form-group">
-				<input id="searchItems" type="submit" style="display:inline" value="Search!" onclick="SearchItems()" />
+				<input id="searchItems" type="submit" style="display:inline" value="Search!" onclick="SearchAuctions()" />
 	    	</div>
 			</div>
 		</form>

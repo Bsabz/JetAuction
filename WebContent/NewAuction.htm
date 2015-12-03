@@ -15,9 +15,7 @@
 		
 		function SubmitButton_onclick()
 		{
-			alert("TODO: put in opening date/time and closing date/time in SQL db")
-			
-			var isValid = verifyNotNull();
+		/*	var isValid = verifyNotNull();
 			
 			if(isValid && !verifyMinBid())
 			{
@@ -34,7 +32,13 @@
 			}
 			
 			if(isValid)
-				window.open('Auction.jsp','_self');
+			{*/
+				//alert("submitting");
+				document.createAuctionForm.submit();
+						
+			//}
+			//else
+				//alert("not valud");
 		}
 		
 		//can be in form $float or float
@@ -44,12 +48,14 @@
 			
 			if(minBid[0] == '$')
 				minBid = minBid.substring(1 , minBid.length);
-			
+				
 			for(var i = 0; i < minBid.length; i++)
 			{
 				if( isNaN(minBid[i]) )	//reserve price was nota number
 					return false;
 			}
+			
+			document.createAuctionForm.min_bid.value = minBid;
 			
 			return true;
 		}
@@ -69,8 +75,7 @@
 				if( isNaN(reservePrice[i]) )	//reserve price was nota number
 					return false;
 			}
-			
-			alert("checking reserve price for > 0")
+			document.createAuctionForm.reserve_price.value = reservePrice;
 			
 			return true;
 		}
@@ -86,12 +91,6 @@
 			else if(document.createAuctionForm.auction_item.value == "")
 			{
 				alert("You must give an auction item!!!")
-				
-				return false;
-			}
-			else if(document.createAuctionForm.open_date_time.value == "")
-			{
-				alert("You must give an opening date/time!!!")
 				
 				return false;
 			}
@@ -137,7 +136,7 @@
     </nav>
 	
     </br>
-	<form name = "createAuctionForm" action="Auction.jsp" method="post">
+	<form name = "createAuctionForm" action="CreateAuction.jsp" method="post">
 	<input type="hidden" name="target" value="Customer"></input>
 	<div class="col-sm-12">
 		<h2 style="text-align:center">Fill in the following information so we can make your new auction:</h2>
@@ -149,12 +148,16 @@
 				<label>Auction Item:</label>
                	<input name="auction_item" type="text" placeholder="Enter auction item name here" class="form-control"/>
             </div>
-       	    <div class="form-group">
-				<label>Opening date/time</label>
-                <input name="open_date_time" type="text" placeholder="Opening date/time" class="form-control"/>
+            <div class="form-group">
+				<label>Auction Item Description:</label>
+               	<input name="auction_item_description" type="text" placeholder="Enter auction item description name here" class="form-control"/>
             </div>
             <div class="form-group">
-				<label>Closing date/time</label>
+				<label>Item Year:</label>
+               	<input name="auction_item_year" type="text" placeholder="Enter year manufactured" class="form-control"/>
+            </div>
+            <div class="form-group">
+				<label>Closing date/time (yyyy-MM-dd HH:mm:ss)</label>
                	<input name="close_date_time" type="text" placeholder="Closing date/time" class="form-control"/>
             </div>
             <div class="form-group">
