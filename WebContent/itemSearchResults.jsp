@@ -22,7 +22,6 @@
                     <tr>
                       <th>
                           <span style="font-size: 12pt">Go to auction!</span></th>
-                      </th>
                       <th>
                           <span style="font-size: 12pt">UserName</span></th>
                       <th>
@@ -49,6 +48,7 @@
                      </thead>
                      <tbody>
 <%
+			String user = request.getParameter("username");
 			String item = request.getParameter("item");
 
 			String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
@@ -71,8 +71,8 @@
             			java.sql.Statement stmt1=conn.createStatement();
         
 				java.sql.ResultSet rs = stmt1.executeQuery("SELECT  C.customer_id, I.ItemName, I.Description, I.ItemType, "
-						+ "P.PostDate, P.ExpireDate, A.BidIncrement, A.MinBid, A.auction_id,"
-						+ "A.Copies_Sold, ps.FirstName as 'Emp_FirstName', ps.LastName as 'Emp_LastName' "
+						+ "P.PostDate, P.ExpireDate, A.BidIncrement, A.MinBid, "
+						+ "A.Copies_Sold, ps.FirstName as 'Emp_FirstName', ps.LastName as 'Emp_LastName', A.auction_id "
 						+ "FROM     Customer C, Auction A, Post P, Employee E, Person ps, Item I "
 						+ "WHERE  A.auction_id = P.auction_id "
 						+ "AND P.customer_id = C.customer_id "
@@ -87,8 +87,7 @@
 					
                     <tr>
                       <td>
-                      	<input id="searchAuctions" type="submit" style="display:inline" value="Go to auction" onclick="window.open('Auction.jsp?auctionId=<%=rs.getString(9)%>&username=<%=rs.getString(1)%>','_self');" />
-	    			  <td>
+                      	<input id="searchAuctions" type="submit" style="display:inline" value="Go to auction" onclick="window.open('Auction.jsp?auctionId=<%=rs.getString(12)%>&username=<%=user%>','_self');" ></td>
                       <td>
                           <span style="font-size: 10pt"><%=rs.getString(1)%></span></td>
                       <td>

@@ -56,6 +56,7 @@
                      <tbody>
 <%
 			String username = request.getParameter("usersSearchName");
+			String currentuser = request.getParameter("username");
 
 			String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
 			String mysURL = "jdbc:mysql://127.0.0.1:3306/jetauction_db"; 
@@ -94,7 +95,7 @@
                     <tr>
                       <td>
                           <span style="font-size: 10pt">
-                          	<input id="searchUsers" type="submit" style="display:inline" value="Go to auction" onclick="window.open('Auction.jsp?auctionId=<%=rs.getString(12)%>&username=<%=rs.getString(1)%>','_self');" />
+                          	<input id="searchUsers" type="submit" style="display:inline" value="Go to auction" onclick="window.open('Auction.jsp?auctionId=<%=rs.getString(12)%>&username=<%=currentuser%>','_self');" />
 	    				  </span></td>
                       <td>
                           <span style="font-size: 10pt"><%=rs.getString(2)%></span></td>

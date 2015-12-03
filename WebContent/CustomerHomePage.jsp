@@ -100,6 +100,7 @@
 		<form name ="userSearchForm" id="userSearch-form" action="userSearchResults.jsp">
 			<div class="row">
 			<div class="form-group">
+			<input type="hidden" name="username" value="<%=user%>"></input>
 				<input id="usersSearchPane" name="usersSearchName" type="text" placeholder="Browse current users now!" class="form-control"/>
 			</div>
 			<div class="form-group">
@@ -113,6 +114,7 @@
 		<form name ="itemSearchForm" id="itemSearch-form" action="itemSearchResults.jsp">
 			<div class="row">
 			<div class="form-group">
+			<input type="hidden" name="username" value="<%=user%>"></input>
 				<h3><strong>Select Item Type:</strong></h3>
                 	<select id="itemSearchPane" name = "item">
                 	  <option selected disabled>Select One</option>
@@ -123,7 +125,7 @@
 					</select>
 			</div>
 			<div class="form-group">
-				<input id="searchItems" type="submit" style="display:inline" value="Search!" onclick="SearchAuctions()" />
+				<input id="searchItems" type="submit" style="display:inline" value="Search!" onclick="SearchItems()" />
 	    	</div>
 			</div>
 		</form>
