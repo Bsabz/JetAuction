@@ -22,6 +22,13 @@
 	<link rel="stylesheet" href="css/bootsnip.css" ></link>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"></link>
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'></link>
+
+<!-- Dropdown scripts -->	
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 </head>
 <body style="text-align: center">
 <div class="container">
@@ -44,16 +51,14 @@
 					Topic <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-					<li><a href="#">Buying</a></li>
-					<li><a href="#">Selling</a></li>
-					<li><a href="#">Managing Account</a></li>
-					<li role="separator" class="divider"></li>
-					<li><a href="#">Separated link</a></li>
+					<li><a href="#buying">Buying</a></li>
+					<li><a href="#selling">Selling</a></li>
+					<li><a href="#manage">Manage Account</a></li>
 				</ul>
 			</div>
 		</div>
 		<div align = "left">
-			<h1><strong>Buying</strong></h1>
+			<h1 id="buying"><strong>Buying</strong></h1>
 			<div style="padding-left: 50px">
 			<h3>How Bidding Works </h3>
 			<table class="table table-striped">
@@ -74,21 +79,25 @@
 			<h3>Placing Bids</h3>
 				Place a bid by entering an amount greater than or equal to the current bid plus the bid increment. 
 			</div>
-
-			<h1><strong>Selling</strong></h1>
+			<br>
+			<br>
+			<br>
+			<h1 id="selling"><strong>Selling</strong></h1>
 			<div style="padding-left: 50px">
 			<h3>Post an Auction</h3>
 				Go to "View My Profile" and click on "Update Profile" enter the appropriate changes and submit.
 			<h3>Reserve Price </h3>
 				The user can determine the minimum value they want their item to sell for. If the bids do not exceed this value then the no one wins the auction.
 			</div>
-			<h1><strong>Manage Account</strong></h1>
+			<br>
+			<br>
+			<br>
+			<h1 id="manage"><strong>Manage Account</strong></strong></h1>
 			<div style="padding-left: 50px">
 			<h3>Update Info</h3>
 				Go to "View My Profile" and click on "Update Profile" enter the appropriate changes and submit.
 			</div>
 		</div>
-
-	</div>		
+	</div>	
 </body>
 </html>
