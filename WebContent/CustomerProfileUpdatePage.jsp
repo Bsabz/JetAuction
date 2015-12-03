@@ -259,7 +259,7 @@
 	
 	<br />
 	
-	<h2 class="well" style="text-align:center">Welcome to your Profile! - Note, is not actually reading data, just looks complete to see if pretty</h2>
+	<h2 class="well" style="text-align:center">Welcome to your Profile!</h2>
 
 	<div class="col-lg-12 well">
 	<form name ="updateInfoForm" id="update-form" action="Update.jsp">

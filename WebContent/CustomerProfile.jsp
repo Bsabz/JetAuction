@@ -194,7 +194,7 @@
             </tr>   
 			</table>
 			<%}else{%>
-				<h4 style='text-align:center'>You haven't sold anything you bitch. How are we supposed to make money if you just sit on you ass. The Internet isn't free you hick :(</h4>
+				<h4 style='text-align:center'>You haven't sold anything!</h4>
 				<p>Get started by posting an auction now!</p>
 				
 				<br />
@@ -229,7 +229,7 @@
 			<%if(numItemsToDisplay > 0) {%>
 				</ul>
 			<%}else{%>
-				<h4 style='text-align:center'>You haven't bought anything you bitch. How are we supposed to make money if you just sit on you ass. The Internet isn't free you hick :(</h4>
+				<h4 style='text-align:center'>You haven't bought anything :(</h4>
 				<p>Get started by posting an auction now!</p>
 				
 				<br />

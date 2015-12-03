@@ -234,14 +234,14 @@
 			<h3>Best sellers list</h3>
 			
 			  <ul style="list-style: none;">
-			
-			<%while(rs3.next()){%>
+			<%int i = 5; %>
+			<%while(rs3.next() && i > 0){%>
 			  	<li>
 					<h4>Seller: <%= rs3.getString(1)%></h4>
 					<p>Rating: <%= rs3.getString(2) %></p>
     		  	</li>
     		<%	
-    		  	
+    		  	i--;
       		  }
 			java.sql.ResultSet rs4 = stmt4.executeQuery(
 					"SELECT * FROM ItemsSold ISo " +
@@ -256,15 +256,16 @@
 			
 			<br />
 			<h3>Suggested items list</h3>
-			
-			<%while(rs4.next()){%>
+			<%i = 5; %>
+			<%while(rs4.next() && i > 0){%>
 			  	<li>
 					<h4><%=rs4.getString(2) %></h4>
 					<p>ID: <%=rs4.getString(1) %></p>
 					<p>Desc: <%=rs4.getString(4) %></p>
     		  	</li>
-    		
-			<%}
+    			
+    		<%	i--;
+				}
 			}
 			catch(Exception e)
 			{
