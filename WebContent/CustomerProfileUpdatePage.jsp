@@ -228,13 +228,13 @@
 	
 	//original address
 	//Address: 151-48 11th Avenue Whitestone, NY
-	state = address.split(", ")[1];
+	//state = address.split(", ")[1];
 	
 	//151-48 11th Avenue Whitestone
-	address = address.split(", ")[0];
-	String[] splitTokens = address.split(" ");
+	//address = address.split(", ")[0];
+	//String[] splitTokens = address.split(" ");
 	
-	String outputAddress = "";
+	/*String outputAddress = "";
 	for(int i =0; i < splitTokens.length; i++)
 	{
 		if(i != splitTokens.length - 1)
@@ -247,13 +247,13 @@
 		if( i < splitTokens.length - 2)
 			outputAddress += " ";
 	}
-	System.out.println(outputAddress);
+	System.out.println(outputAddress);*/
 %>
 
 <div class="container">
 	<nav>
 		<input id="LogoutButton" type="button" style="display:inline" value="Logout" onclick="Logout_onclick();" />
-    	<input id="HelpButton" type="button" style="display:inline" value="Help" onclick="window.open('HelpMenu.htm','_self')" />
+    	<input id="HelpButton" type="button" style="display:inline" value="Help" onclick="window.open('HelpMenu.jsp','_self')" />
     	<input id="GoHomeButton" type="button" style="display:inline" value="Go Home" onclick="window.open('CustomerHomePage.jsp','_self')" />
     </nav>
 	
@@ -266,42 +266,30 @@
 	<div class="row" style="alignment:center">
 		<input hidden value=<%=username%> name="UserName"></input>
 		<div class="form-group">
-			<input id="UpdateButton" name="Updatebutton" type="button" style="display:inline" value="Update" onclick="Update_onClick()" />
-    		<input id="CancelButton" name="Cancelbutton" type="button" style="display:inline" value="Cancel" onclick="window.open('CustomerProfile.jsp?username='<%=username%>,'_self')" />
+			<input id="UpdateButton" name="Updatebutton" type="submit" style="display:inline" value="Update" onclick="Update_onClick()" />
+    		<input id="CancelButton" name="Cancelbutton" type="button" style="display:inline" value="Cancel" onclick="window.open('CustomerProfile.jsp?username=<%=username%>','_self')" />
     	</div>	
 		<br />
 		</div>	
 		<div class="form-group">
 				<label>Last Name:</label>
-				<input id="last_name" name="LastName" type="text" placeholder="<%=lastName%>" class="form-control">
+				<input id="last_name" name="LastName" type="text" value="<%=lastName%>" class="form-control">
 		</div>	
 		<div class="form-group">
 				<label>First Name:</label>
-				<input id="first_name" name="FirstName" type="text" placeholder="<%=firstName%>" class="form-control">
+				<input id="first_name" name="FirstName" type="text" value="<%=firstName%>" class="form-control">
 		</div>
 		
 		<br />
 		
 		<div class="form-group">
 			<label>Address Line 1:</label>
-			<input id="address_line_1" name="AddressLine1" type="text" placeholder="<%=outputAddress%>" class="form-control">
-		</div>
-		<div class="form-group">
-			<label>Address Line 2:</label>
-			<input id="address_line_2" name="AddressLine2" type="text" placeholder="Enter additional info here" class="form-control">
+			<input id="address_line_1" name="AddressLine1" type="text" value="<%=address%>" class="form-control">
 		</div>
 		<div class="row">
 				<div class="col-sm-4 form-group">
-					<label>City:</label>
-					<input id="city" name="City" type="text" placeholder="<%=city%>" class="form-control">
-				</div>
-				<div class="col-sm-4 form-group">
-					<label>State:</label>
-					<input id="state" name="State" type="text" placeholder="<%=state%>" class="form-control">
-				</div>
-				<div class="col-sm-4 form-group">
 					<label>Zip:</label>
-					<input id="zip" name="Zip" type="text" placeholder="<%=zip%>" class="form-control">
+					<input id="zip" name="Zip" type="text" value="<%=zip%>" class="form-control">
 				</div>
 		</div>
 		
@@ -310,11 +298,11 @@
 		<div class="row">
 			<div class="col-sm-6 form-group">
 				<label>Phone #:</label>
-				<input id="phone" name="PhoneNum" type="text" placeholder="<%=phone%>" class="form-control">
+				<input id="phone" name="PhoneNum" type="text" value="<%=phone%>" class="form-control">
 			</div>
 			<div class="col-sm-6 form-group">
 				<label>E-mail:</label>
-				<input id="email" name="Email" type="text" placeholder="<%=email%>" class="form-control">
+				<input id="email" name="Email" type="text" value="<%=email%>" class="form-control">
 			</div>	
 		</div>
 				
@@ -322,7 +310,7 @@
 		
 		<div class="form-group">
 				<label>Credit card #:</label>
-				<input id="credit" name="CreditCardNum" type="text" placeholder="<%=credit%>" class="form-control">
+				<input id="credit" name="CreditCardNum" type="text" value="<%=credit%>" class="form-control">
 		</div>	
 	</div>
 	</form>
