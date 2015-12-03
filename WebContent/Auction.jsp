@@ -89,24 +89,38 @@
 	System.out.println("Connected successfully to database using JConnect");
 
 	//get auction info
-	//java.sql.Statement stmt = conn.createStatement();
-	//String sql = "SELECT A.;";
-	//java.sql.ResultSet rs = stmt.executeQuery(sql);
-	//if there are items make it MAX + 1
-	//if (rs.next() )
-		//itemId = rs.getInt("ItemID") + 1;
+	java.sql.Statement stmt = conn.createStatement();
+	String sql = "SELECT A.item_id FROM Auction A WHERE A.auction_id = " + auctionId +";";
+	java.sql.ResultSet rs = stmt.executeQuery(sql);
+	
+	int item_id = -1;
+	if (rs.next() )
+		item_id = rs.getInt(1);
 
-//	stmt.close();
+	stmt = conn.createStatement();
+	
+	if(item_id == -1)
+	{
+%>
+		<h2>Oops</h2>
+		<p>Something went wrong. Please <a href="index.htm?username=<%=user%>"><font color="Blue"> go home.</p>
+<%	}
+	else{
+	sql = "SELECT I.ItemName, I.ItemType, I.YearOfModel, I.Description FROM Item I WHERE I.item_id = " + item_id + ";";
+	rs = stmt.executeQuery(sql);
+		while(rs.next()) {
 %>
 
-    <h2>Auction Name: (would go here)</h2>
-    <h2>Item name: (Would go here)</h2>
-    <h2>Item condition (new/used)</h2>
+    <h2>Auction Name: Auction #<%=auctionId%>!!!</h2>
+    <h2>Item name: <%=rs.getString(1)%></h2>
+    <h2>Item type: <%=rs.getString(2)%></h2>
+    <h2>Item year: <%=rs.getString(3)%></h2>
     <h2>Current bid: $123.12</h2>
     <h3>Time left: (Would go here)</h4>
     <h3>[Seller name] : [Seller information]</h3>
     <br />
-	<p>Item description goes here: e/g fancy shit</p>
+    <p>Item Description:</p>
+	<p><%=rs.getString(4)%></p>
 	<br />
 	<%if(!isOwner){%>
 		<div class="form-group">
@@ -115,7 +129,7 @@
 		<div class="form-group">
 			<input id="PlaceBidButton" type="button" value="Place bid" style="display:inline" onclick="Verify_BidAmt()"/>
 		</div>	
-	<%}%>
+	<%}}}%>
 </div>
 </div>
 </div>
