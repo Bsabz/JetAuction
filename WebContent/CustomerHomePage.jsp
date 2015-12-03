@@ -80,33 +80,13 @@
 	
 	<div class="row">
 		<div class="col-sm-4 form-group">
-			<input id="searchAuctions" type="button" style="display:inline" value="Search auctions!" onclick="SearchAuctions()" />
+			<input id="searchAuctions" type="button" style="display:inline" value="Search!" onclick="SearchAuctions()" />
     	</div>
 		<div class="col-sm-4 form-group">
 			<input id="mainAuctionSearchPane" name="auctionSearchName" type="text" placeholder="Browse current auctions now!" class="form-control"/>
 		</div>
 	</div>
 	
-	<br />
-	
-	<!-- The list of categories to shop by. This should later be dynamic. For now just make it static as a sample -->
-	<%int numItemsToDisplay = 0;
-	  int numLeftToPrint = numItemsToDisplay;
-	  if(numItemsToDisplay > 0) {%>
-	  <div class="row">
-		<div class="well">
-			<ul>
-			<%while(numLeftToPrint > 0){%>
-				<li style="display:inline;padding:20px"><a href="#" onclick="window.open('SearchResults.jsp','_self')">
-					<font color="Blue"><%out.print("category " + numLeftToPrint);%></font></a></li>
-				<%if(numLeftToPrint > 1){%> 
-					<li style="display:inline;padding:20px">|</li>
-				<%}numLeftToPrint--; 
-			   }}%>
-			</ul>
-		</div>
-	  </div>
-						
 	<br />
 	
 	<h2 class="well" style="text-align:center">Welcome to Jet Auction, get started by checking out some ongoing bids or placing 
@@ -123,7 +103,7 @@
 				<input id="usersSearchPane" name="usersSearchName" type="text" placeholder="Browse current users now!" class="form-control"/>
 			</div>
 			<div class="form-group">
-				<input id="searchUsers" type="submit" style="display:inline" value="Search users" onclick="SearchUsers()" />
+				<input id="searchUsers" type="submit" style="display:inline" value="Search!" onclick="SearchUsers()" />
 	    	</div>
 			</div>
 		</form>
@@ -143,7 +123,7 @@
 					</select>
 			</div>
 			<div class="form-group">
-				<input id="searchItems" type="submit" style="display:inline" value="Search items" onclick="SearchItems()" />
+				<input id="searchItems" type="submit" style="display:inline" value="Search!" onclick="SearchItems()" />
 	    	</div>
 			</div>
 		</form>
@@ -208,6 +188,15 @@
      	    </table>
    			
    			<br /><br />
+	
+<%        java.sql.ResultSet rs1 = stmt2.executeQuery("SELECT DISTINCT B.auction_id, I.Description FROM Bid B, Customer C, Item I WHERE C.customer_id = B.customer_id AND C.customer_id = " +"'"+ user+"'"+ " AND I.item_id = B.item_id;");
+		if(!rs1.isBeforeFirst()) {
+%>	
+		<h2>No Auction Participation History!</h2>
+		<p>You haven't participated in any aucitons! Check out some now and start bidding!</p>
+<%
+		} else { 
+%>
 		  	<h2>Auctions Participated</h2>
     	  	
             <table class="table table-striped table-hover" id="TABLE1">
@@ -221,9 +210,7 @@
             </thead>
             
 <%
-            java.sql.ResultSet rs1 = stmt2.executeQuery("SELECT DISTINCT B.auction_id, I.Description FROM Bid B, Customer C, Item I WHERE C.customer_id = B.customer_id AND C.customer_id = " +"'"+ user+"'"+ " AND I.item_id = B.item_id;");
- 
-     	  while(rs1.next())                
+      	  while(rs1.next())                
         	{
 %>
                     <tr>
@@ -237,23 +224,25 @@
             
             
 <%     	  
-  			} catch(Exception e)
+		}
+			}
+			catch(Exception e)
 			{
 				e.printStackTrace();
 				out.print(e.toString());
 			}
-			finally{
+			finally
+			{
 			
 				try{conn.close();}catch(Exception ee){};
 			}
-
-  %>
+%>
   					
 		</div>
 		<div class="col-sm-6 form-group">
 			<h3>Best sellers list</h3>
-			<%numItemsToDisplay = 2;
-  			  numLeftToPrint = numItemsToDisplay;
+			<%int numItemsToDisplay = 2;
+  			  int numLeftToPrint = numItemsToDisplay;
   			  if(numItemsToDisplay > 0) {%>
 			  <ul style="list-style: none;">
 			<%}%>
