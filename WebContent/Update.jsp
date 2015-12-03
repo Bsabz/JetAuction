@@ -1,5 +1,4 @@
 <%
-	System.out.println("In update form;");
 	String username = request.getParameter("UserName");
 	String firstName = request.getParameter("FirstName");
 	String lastName = request.getParameter("LastName");
@@ -11,7 +10,7 @@
 	String zip = request.getParameter("Zip");
 
 	//make address to insert into DB
-	String addressInsert = address  + city  + state;
+	String addressInsert = address  + " "+ city + " " + state;
 	
 	String phoneNumber = request.getParameter("PhoneNum");
 	String email = request.getParameter("Email");
@@ -38,7 +37,7 @@
     	
     String query = "UPDATE Customer, Person SET Customer.CreditCardNum = '" +creditCard + "', Person.FirstName = '" 
     	+ firstName + "', Person.LastName = '" + lastName + "', Person.Address = '" + addressInsert + "', Person.ZipCode = " 
-    	+ zip + ", Person.Telephone = '" + phoneNumber + "', Person.Email = '" + email + "' WHERE Person.SSN = Customer.SSN";
+    	+ zip + ", Person.Telephone = '" + phoneNumber + "', Person.Email = '" + email + "' WHERE Person.SSN = Customer.SSN AND Customer.customer_id = " + username;
     
     //System.out.println(query);
     

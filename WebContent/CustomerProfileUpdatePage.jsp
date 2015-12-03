@@ -180,6 +180,69 @@
 </head>
 
 <body style="text-align: center">
+
+<%
+	String mysJDBCDriver = "com.mysql.jdbc.Driver"; 	
+	String mysURL = "jdbc:mysql://127.0.0.1:3306/jetauction_db"; 
+	String mysUserID = "root"; 
+	String mysPassword = "password";
+
+	java.sql.Connection conn=null;
+	
+	Class.forName(mysJDBCDriver).newInstance();
+	java.util.Properties sysprops=System.getProperties();
+	sysprops.put("user",mysUserID);
+	sysprops.put("password",mysPassword);
+
+	//connect to the database
+	conn=java.sql.DriverManager.getConnection(mysURL,sysprops);
+	System.out.println("Connected successfully to database using JConnect");
+
+	String username = request.getParameter("username");
+	
+	java.sql.Statement preparedStatement = conn.createStatement();
+	java.sql.ResultSet rs = preparedStatement.executeQuery("SELECT P.LastName, P.FirstName, P.Address, P.ZipCode, P.Telephone, P.Email, C.CreditCardNum, C.Rating "
+			+ "FROM Person as P, Customer as C "
+			+ "WHERE P.SSN = C.SSN "
+			+ "AND C.customer_id = " + "'" + username + "'" + ";");
+	
+	//get all the values
+	String lastName = "", firstName = "", address = "", state = "", city = "", zip = "", phone = "", email = "", credit = "";
+	while(rs.next())
+	{
+		lastName = rs.getString(1);
+		firstName = rs.getString(2);
+		address = rs.getString(3);
+		zip = rs.getString(4);
+		phone = rs.getString(5);
+		email = rs.getString(6);
+		credit = rs.getString(7);
+	}
+	
+	//original address
+	//Address: 151-48 11th Avenue Whitestone, NY
+	state = address.split(", ")[1];
+	
+	//151-48 11th Avenue Whitestone
+	address = address.split(", ")[0];
+	String[] splitTokens = address.split(" ");
+	
+	String outputAddress = "";
+	for(int i =0; i < splitTokens.length; i++)
+	{
+		if(i != splitTokens.length - 1)
+		{
+			outputAddress += splitTokens[i];
+		}
+		else
+			city = splitTokens[i];
+	
+		if( i < splitTokens.length - 2)
+			outputAddress += " ";
+	}
+	System.out.println(outputAddress);
+%>
+
 <div class="container">
 	<nav>
 		<input id="LogoutButton" type="button" style="display:inline" value="Logout" onclick="Logout_onclick();" />
@@ -190,7 +253,7 @@
 	<br />
 	
 	<h2 class="well" style="text-align:center">Welcome to your Profile! - Note, is not actually reading data, just looks complete to see if pretty</h2>
-	
+
 	<div class="col-lg-12 well">
 	<form name ="updateInfoForm" id="update-form" action="Update.jsp">
 	<div class="row" style="alignment:center">
@@ -201,35 +264,35 @@
 		<br />
 		<div class="form-group">
 				<label>Last Name:</label>
-				<input id="last_name" name="LastName" type="text" placeholder="Nikonorov" class="form-control">
+				<input id="last_name" name="LastName" type="text" placeholder="<%=lastName%>" class="form-control">
 		</div>	
 		<div class="form-group">
 				<label>First Name:</label>
-				<input id="first_name" name="FirstName" type="text" placeholder="Gleb" class="form-control">
+				<input id="first_name" name="FirstName" type="text" placeholder="<%=firstName%>" class="form-control">
 		</div>
 		
 		<br />
 		
 		<div class="form-group">
 			<label>Address Line 1:</label>
-			<input id="address_line_1" name="AddressLine1" type="text" placeholder="123 Sesame Street" class="form-control">
+			<input id="address_line_1" name="AddressLine1" type="text" placeholder="<%=outputAddress%>" class="form-control">
 		</div>
 		<div class="form-group">
 			<label>Address Line 2:</label>
-			<input id="address_line_2" name="AddressLine2" type="text" placeholder="Apartment ABC" class="form-control">
+			<input id="address_line_2" name="AddressLine2" type="text" placeholder="Enter additional info here" class="form-control">
 		</div>
 		<div class="row">
 				<div class="col-sm-4 form-group">
 					<label>City:</label>
-					<input id="city" name="City" type="text" placeholder="Narnia" class="form-control">
+					<input id="city" name="City" type="text" placeholder="<%=city%>" class="form-control">
 				</div>
 				<div class="col-sm-4 form-group">
 					<label>State:</label>
-					<input id="state" name="State" type="text" placeholder="AL" class="form-control">
+					<input id="state" name="State" type="text" placeholder="<%=state%>" class="form-control">
 				</div>
 				<div class="col-sm-4 form-group">
 					<label>Zip:</label>
-					<input id="zip" name="Zip" type="text" placeholder="11111" class="form-control">
+					<input id="zip" name="Zip" type="text" placeholder="<%=zip%>" class="form-control">
 				</div>
 		</div>
 		
@@ -238,11 +301,11 @@
 		<div class="row">
 			<div class="col-sm-6 form-group">
 				<label>Phone #:</label>
-				<input id="phone" name="PhoneNum" type="text" placeholder="(212)-501-0551" class="form-control">
+				<input id="phone" name="PhoneNum" type="text" placeholder="<%=phone%>" class="form-control">
 			</div>
 			<div class="col-sm-6 form-group">
 				<label>E-mail:</label>
-				<input id="email" name="Email" type="text" placeholder="myFakeEmail@someDomain.com" class="form-control">
+				<input id="email" name="Email" type="text" placeholder="<%=email%>" class="form-control">
 			</div>	
 		</div>
 				
@@ -250,7 +313,7 @@
 		
 		<div class="form-group">
 				<label>Credit card #:</label>
-				<input id="credit" name="CreditCardNum" type="text" placeholder="1111-1111-1111-1111" class="form-control">
+				<input id="credit" name="CreditCardNum" type="text" placeholder="<%=credit%>" class="form-control">
 		</div>	
 	</div>
 	</form>

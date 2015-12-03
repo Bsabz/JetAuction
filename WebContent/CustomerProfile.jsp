@@ -63,7 +63,7 @@
 	<div class="row" style="alignment:center">
 		<%if(isOwner){ %>
 			<div class="form-group">
-				<input id="EditProfileButton" type="button" style="display:inline" value="Update Profile" onclick="window.open('CustomerProfileUpdatePage.jsp','_self');" />
+				<input id="EditProfileButton" type="button" style="display:inline" value="Update Profile" onclick="window.open('CustomerProfileUpdatePage.jsp?username=<%=usernameCust%>','_self');" />
     		</div>	
 			<br />
 		<%}%>
