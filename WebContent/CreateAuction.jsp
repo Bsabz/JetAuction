@@ -60,23 +60,27 @@ rs = stmt.executeQuery(sql);
 if (rs.next() )
 	auctionId = rs.getInt("AuctionID")  + 1;
 
-System.out.println(auctionId + "");
+try{
+	java.sql.Statement preparedStatement = conn.createStatement();
+	String query = "INSERT into Item values('"+itemId+"','"+auctionItemDescription+"','"+auctionItem+"','"+auctionItemType+"','"+20+"','"+1993+"')";
+	preparedStatement.executeUpdate(query);
 
-java.sql.Statement preparedStatement = conn.createStatement();
-String query = "INSERT into Item values('"+itemId+"','"+auctionItemDescription+"','"+auctionItem+"','"+auctionItemType+"','"+20+"','"+1993+"')";
-preparedStatement.executeUpdate(query);
 
+	preparedStatement = conn.createStatement();
+	//TODO: add opening bid
+	query = "INSERT into Auction values('"+auctionId+"','"+20+"','"+1+"','"+reservePrice+"','"+minBid+"','"+1+"','"+123456789+"','"+itemId+"')";
+	System.out.println(query);
+	preparedStatement.executeUpdate(query);
+	
+	preparedStatement = conn.createStatement();
+	query = "INSERT into POST values('"+closeDateTime+"','"+openDate+"','"+username+"','"+auctionId+"')";
+	preparedStatement.executeUpdate(query);
 
-preparedStatement = conn.createStatement();
-//TODO: add opening bid
-query = "INSERT into Auction values('"+auctionId+"','"+20+"','"+1+"','"+reservePrice+"','"+minBid+"','"+1+"','"+123456789+"','"+itemId+"')";
-System.out.println(query);
-preparedStatement.executeUpdate(query);
-
-preparedStatement = conn.createStatement();
-query = "INSERT into POST values('"+closeDateTime+"','"+openDate+"','"+username+"','"+auctionId+"')";
-preparedStatement.executeUpdate(query);
-
-conn.close();
-response.sendRedirect("Auction.jsp?auctionId=" + auctionId + "&username=" + username);	
+	conn.close();
+	response.sendRedirect("Auction.jsp?auctionId=" + auctionId + "&username=" + username);	
+} catch(Exception e)
+{
+	response.sendRedirect("BadAuctionData.jsp?username=" + username);	
+	
+}
 %>
