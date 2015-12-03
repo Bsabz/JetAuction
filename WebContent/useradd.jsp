@@ -18,6 +18,7 @@
 		String currentDate = sdf.format(currentDateTime);
 	
 		String Id = request.getParameter("Id");
+		System.out.println("Id is " + Id);
 		String fname = request.getParameter("fname");
 		String lname = request.getParameter("lname");
 		String Address = request.getParameter("address_line_1");
@@ -102,7 +103,7 @@
 	<!--if we didn't raise an exception, display "User added successfully -->
 	<%if(!caughtException){%>
 		<h2>User Added!</h2>
-		<a href="CustomerHomePage.jsp"><font color="Blue">Continue to JetAuction</font></a>
+		<a href="CustomerHomePage.jsp?username=<%=Id%>"><font color="Blue">Continue to JetAuction</font></a>
 	<%}else{%>
 		<h2>Oops :(</h2>
 		<h2>Something went wrong. <a href="index.htm"><font color="Blue">Let's try that again</font></a></h2>

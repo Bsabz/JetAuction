@@ -182,6 +182,9 @@
 <body style="text-align: center">
 
 <%
+	/*
+	FIELDS FOR FORMS
+	*/
 	String mysJDBCDriver = "com.mysql.jdbc.Driver"; 	
 	String mysURL = "jdbc:mysql://127.0.0.1:3306/jetauction_db"; 
 	String mysUserID = "root"; 
@@ -199,6 +202,8 @@
 	System.out.println("Connected successfully to database using JConnect");
 
 	String username = request.getParameter("username");
+	System.out.println("user name is " + username);
+	
 	
 	java.sql.Statement preparedStatement = conn.createStatement();
 	java.sql.ResultSet rs = preparedStatement.executeQuery("SELECT P.LastName, P.FirstName, P.Address, P.ZipCode, P.Telephone, P.Email, C.CreditCardNum, C.Rating "
@@ -218,6 +223,8 @@
 		email = rs.getString(6);
 		credit = rs.getString(7);
 	}
+	
+	System.out.println("Address is: " + address);
 	
 	//original address
 	//Address: 151-48 11th Avenue Whitestone, NY
@@ -257,11 +264,13 @@
 	<div class="col-lg-12 well">
 	<form name ="updateInfoForm" id="update-form" action="Update.jsp">
 	<div class="row" style="alignment:center">
+		<input hidden value=<%=username%> name="UserName"></input>
 		<div class="form-group">
 			<input id="UpdateButton" name="Updatebutton" type="button" style="display:inline" value="Update" onclick="Update_onClick()" />
-    		<input id="CancelButton" name="Cancelbutton" type="button" style="display:inline" value="Cancel" onclick="window.open('CustomerProfile.jsp','_self')" />
+    		<input id="CancelButton" name="Cancelbutton" type="button" style="display:inline" value="Cancel" onclick="window.open('CustomerProfile.jsp?username='<%=username%>,'_self')" />
     	</div>	
 		<br />
+		</div>	
 		<div class="form-group">
 				<label>Last Name:</label>
 				<input id="last_name" name="LastName" type="text" placeholder="<%=lastName%>" class="form-control">
