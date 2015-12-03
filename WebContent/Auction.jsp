@@ -18,6 +18,12 @@
 			var isValid = true;
 			var bidAmt = document.getElementById("PlaceBidField").value;
 			
+			var minbid = document.getElementById("minbid").value;
+			
+			if(bidAmt > minbid){
+					isValid = false;
+			}
+			
 			if(bidAmt == "")
 				isValid = false;
 			
@@ -91,12 +97,15 @@
 
 	//get auction info
 	java.sql.Statement stmt = conn.createStatement();
-	String sql = "SELECT A.item_id FROM Auction A WHERE A.auction_id = " + auctionId +";";
+	String sql = "SELECT A.item_id, A.MinBid FROM Auction A WHERE A.auction_id = " + auctionId +";";
 	java.sql.ResultSet rs = stmt.executeQuery(sql);
 	
 	int item_id = -1;
+	int minbid = -1;
+	
 	if (rs.next() ){
 		item_id = rs.getInt(1);
+		minbid = rs.getInt(2);
 	}
 	
 	System.out.println(item_id);
@@ -133,8 +142,11 @@
 			<input hidden value="<%=item_id%>" name="itemId"/>
 			<div class="form-group">
 				<input id="PlaceBidField" name="bidAmount" type="text" style="display:inline" placeholder="We should show the current min bid as suggestion" class="form-control"/>
+			
+			
 			</div>
 			<div class="form-group">
+				<input type="hidden" id="minbid" name="minbid" value="<%=minbid%>"></input>
 				<input id="PlaceBidButton" type="button" value="Place bid" style="display:inline" onclick="Verify_BidAmt()"/>
 			</div>
 		</form>	

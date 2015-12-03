@@ -177,6 +177,10 @@
             	<input name="min_bid" type="text" placeholder="g/g $1" class="form-control"/>
             </div>
             <div class="form-group">
+				<label>Starting bid</label>
+            	<input name="open_bid" type="text" placeholder="Enter starting bid:" class="form-control"/>
+            </div>
+            <div class="form-group">
 				<label>Reserve price</label>
                	<input name="reserve_price" type="text" placeholder="e/g $10" class="form-control"/>
             </div>

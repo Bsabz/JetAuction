@@ -37,6 +37,8 @@ String closeDateTime = request.getParameter("close_date_time");			//assume prope
 //bids
 String minBid = request.getParameter("min_bid");
 String reservePrice = request.getParameter("reserve_price");
+double openBid = Integer.parseInt(request.getParameter("open_bid"));
+double bidInc = 0.00;
 
 //update number of copies : TODO
 
@@ -60,27 +62,55 @@ rs = stmt.executeQuery(sql);
 if (rs.next() )
 	auctionId = rs.getInt("AuctionID")  + 1;
 
-try{
-	java.sql.Statement preparedStatement = conn.createStatement();
-	String query = "INSERT into Item values('"+itemId+"','"+auctionItemDescription+"','"+auctionItem+"','"+auctionItemType+"','"+20+"','"+1993+"')";
-	preparedStatement.executeUpdate(query);
+System.out.println(auctionId + "");
+
+java.sql.Statement preparedStatement = conn.createStatement();
+String query = "INSERT into Item values('"+itemId+"','"+auctionItemDescription+"','"+auctionItem+"','"+auctionItemType+"','"+20+"','"+1993+"')";
+preparedStatement.executeUpdate(query);
 
 
-	preparedStatement = conn.createStatement();
-	//TODO: add opening bid
-	query = "INSERT into Auction values('"+auctionId+"','"+20+"','"+1+"','"+reservePrice+"','"+minBid+"','"+1+"','"+123456789+"','"+itemId+"')";
-	System.out.println(query);
-	preparedStatement.executeUpdate(query);
-	
-	preparedStatement = conn.createStatement();
-	query = "INSERT into POST values('"+closeDateTime+"','"+openDate+"','"+username+"','"+auctionId+"')";
-	preparedStatement.executeUpdate(query);
+preparedStatement = conn.createStatement();
+//TODO: add opening bid
 
-	conn.close();
-	response.sendRedirect("Auction.jsp?auctionId=" + auctionId + "&username=" + username);	
-} catch(Exception e)
-{
-	response.sendRedirect("BadAuctionData.jsp?username=" + username);	
-	
+if(openBid >= .01 && openBid <= .99){
+	bidInc = .05;
 }
+else if(openBid >= 1.00 && openBid <= 4.99){
+	bidInc = .25;
+}
+else if(openBid >= 5.00 && openBid <= 24.99){
+	bidInc = .50;
+}
+else if(openBid >= 25.00 && openBid <= 99.99){
+	bidInc = 1.00;
+}
+else if(openBid >= 100.00 && openBid <= 249.99){
+	bidInc = 2.50;
+}
+else if(openBid >= 250.00 && openBid <= 499.99){
+	bidInc = 5.00;
+}
+else if(openBid >= 500.00 && openBid <= 999.99){
+	bidInc = 10.00;
+}
+else if(openBid >= 1000.00 && openBid <= 2499.99){
+	bidInc = 25.00;
+}
+else if(openBid >= 2500.00 && openBid <= 4999.99){
+	bidInc = 50.00;
+}
+else{
+	bidInc = 100.00;
+}
+
+query = "INSERT into Auction values('"+auctionId+"','"+bidInc+"','"+openBid+"','"+reservePrice+"','"+minBid+"','"+1+"','"+123456789+"','"+itemId+"')";
+System.out.println(query);
+preparedStatement.executeUpdate(query);
+
+preparedStatement = conn.createStatement();
+query = "INSERT into POST values('"+closeDateTime+"','"+openDate+"','"+username+"','"+auctionId+"')";
+preparedStatement.executeUpdate(query);
+
+conn.close();
+response.sendRedirect("Auction.jsp?auctionId=" + auctionId + "&username=" + username);	
 %>
