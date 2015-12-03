@@ -47,7 +47,7 @@
 			if(!isValid)
 				alert("Invalid bid amount, please re enter");
 			else
-				window.alert('TODO: verify against current bid and submit bid')
+				bidForm.submit()
 		}
 	</script>
 
@@ -123,12 +123,17 @@
 	<p><%=rs.getString(4)%></p>
 	<br />
 	<%if(!isOwner){%>
-		<div class="form-group">
-			<input id="PlaceBidField" type="text" style="display:inline" placeholder="We should show the current min bid as suggestion" class="form-control"/>
-		</div>
-		<div class="form-group">
-			<input id="PlaceBidButton" type="button" value="Place bid" style="display:inline" onclick="Verify_BidAmt()"/>
-		</div>	
+		<form name ="bidForm" id="bid-form" action="bid.jsp" class="text-left">
+			<input hidden value="<%=user%>" name="bidderName"/>
+			<input hidden value="<%=auctionId%>" name="auctionId"/>
+			<input hidden value="<%=item_id%>" name="itemId"/>
+			<div class="form-group">
+				<input id="PlaceBidField" name="bidAmount" type="text" style="display:inline" placeholder="We should show the current min bid as suggestion" class="form-control"/>
+			</div>
+			<div class="form-group">
+				<input id="PlaceBidButton" type="button" value="Place bid" style="display:inline" onclick="Verify_BidAmt()"/>
+			</div>
+		</form>	
 	<%}}}%>
 </div>
 </div>
