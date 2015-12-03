@@ -142,9 +142,11 @@
                       	<th>
                             <span style="font-size: 12pt">Bid Increment</span></th>
                         <th>
-                            <span style="font-size: 12pt">Opening Bid amount</span></th>
+                            <span style="font-size: 12pt">OpenBid amount</span></th>
                         <th>
-                            <span style="font-size: 12pt">Description</span></th>      
+                            <span style="font-size: 12pt">Description</span></th>   
+                        <th>
+                            <span style="font-size: 12pt">Item Type</span></th>     
                         <th>
                             <span style="font-size: 12pt">Bid History</span></th>
                     </tr>   
@@ -171,7 +173,7 @@
             			java.sql.Statement stmt3=conn.createStatement();
             			java.sql.Statement stmt4=conn.createStatement();
         
-					java.sql.ResultSet rs = stmt1.executeQuery("SELECT A.auction_id as 'Auction', A.BidIncrement, A.OpenBid, I.Description FROM jetauction_db.Auction as A, jetauction_db.Item as I WHERE A.item_id = I.item_id;");
+					java.sql.ResultSet rs = stmt1.executeQuery("SELECT A.auction_id as 'Auction', A.BidIncrement, A.OpenBid, I.Description, I.ItemType FROM jetauction_db.Auction as A, jetauction_db.Item as I WHERE A.item_id = I.item_id;");
  
      	  while(rs.next())                
         	{
@@ -185,6 +187,8 @@
                             <span style="font-size: 10pt">$<%=rs.getString(3)%></span></td>
                         <td style="vertical-align:middle;">
                             <span style="font-size: 10pt"><%=rs.getString(4)%></span></td>
+                        <td style="vertical-align:middle;">
+                            <span style="font-size: 10pt"><%=rs.getString(5)%></span></td>
                         <td style="vertical-align:middle;">
                         	<input type=button  onclick="window.open('BidHistory.jsp?auction_id=<%=rs.getString(1)%>','_self');return;" value="x"></td>
                     </tr>
