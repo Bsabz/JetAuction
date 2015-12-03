@@ -47,7 +47,7 @@
 <body style="text-align: center">
 <div class="container">
 	<!-- Laeve in for testing purposes. -->
-	<%boolean isOwner = false; %>
+	<%boolean isOwner = true; %>
 	<nav>
 	<%String usernameCust = request.getParameter("username"); %>
 		<input id="LogoutButton" type="button" style="display:inline" value="Logout" onclick="Logout_onclick();" />
@@ -69,7 +69,6 @@
 		<%}%>
 		
 		<%
-
 			String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
 			String mysURL = "jdbc:mysql://127.0.0.1:3306/jetauction_db"; 
 			String mysUserID = "root"; 

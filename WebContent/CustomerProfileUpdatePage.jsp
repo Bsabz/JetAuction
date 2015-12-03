@@ -51,7 +51,7 @@
 		}
 	
 		if(wasFilledInProperly)
-			alert("TODO:implement update feature")
+			updateInfoForm.submit();
 	}
 
 	//check to see if email was valid (xxxx@xxxx.xxx)
@@ -146,9 +146,6 @@
 	//Check to see if all fields have been filled in, return true if yes, else false
 	function checkIfFieldsNull()
 	{	
-		if(document.getElementById("user_name").value == "")
-			document.getElementById("user_name").value = document.getElementById("user_name").placeholder
-			
 		if(document.getElementById("first_name").value == "")
 			document.getElementById("first_name").value = document.getElementById("first_name").placeholder
 		if(document.getElementById("last_name").value == "")
@@ -195,16 +192,13 @@
 	<h2 class="well" style="text-align:center">Welcome to your Profile! - Note, is not actually reading data, just looks complete to see if pretty</h2>
 	
 	<div class="col-lg-12 well">
+	<form name ="updateInfoForm" id="update-form" action="Update.jsp">
 	<div class="row" style="alignment:center">
 		<div class="form-group">
-			<input id="UpdateButton" type="button" style="display:inline" value="Update" onclick="Update_onClick()" />
-    		<input id="CancelButton" type="button" style="display:inline" value="Cancel" onclick="window.open('CustomerProfile.jsp','_self')" />
+			<input id="UpdateButton" name="Updatebutton" type="button" style="display:inline" value="Update" onclick="Update_onClick()" />
+    		<input id="CancelButton" name="Cancelbutton" type="button" style="display:inline" value="Cancel" onclick="window.open('CustomerProfile.jsp','_self')" />
     	</div>	
 		<br />
-		<div class="form-group">
-				<label>User Name:</label>
-				<input id="user_name" name="username" type="text" placeholder="gnikonorov" class="form-control">
-		</div>	
 		<div class="form-group">
 				<label>Last Name:</label>
 				<input id="last_name" name="LastName" type="text" placeholder="Nikonorov" class="form-control">
@@ -259,6 +253,7 @@
 				<input id="credit" name="CreditCardNum" type="text" placeholder="1111-1111-1111-1111" class="form-control">
 		</div>	
 	</div>
+	</form>
 	</div>
 </body>
 </html>
