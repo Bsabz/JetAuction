@@ -21,6 +21,9 @@
                     <thead>
                     <tr>
                       <th>
+                          <span style="font-size: 12pt">Go to auction!</span></th>
+                      </th>
+                      <th>
                           <span style="font-size: 12pt">UserName</span></th>
                       <th>
                           <span style="font-size: 12pt">ItemName</span></th>
@@ -68,7 +71,7 @@
             			java.sql.Statement stmt1=conn.createStatement();
         
 				java.sql.ResultSet rs = stmt1.executeQuery("SELECT  C.customer_id, I.ItemName, I.Description, I.ItemType, "
-						+ "P.PostDate, P.ExpireDate, A.BidIncrement, A.MinBid, "
+						+ "P.PostDate, P.ExpireDate, A.BidIncrement, A.MinBid, A.auction_id,"
 						+ "A.Copies_Sold, ps.FirstName as 'Emp_FirstName', ps.LastName as 'Emp_LastName' "
 						+ "FROM     Customer C, Auction A, Post P, Employee E, Person ps, Item I "
 						+ "WHERE  A.auction_id = P.auction_id "
@@ -83,6 +86,9 @@
 %>
 					
                     <tr>
+                      <td>
+                      	<input id="searchAuctions" type="submit" style="display:inline" value="Go to auction" onclick="window.open('Auction.jsp?auctionId=<%=rs.getString(9)%>&username=<%=rs.getString(1)%>','_self');" />
+	    			  <td>
                       <td>
                           <span style="font-size: 10pt"><%=rs.getString(1)%></span></td>
                       <td>

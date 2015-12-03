@@ -71,7 +71,10 @@ preparedStatement = conn.createStatement();
 //TODO: add opening bid
 query = "INSERT into Auction values('"+auctionId+"','"+20+"','"+1+"','"+reservePrice+"','"+minBid+"','"+1+"','"+123456789+"','"+itemId+"')";
 System.out.println(query);
+preparedStatement.executeUpdate(query);
 
+preparedStatement = conn.createStatement();
+query = "INSERT into POST values('"+closeDateTime+"','"+openDate+"','"+username+"','"+auctionId+"')";
 preparedStatement.executeUpdate(query);
 
 conn.close();

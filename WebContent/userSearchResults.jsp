@@ -13,6 +13,9 @@
 	<link rel="stylesheet" href="css/bootsnip.css" ></link>
 	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"></link>
 	<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'></link>
+	
+	<script>
+	</script>
 </head>
 <body>
 <div id="wrapper">
@@ -73,9 +76,9 @@
             
             			java.sql.Statement stmt1=conn.createStatement();
         
-				java.sql.ResultSet rs = stmt1.executeQuery("SELECT  C.customer_id, I.ItemName, I.Description, I.ItemType, "
+				java.sql.ResultSet rs = stmt1.executeQuery("SELECT  C.customer_id, I.ItemName, I.Description, I.ItemType,"
 						+ "P.PostDate, P.ExpireDate, A.BidIncrement, A.MinBid, "
-						+ "A.Copies_Sold, ps.FirstName as 'Emp_FirstName', ps.LastName as 'Emp_LastName' "
+						+ "A.Copies_Sold, ps.FirstName as 'Emp_FirstName', ps.LastName as 'Emp_LastName', A.auction_id "
 						+ "FROM     Customer C, Auction A, Post P, Employee E, Person ps, Item I "
 						+ "WHERE  A.auction_id = P.auction_id "
 						+ "AND P.customer_id = C.customer_id "
@@ -85,12 +88,14 @@
 						+ "AND C.customer_id = '" + username + "';");
  			
      	  while(rs.next())                
-        	{
+        	{     		  
 %>
 					
                     <tr>
                       <td>
-                          <span style="font-size: 10pt"><%=rs.getString(1)%></span></td>
+                          <span style="font-size: 10pt">
+                          	<input id="searchUsers" type="submit" style="display:inline" value="Go to auction" onclick="window.open('Auction.jsp?auctionId=<%=rs.getString(12)%>&username=<%=rs.getString(1)%>','_self');" />
+	    				  </span></td>
                       <td>
                           <span style="font-size: 10pt"><%=rs.getString(2)%></span></td>
                         <td>
