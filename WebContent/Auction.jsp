@@ -63,13 +63,42 @@
 <div class="container">
 <div class="col-lg-12 well">
 <div class="row" style="text-align:center">
-
 	<input id="LogoutButton" type="button" value="Logout" onclick="Logout_onclick();" />
     <input id="HelpButton" type="button" value="Help" onclick="window.open('HelpMenu.htm','_self')" />
     <input id="HomeButton" type="button" value="Go Home" onclick="window.open('CustomerHomePage.jsp', '_self')" />
-    
+    <%int auctionId = Integer.parseInt(request.getParameter("auctionId"));%>
+    <%String user = request.getParameter("username");%>
+    <%System.out.println("Username is  " + user); %>
     <%boolean isOwner =false;%>
-    
+
+<%
+	String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
+	String mysURL = "jdbc:mysql://127.0.0.1:3306/jetauction_db"; 
+	String mysUserID = "root"; 
+	String mysPassword = "password";
+
+	java.sql.Connection conn=null;
+
+	Class.forName(mysJDBCDriver).newInstance();
+	java.util.Properties sysprops=System.getProperties();
+	sysprops.put("user",mysUserID);
+	sysprops.put("password",mysPassword);
+
+	//connect to the database
+	conn=java.sql.DriverManager.getConnection(mysURL,sysprops);
+	System.out.println("Connected successfully to database using JConnect");
+
+	//get auction info
+	//java.sql.Statement stmt = conn.createStatement();
+	//String sql = "SELECT A.;";
+	//java.sql.ResultSet rs = stmt.executeQuery(sql);
+	//if there are items make it MAX + 1
+	//if (rs.next() )
+		//itemId = rs.getInt("ItemID") + 1;
+
+//	stmt.close();
+%>
+
     <h2>Auction Name: (would go here)</h2>
     <h2>Item name: (Would go here)</h2>
     <h2>Item condition (new/used)</h2>

@@ -70,7 +70,7 @@
 
 <div class="container">
 	<nav>
-		<input id="NewAuctionButton" type="button" style="display:inline" value="Make New Auction" onclick="window.open('NewAuction.htm','_self');" />
+		<input id="NewAuctionButton" type="button" style="display:inline" value="Make New Auction" onclick="window.open('NewAuction.jsp?username=<%=user%>','_self');" />
     	<input id="LogoutButton" type="button" style="display:inline" value="Logout" onclick="Logout_onclick();" />
     	<input id="HelpButton" type="button" style="display:inline" value="Help" onclick="window.open('HelpMenu.jsp?username=<%=user%>','_self')" />
     	<input id="ViewProfileButton" type="button" style="display:inline" value="View My Profile" onclick="window.open('CustomerProfile.jsp?username=<%=user%>','_self'),'_self'" />
