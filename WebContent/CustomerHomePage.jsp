@@ -29,6 +29,14 @@
 			window.open('SearchResults.jsp','_self');
 	}
 	
+	function SearchUsers()
+	{
+		var searchQuery = document.getElementById("usersSearchPane").value;
+		
+		if(searchQuery != "")
+			javascript:login-form.submit();
+	}
+	
 	function redirectToAuction()
 	{
 		alert("TODO: actually get auction info for now it just recircts");
@@ -99,6 +107,18 @@
 	<div class="col-lg-12 well">
 	<div class="row" style="alignment:center">
 		<div class="col-sm-6 form-group">
+		
+		
+		<form name ="userSearchForm" id="userSearch-form" action="userSearchResults.jsp">
+			<div class="row">
+			<div class="form-group">
+				<input id="usersSearchPane" name="usersSearchName" type="text" placeholder="Browse current users now!" class="form-control"/>
+			</div>
+			<div class="form-group">
+				<input id="searchUsers" type="submit" style="display:inline" value="Search users" onclick="SearchUsers()" />
+	    	</div>
+			</div>
+		</form>
 		    
   			  	<h2>Current Auctions</h2>
         	  	
@@ -135,6 +155,7 @@
             			System.out.println("Connected successfully to database using JConnect");
             
             			java.sql.Statement stmt1=conn.createStatement();
+            			java.sql.Statement stmt2=conn.createStatement();
         
 					java.sql.ResultSet rs = stmt1.executeQuery("SELECT A.auction_id as 'Auction', A.BidIncrement, A.OpenBid, I.Description FROM jetauction_db.Auction as A, jetauction_db.Item as I WHERE A.item_id = I.item_id;");
  
@@ -153,8 +174,39 @@
                         <td style="vertical-align:middle;">
                         	<input type=button  onclick="window.open('BidHistory.jsp?auction_id=<%=rs.getString(1)%>','_self');return;" value="x"></td>
                     </tr>
-<%      		
-        	}
+<%      	} %>
+     	    </table>
+   			
+   			<br /><br />
+		  	<h2>Auctions Participated</h2>
+    	  	
+            <table class="table table-striped table-hover" id="TABLE1">
+            <thead>
+            <tr>
+              	<th>
+                    <span style="font-size: 12pt; align: center">Auction</span></th>
+                <th>
+                    <span style="font-size: 12pt; align: center">Description</span></th>
+            </tr>   
+            </thead>
+            
+<%
+            java.sql.ResultSet rs1 = stmt2.executeQuery("SELECT DISTINCT B.auction_id, I.Description FROM Bid B, Customer C, Item I WHERE C.customer_id = B.customer_id AND C.customer_id = " +"'"+ user+"'"+ " AND I.item_id = B.item_id;");
+ 
+     	  while(rs1.next())                
+        	{
+%>
+                    <tr>
+                      	<td style="vertical-align:middle;">
+                         	<span style="font-size: 10pt;"><%=rs1.getString(1)%></span></td>
+                      	<td style="vertical-align:middle;">
+                          	<span style="font-size: 10pt"><%=rs1.getString(2)%></span></td>
+                    </tr>
+<%      	} %>
+            </table>
+            
+            
+<%     	  
   			} catch(Exception e)
 			{
 				e.printStackTrace();
@@ -166,7 +218,7 @@
 			}
 
   %>
-  					</table>
+  					
 		</div>
 		<div class="col-sm-6 form-group">
 			<h3>Best sellers list</h3>
