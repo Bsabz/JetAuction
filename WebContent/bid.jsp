@@ -21,7 +21,7 @@ System.out.println("Connected successfully to database using JConnect");
 String bidderName = request.getParameter("bidderName");
 int auctionId = Integer.parseInt(request.getParameter("auctionId"));
 int itemId = Integer.parseInt(request.getParameter("itemId"));
-int currBid = Integer.parseInt(request.getParameter("bidAmount"));
+double currBid = Integer.parseInt(request.getParameter("bidAmount"));
 
 //make times
 //open date time = current time

@@ -18,11 +18,7 @@
 			var isValid = true;
 			var bidAmt = document.getElementById("PlaceBidField").value;
 			
-			var minbid = document.getElementById("minbid").value;
 			
-			if(bidAmt > minbid){
-					isValid = false;
-			}
 			
 			if(bidAmt == "")
 				isValid = false;
@@ -97,15 +93,17 @@
 
 	//get auction info
 	java.sql.Statement stmt = conn.createStatement();
-	String sql = "SELECT A.item_id, A.MinBid FROM Auction A WHERE A.auction_id = " + auctionId +";";
+	String sql = "SELECT A.item_id, A.MinBid, P.customer_id FROM Auction A, Post P WHERE A.auction_id = P.auction_id AND A.auction_id = " + auctionId +";";
 	java.sql.ResultSet rs = stmt.executeQuery(sql);
 	
 	int item_id = -1;
 	int minbid = -1;
+	String seller ="";
 	
 	if (rs.next() ){
 		item_id = rs.getInt(1);
 		minbid = rs.getInt(2);
+		seller = rs.getString(3);
 	}
 	
 	System.out.println(item_id);
@@ -128,9 +126,8 @@
     <h2>Item name: <%=rs.getString(1)%></h2>
     <h2>Item type: <%=rs.getString(2)%></h2>
     <h2>Item year: <%=rs.getString(3)%></h2>
-    <h2>Current bid: $123.12</h2>
-    <h3>Time left: (Would go here)</h4>
-    <h3>[Seller name] : [Seller information]</h3>
+    <h2>Minimum bid: $<%=minbid%></h2>
+    <h3>Seller Username : <%=seller %></h3>
     <br />
     <p>Item Description:</p>
 	<p><%=rs.getString(4)%></p>
