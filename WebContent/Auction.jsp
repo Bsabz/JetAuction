@@ -63,9 +63,10 @@
 <div class="container">
 <div class="col-lg-12 well">
 <div class="row" style="text-align:center">
+<%String username = request.getParameter("username"); %>
 	<input id="LogoutButton" type="button" value="Logout" onclick="Logout_onclick();" />
-    <input id="HelpButton" type="button" value="Help" onclick="window.open('HelpMenu.htm','_self')" />
-    <input id="HomeButton" type="button" value="Go Home" onclick="window.open('CustomerHomePage.jsp', '_self')" />
+    <input id="HelpButton" type="button" value="Help" onclick="window.open('HelpMenu.jsp?username=<%=username %>','_self')" />
+    <input id="HomeButton" type="button" value="Go Home" onclick="window.open('CustomerHomePage.jsp?username=<%=username %>', '_self')" />
     <%int auctionId = Integer.parseInt(request.getParameter("auctionId"));%>
     <%String user = request.getParameter("username");%>
     <%System.out.println("Username is  " + user); %>
