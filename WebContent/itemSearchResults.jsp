@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>User Auction History</title>
+<title>Item Auction History</title>
 <link rel="stylesheet" href="css/bootstrap.css" ></link>
 <style> th {text-align: center;}</style>
 </head>
@@ -15,9 +15,9 @@
         <div id="page-content-wrapper"  style="text-align: center">
             <div class="container-fluid">
                 <div class="row">
-<span style="font-size: 14pt; font-family: Arial"><h2><strong>User Auction History</strong></h2><br />
+<span style="font-size: 14pt; font-family: Arial"><h2><strong>Item Auction History</strong></h2><br />
         <br />			
-                   <table id="TABLE1" class="table table-striped table-hover" align="center">
+                    <table id="TABLE1" class="table table-striped table-hover" align="center">
                     <thead>
                     <tr>
                       <th>
@@ -46,7 +46,7 @@
                      </thead>
                      <tbody>
 <%
-			String username = request.getParameter("usersSearchName");
+			String item = request.getParameter("item");
 
 			String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
 			String mysURL = "jdbc:mysql://127.0.0.1:3306/jetauction_db"; 
@@ -76,7 +76,7 @@
 						+ "AND A.Monitor = E.employee_id "
 						+ "AND ps.SSN = E.employee_id "
 						+ "AND I.item_id = A.item_id "
-						+ "AND C.customer_id = '" + username + "';");
+						+ "AND I.ItemType= '" + item + "';");
  			
      	  while(rs.next())                
         	{

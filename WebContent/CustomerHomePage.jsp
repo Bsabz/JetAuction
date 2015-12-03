@@ -34,7 +34,15 @@
 		var searchQuery = document.getElementById("usersSearchPane").value;
 		
 		if(searchQuery != "")
-			javascript:login-form.submit();
+			javascript:userSearch-form.submit();
+	}
+	
+	function SearchItems()
+	{
+		var searchQuery = document.getElementById("itemSearchPane").value;
+		
+		if(searchQuery != "")
+			javascript:itemSearch-form.submit();
 	}
 	
 	function redirectToAuction()
@@ -108,7 +116,7 @@
 	<div class="row" style="alignment:center">
 		<div class="col-sm-6 form-group">
 		
-		
+			<h2>Search Auctions by User</h2>
 		<form name ="userSearchForm" id="userSearch-form" action="userSearchResults.jsp">
 			<div class="row">
 			<div class="form-group">
@@ -119,6 +127,28 @@
 	    	</div>
 			</div>
 		</form>
+		
+		
+			<h2>Search Auctions by Item Type</h2>
+		<form name ="itemSearchForm" id="itemSearch-form" action="itemSearchResults.jsp">
+			<div class="row">
+			<div class="form-group">
+				<h3><strong>Select Item Type:</strong></h3>
+                	<select id="itemSearchPane" name = "item">
+                	  <option selected disabled>Select One</option>
+					  <option value="DVD">DVD</option>
+					  <option value="CAR">CAR</option>
+					  <option value="BOOK">BOOK</option>
+					  <option value="LAPTOP">LAPTOP</option>
+					</select>
+			</div>
+			<div class="form-group">
+				<input id="searchItems" type="submit" style="display:inline" value="Search items" onclick="SearchItems()" />
+	    	</div>
+			</div>
+		</form>
+		
+		
 		    
   			  	<h2>Current Auctions</h2>
         	  	
