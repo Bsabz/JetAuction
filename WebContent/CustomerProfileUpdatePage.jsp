@@ -185,6 +185,8 @@
 	/*
 	FIELDS FOR FORMS
 	*/
+	String user = request.getParameter("username");
+
 	String mysJDBCDriver = "com.mysql.jdbc.Driver"; 	
 	String mysURL = "jdbc:mysql://127.0.0.1:3306/jetauction_db"; 
 	String mysUserID = "root"; 
@@ -253,8 +255,8 @@
 <div class="container">
 	<nav>
 		<input id="LogoutButton" type="button" style="display:inline" value="Logout" onclick="Logout_onclick();" />
-    	<input id="HelpButton" type="button" style="display:inline" value="Help" onclick="window.open('HelpMenu.jsp','_self')" />
-    	<input id="GoHomeButton" type="button" style="display:inline" value="Go Home" onclick="window.open('CustomerHomePage.jsp','_self')" />
+    	<input id="HelpButton" type="button" style="display:inline" value="Help" onclick="window.open('HelpMenu.jsp?username=<%=user %>','_self')" />
+    	<input id="GoHomeButton" type="button" style="display:inline" value="Go Home" onclick="window.open('CustomerHomePage.jsp?username=<%=user %>','_self')" />
     </nav>
 	
 	<br />

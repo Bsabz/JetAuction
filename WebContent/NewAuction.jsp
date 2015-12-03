@@ -133,8 +133,8 @@
 	
 	<nav>
 		<input id="LogoutButton" type="button" value="Logout" style="display:inline" onclick="Logout_onclick();" />
-    	<input id="HelpButton" type="button" value="Help" style="display:inline" onclick="window.open('HelpMenu.htm','_self')" />
-    	<input id="HomeButton" type="button" value="Go Home" style="display:inline" onclick="window.open('CustomerHomePage.jsp', '_self')" />
+    	<input id="HelpButton" type="button" value="Help" style="display:inline" onclick="window.open('HelpMenu.jsp?username=<%=user %>','_self')" />
+    	<input id="HomeButton" type="button" value="Go Home" style="display:inline" onclick="window.open('CustomerHomePage.jsp?username=<%=user %>', '_self')" />
     </nav>
 	
     </br>
