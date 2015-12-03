@@ -35,8 +35,8 @@ java.sql.Statement stmt = conn.createStatement();
 String sql = "select MAX(bid_id) as BidID from Bid;";
 java.sql.ResultSet rs = stmt.executeQuery(sql);
 //if there are items make it MAX + 1
-if (rs.next() )
-	itemId = rs.getInt("BidID") + 1;
+//if (rs.next() )
+//	itemId = rs.getInt("BidID") + 1;
 
 stmt.close();
 

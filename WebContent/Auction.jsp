@@ -63,12 +63,12 @@
 <div class="container">
 <div class="col-lg-12 well">
 <div class="row" style="text-align:center">
-<%String username = request.getParameter("username"); %>
+<%String user = request.getParameter("username");%>
 	<input id="LogoutButton" type="button" value="Logout" onclick="Logout_onclick();" />
-    <input id="HelpButton" type="button" value="Help" onclick="window.open('HelpMenu.jsp?username=<%=username %>','_self')" />
-    <input id="HomeButton" type="button" value="Go Home" onclick="window.open('CustomerHomePage.jsp?username=<%=username %>', '_self')" />
+    <input id="HelpButton" type="button" value="Help" onclick="window.open('HelpMenu.jsp?username=<%=user %>','_self')" />
+    <input id="HomeButton" type="button" value="Go Home" onclick="window.open('CustomerHomePage.jsp?username=<%=user %>', '_self')" />
     <%int auctionId = Integer.parseInt(request.getParameter("auctionId"));%>
-    <%String user = request.getParameter("username");%>
+    
     <%System.out.println("Username is  " + user); %>
     <%boolean isOwner =false;%>
 
@@ -95,9 +95,12 @@
 	java.sql.ResultSet rs = stmt.executeQuery(sql);
 	
 	int item_id = -1;
-	if (rs.next() )
+	if (rs.next() ){
 		item_id = rs.getInt(1);
-
+	}
+	
+	System.out.println(item_id);
+	
 	stmt = conn.createStatement();
 	
 	if(item_id == -1)
