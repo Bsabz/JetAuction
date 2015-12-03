@@ -96,43 +96,74 @@
 	<div class="col-lg-12 well">
 	<div class="row" style="alignment:center">
 		<div class="col-sm-6 form-group">
-		    <%numItemsToDisplay = 2;
-  			  numLeftToPrint = numItemsToDisplay;
-  			  if(numItemsToDisplay > 0) {%>
+		    
   			  	<h2>Current Auctions</h2>
-        	  	<table border="8" id="row">
-              <%while(numLeftToPrint > 0){%>
-			  	<tr>
-            		<td style="width: 175px" align="center">
-            			<span style="font-size: 10pt">Auction Name</span>
-            		</td>
-            		<td style="width: 175px" align="center">
-            			<span style="font-size: 10pt">Current high bid</span>
-            		</td>
-            		<td style="width: 175px" align="center">
-            			<span style="font-size: 10pt">Closing bid time</span>
-            		</td>
-            		<td style="width:175px;padding:10px" align="center">
-            			<input id="GoToAuctionButton" type="button" style="display:inline" value="Check it out!" onclick="redirectToAuction();" />
-    		  		</td>
-            	</tr>   
-				<%numLeftToPrint--; }%>
-				</table>
-			<%}else{%>
-				<h2 style='text-align:center'>You're not in any auctions yet :(</h2>
-				<p>Get started by checking out a few by searching below!</p>
-				<br />
-				<br />
-				
-				<div class="row">
-					<div class="col-sm-6 form-group">
-						<input id="currentAucitonsSearchButton" type="button" style="display:inline" value="Search auctions!" onclick="CurrentAuctionsSearchAuctions()" />
-		    		</div>
-					<div class="col-sm-6 form-group">
-						<input id="currentAucitonsSearchPane" type="text" placeholder="Browse current auctions now!" class="form-control"/>
-					</div>
-				</div>
-			<%}%>
+        	  	
+                    <table class="table table-striped table-hover" id="TABLE1">
+                    <thead>
+                    <tr>
+                      	<th>
+                            <span style="font-size: 12pt">Auction</span></th>
+                      	<th>
+                            <span style="font-size: 12pt">Bid Increment</span></th>
+                        <th>
+                            <span style="font-size: 12pt">Opening Bid amount</span></th>
+                        <th>
+                            <span style="font-size: 12pt">Description</span></th>      
+                        <th>
+                            <span style="font-size: 12pt">Bid History</span></th>
+                    </tr>   
+                    </thead>
+<%
+			String mysJDBCDriver = "com.mysql.jdbc.Driver"; 
+			String mysURL = "jdbc:mysql://127.0.0.1:3306/jetauction_db"; 
+			String mysUserID = "root"; 
+			String mysPassword = "password";
+  			java.sql.Connection conn=null;
+			try 
+			{
+            	Class.forName(mysJDBCDriver).newInstance();
+    			java.util.Properties sysprops=System.getProperties();
+    			sysprops.put("user",mysUserID);
+    			sysprops.put("password",mysPassword);
+        
+				//connect to the database
+            			conn=java.sql.DriverManager.getConnection(mysURL,sysprops);
+            			System.out.println("Connected successfully to database using JConnect");
+            
+            			java.sql.Statement stmt1=conn.createStatement();
+        
+					java.sql.ResultSet rs = stmt1.executeQuery("SELECT A.auction_id as 'Auction', A.BidIncrement, A.OpenBid, I.Description FROM jetauction_db.Auction as A, jetauction_db.Item as I WHERE A.item_id = I.item_id;");
+ 
+     	  while(rs.next())                
+        	{
+%>
+                    <tr>
+                      	<td style="vertical-align:middle;">
+                         	<span style="font-size: 10pt;"><%=rs.getString(1)%></span></td>
+                      	<td style="vertical-align:middle;">
+                          	<span style="font-size: 10pt">$<%=rs.getString(2)%></span></td>
+                        <td>
+                            <span style="font-size: 10pt">$<%=rs.getString(3)%></span></td>
+                        <td style="vertical-align:middle;">
+                            <span style="font-size: 10pt"><%=rs.getString(4)%></span></td>
+                        <td style="vertical-align:middle;">
+                        	<input type=button  onclick="window.open('BidHistory.jsp?auction_id=<%=rs.getString(1)%>','_self');return;" value="x"></td>
+                    </tr>
+<%      		
+        	}
+  			} catch(Exception e)
+			{
+				e.printStackTrace();
+				out.print(e.toString());
+			}
+			finally{
+			
+				try{conn.close();}catch(Exception ee){};
+			}
+
+  %>
+  					</table>
 		</div>
 		<div class="col-sm-6 form-group">
 			<h3>Best sellers list</h3>
