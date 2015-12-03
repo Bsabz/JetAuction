@@ -100,7 +100,7 @@ response.setDateHeader("Expires",0);
             
             			java.sql.Statement stmt1=conn.createStatement();
         
-					java.sql.ResultSet rs = stmt1.executeQuery("SELECT C.customer_id, P.LastName, P.FirstName, P.Address, P.ZipCode, P.Telephone, P.Email, C.CreditCardNum, C.Rating FROM Customer as C, Person as P WHERE C.SSN = P.SSN GROUP BY customer_id;");
+					java.sql.ResultSet rs = stmt1.executeQuery("SELECT C.customer_id, P.LastName, P.FirstName, P.Address, P.ZipCode, P.Telephone, P.Email, C.CreditCardNum, C.Rating, C.Passwrd, C.SSN FROM Customer as C, Person as P WHERE C.SSN = P.SSN GROUP BY customer_id;");
  
      	  while(rs.next())                
         	{
@@ -126,7 +126,20 @@ response.setDateHeader("Expires",0);
                         <td style="vertical-align:middle;">
                             <span style="font-size: 10pt"><%=rs.getString(9)%></span></td>
                         <td style="vertical-align:middle;">
-                        	<input type=button  onclick="" value="x"></td>	
+                        	<form action="EditCustomer.jsp" method="get">
+                        	<input hidden name = "customer_id" value = "<%=rs.getString(1) %>"></input>
+                        	<input hidden name = "SSN" value = "<%=rs.getString(11) %>"></input>
+                        	<input hidden name = "lName" value = "<%=rs.getString(2) %>"></input>
+                        	<input hidden name = "fName" value = "<%=rs.getString(3) %>"></input>
+                        	<input hidden name = "address" value = "<%=rs.getString(4)%>"></input>
+                        	<input hidden name = "zip" value = "<%=rs.getString(5) %>"></input>
+                        	<input hidden name = "phone" value = "<%=rs.getString(6) %>"></input>
+                        	<input hidden name = "email" value = "<%=rs.getString(7) %>"></input>
+                        	<input hidden name = "ccn" value = "<%=rs.getString(8) %>"></input>
+                        	<input hidden name = "rating" value = "<%=rs.getString(9) %>"></input>
+                        	<input hidden name = "passwrd" value = "<%=rs.getString(10) %>"></input>
+                        	<input id="button" type="submit" value="x" />	
+                        </form></td>
                     </tr>
 <%      		
         	}
@@ -148,6 +161,7 @@ response.setDateHeader("Expires",0);
                     <br />
                     <br />
                     <br />
+                    <input class="btn btn-lg btn-danger" id="Button1" type="button" onclick="window.open('CustomerRegistration.htm','_self');" value="ADD Customer" />
                     <br />
                     <br />
                     <br />
@@ -161,7 +175,6 @@ response.setDateHeader("Expires",0);
         <!-- /#page-content-wrapper -->
 
     </div>
-<h1 style="color:red;">-Implement edit page<br></h1>
 
 </body>
 </html>

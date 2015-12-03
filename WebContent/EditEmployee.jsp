@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
-    <title>Registration for Employees -- JetAuction</title>
+    <title>Edit Employee -- JetAuction</title>
 <script language="javascript" type="text/javascript">
 // <!CDATA[
 
@@ -251,76 +251,59 @@ function Button2_onclick() {
 <body>
 
 <div class="container">
-    <h1 class="well" style="text-align:center">Employee Registration</h1>
+    <h1 class="well" style="text-align:center">Edit Employee</h1>
 	<div class="col-lg-12 well">
 	<div class="row">
-				<form name="myForm" action="employeeadd.jsp" method="post">
+				<form name="myForm" action="SubmitEmployeeEdit.jsp" method="post">
 				<input type="hidden" name="target" value="Employee"></input>
 					<div class="col-sm-12">
-						<div class="form-group">
-							<label>Enter Username:</label>
-							<input name="Id" type="text" placeholder="Enter Username Here.." class="form-control">
-						</div>
 						<div class="row">
 							<div class="col-sm-6 form-group">
 								<label>First Name</label>
-								<input name="fname" type="text" placeholder="Enter First Name Here.." class="form-control">
+								<input hidden name = "employee_id" value = "<%=request.getParameter("employee_id") %>"></input>
+								<input name="fName" type="text" value = "<%=request.getParameter("fName")%>" class="form-control">
 							</div>
 							<div class="col-sm-6 form-group">
 								<label>Last Name</label>
-								<input name="lname" type="text" placeholder="Enter Last Name Here.." class="form-control">
+								<input name="lName" type="text" value = "<%=request.getParameter("lName")%>" class="form-control">
 							</div>
 						</div>					
 						<div class="form-group">
-							<label>Address</label>
-							<label>Address Line 1:</label>
-							<input name="address_line_1" type="text" placeholder="address_line_1.." class="form-control">
+							<label>Address [Street, City  SI]</label>
+							<input name="address" type="text" value = "<%=request.getParameter("address")%>" class="form-control">
 						</div>
-						<div class="form-group">
-							<label>Address Line 2:</label>
-							<input name="address_line_2" type="text" placeholder="address_line_2.." class="form-control">
-						</div>	
 						<div class="row">
 							<div class="col-sm-4 form-group">
-								<label>City</label>
-								<input name="city" type="text" placeholder="Enter City Code Here.." class="form-control">
-							</div>
-							<div class="col-sm-4 form-group">
-								<label>State</label>
-								<input name="state" type="text" placeholder="Enter State Here.." class="form-control">
-							</div>
-							<div class="col-sm-4 form-group">
 								<label>Zip</label>
-								<input name="zip" type="text" placeholder="Enter Zip Code Here.." class="form-control">
+								<input name="zip" type="text" value = "<%=request.getParameter("zip")%>" class="form-control">
 							</div>
-						</div>
-						<div class="form-group">
-							<label>SSN [XXX-XX-XXXX]:</label>
-							<input name="ssn" type="text" placeholder="Enter SSN here.." class="form-control">
-						</div>
-						<div class="form-group">
-							<label>Enter desired password:</label>
-							<input name="Password1" type="password" placeholder="Enter Password Here.." class="form-control">
-						</div>
-						<div class="form-group">
-							<label>Re-type password:</label>
-							<input name="Password2" type="password" placeholder="Re-type Password Here.." class="form-control">
+							<div class="col-sm-4 form-group">
+								<label>Hourly Rate</label>
+								<input name="rate" type="text" value = "<%=request.getParameter("rate")%>" class="form-control">
+							</div>
+							<div class="col-sm-4 form-group">
+								<label>Status</label>
+								<input name="status" type="text" value = "<%=request.getParameter("status")%>" class="form-control">
+							</div>
 						</div>
 						<div class="form-group">
 							<label>Phone Number [(xxx)-xxx-xxxx]:</label>
-							<input name="phone" type="text" placeholder="Enter Phone Number Here.." class="form-control">
+							<input name="phone" type="text" value = "<%=request.getParameter("phone")%>" class="form-control">
 						</div>		
 						<div class="form-group">
 							<label>Email Address [youremail@examplesite.com]:</label>
-							<input name="email" type="text" placeholder="Enter Email Address Here.." class="form-control">
+							<input name="email" type="text" value = "<%=request.getParameter("email")%>" class="form-control">
 						</div>	
 						<div align="center">
-							<button type="button" class="btn btn-lg btn-danger" onclick="javascript:history.back();">Back</button>			
+							<button type="button" class="btn btn-lg btn-danger" onclick="window.open('Manager.jsp','_self');">Back</button>			
 							&nbsp;&nbsp;&nbsp;&nbsp;
-							<button type="button" class="btn btn-lg btn-info" onclick="return Button1_onclick()">Submit</button>
+							<button type="submit" class="btn btn-lg btn-info" onclick="return Button1_onclick()">Submit</button>
+							
 						</div>
 					</div>
 				</form> 
+				
+
 				</div>
 	</div>
 	</div>

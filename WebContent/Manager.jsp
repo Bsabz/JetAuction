@@ -132,7 +132,18 @@ response.setDateHeader("Expires",0);
                         <td style="vertical-align:middle;">
                         	<span style="font-size: 10pt"><%=rs.getString(10).equals("1")?"Customer Rep":"Manager"%></span></td>
                         <td style="vertical-align:middle;">
-                        	<input type=button  onclick="" value="x"></td>	
+                        <form action="EditEmployee.jsp" method="get">
+                        	<input hidden name = "employee_id" value = "<%=rs.getString(1) %>"></input>
+                        	<input hidden name = "lName" value = "<%=rs.getString(2) %>"></input>
+                        	<input hidden name = "fName" value = "<%=rs.getString(3) %>"></input>
+                        	<input hidden name = "address" value = "<%=rs.getString(4)%>"></input>
+                        	<input hidden name = "zip" value = "<%=rs.getString(5) %>"></input>
+                        	<input hidden name = "phone" value = "<%=rs.getString(6) %>"></input>
+                        	<input hidden name = "email" value = "<%=rs.getString(7) %>"></input>
+                        	<input hidden name = "rate" value = "<%=rs.getString(9) %>"></input>
+                        	<input hidden name = "status" value = "<%=rs.getString(10) %>"></input>
+                        	<input id="button" type="submit" value="x" />	
+                        </form></td>
                     </tr>
 <%      		
         	}
@@ -154,6 +165,7 @@ response.setDateHeader("Expires",0);
                     <br />
                     <br />
                     <br />
+                    <input class="btn btn-lg btn-danger" id="Button1" type="button" onclick="window.open('EmployeeRegistration.htm','_self');" value="ADD Employee" />
                     <br />
                     <br />
                     <br />
@@ -167,8 +179,5 @@ response.setDateHeader("Expires",0);
         <!-- /#page-content-wrapper -->
 
     </div>
-
-<h1 style="color:red;">-Implement edit page<br></h1>
-
 </body>
 </html>

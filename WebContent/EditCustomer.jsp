@@ -1,17 +1,17 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head>
-    <title>Registration for Employees -- JetAuction</title>
+    <title>Edit Customer  -- JetAuction</title>
 <script language="javascript" type="text/javascript">
 // <!CDATA[
 
-function Button1_onclick() {
+function Button1_onclick() 
+{
 	var wasFilledInProperly = checkIfFieldsNull();  
 	
 	//cehck for valid SSN
 	if(wasFilledInProperly && !checkSSNValid() )
 	{
-	
 		alert("Bad SSN provided!");
 		
 		wasFilledInProperly = false;
@@ -39,9 +39,16 @@ function Button1_onclick() {
 		
 		wasFilledInProperly = false;
 	}
+
+	if(wasFilledInProperly && !checkIfCreditCardValid() )
+	{
+		alert("Bad credit card number given");
+		
+		wasFilledInProperly = false;
+	}
 	
 	if(wasFilledInProperly)
-		document.myForm.submit();
+		document.myForm.submit()
 }
 
 //check to see if email was valid (xxxx@xxxx.xxx)
@@ -54,6 +61,32 @@ function checkIfEmailValid()
 		return false;
 	if(splitEmail[1].split(".").length != 2)
 		return false;
+	
+	return true;
+}
+
+//check to see if the user provided a valid credit card
+//format of xxxx-xxxx-xxxx-xxxx
+function checkIfCreditCardValid()
+{
+	var creditNumArr = document.myForm.credit.value.split("-");
+	
+	if(creditNumArr.length != 4)
+		return false;
+	
+	if(creditNumArr[0].length != 4|| creditNumArr[1].length != 4 || creditNumArr[2].length != 4 || creditNumArr[2].length != 4)
+		return false;
+	
+	//credit card is properly formatted
+	for(var i = 0; i < creditNumArr.length; i++)
+	{
+		for(var u = 0; u < creditNumArr[i].length; u++)
+		{
+			//if not a number return false
+			if( isNaN(creditNumArr[i][u]) )
+				return false;
+		}
+	}
 	
 	return true;
 }
@@ -176,60 +209,65 @@ function checkIfFieldsNull()
 		
 		return false;
 	}
-	
 	else if(document.myForm.state.value == "")
 	{
-		alert("You must give your state!!!")
+	    alert("You must give your state!!!")
+		
+		return false;	
+	}
+	else if(document.myForm.zip.value == "")
+	{
+	    alert("You must give your zip code!!!")
 		
 		return false;
 	}
-    else if(document.myForm.zip.value == "")
-    {
-    	alert("You must give your zip code!!!")
-    	
-    	return false;
-    }
-    else if(document.myForm.city.value == "")
-    {
-    	alert("You must give your city!!!")
-    	
-    	return false;
-    }
-    else if(document.myForm.ssn.value == "")
-    {
-    	alert("You must give your SSN!!!")
-    	
-    	return false
-   	}
-    else if(document.myForm.Password1.value == "")
-    {
-    	alert("You must give a password!!!")
-    	
-    	return false;
-   	}
+	else if(document.myForm.city.value == "")
+	{
+	    alert("You must give your city!!!")
+		
+		return false;
+	}
+	else if(document.myForm.ssn.value == "")
+	{
+	    alert("You must give your SSN!!!")
+		
+		return false;
+	}
+	else if(document.myForm.credit.value == "")
+	{
+	    alert("You must give your credit card number!!!!")
+		
+		return false;	
+	}
+	else if(document.myForm.Password1.value == "")
+	{
+		alert("You must give a password!!!")
+		
+		return false;	
+	}
 	else if(document.myForm.Password2.value == "")
 	{
 		alert("You must confirm your password!!!!")
 		
-		return false;
+		return false;	
 	}
 	else if(document.myForm.Password1.value != document.myForm.Password2.value)
 	{
-    	alert("Your provided passwords do not match!!!!")
+	    alert("Your provided passwords do not match!!!!")
 		
-    	return false;
+		return false;	
 	}
 	else if(document.myForm.phone.value == "")
 	{
-    	alert("You must provide your phone number!!!!")
+	    alert("You must provide your phone number!!!!")
 		
-    	return false;
+		return false;
 	}
 	else if(document.myForm.email.value == "")
 	{
-    	alert("You must give an email!!!!")
+	    alert("You must give an email!!!!")
 		
-    	return false;
+		return false;		
 	}
 	
 	return true;
@@ -251,79 +289,65 @@ function Button2_onclick() {
 <body>
 
 <div class="container">
-    <h1 class="well" style="text-align:center">Employee Registration</h1>
+    <h1 class="well" style="text-align:center">Edit Customer</h1>
 	<div class="col-lg-12 well">
 	<div class="row">
-				<form name="myForm" action="employeeadd.jsp" method="post">
-				<input type="hidden" name="target" value="Employee"></input>
-					<div class="col-sm-12">
-						<div class="form-group">
-							<label>Enter Username:</label>
-							<input name="Id" type="text" placeholder="Enter Username Here.." class="form-control">
-						</div>
-						<div class="row">
-							<div class="col-sm-6 form-group">
-								<label>First Name</label>
-								<input name="fname" type="text" placeholder="Enter First Name Here.." class="form-control">
-							</div>
-							<div class="col-sm-6 form-group">
-								<label>Last Name</label>
-								<input name="lname" type="text" placeholder="Enter Last Name Here.." class="form-control">
-							</div>
-						</div>					
-						<div class="form-group">
-							<label>Address</label>
-							<label>Address Line 1:</label>
-							<input name="address_line_1" type="text" placeholder="address_line_1.." class="form-control">
-						</div>
-						<div class="form-group">
-							<label>Address Line 2:</label>
-							<input name="address_line_2" type="text" placeholder="address_line_2.." class="form-control">
-						</div>	
-						<div class="row">
-							<div class="col-sm-4 form-group">
-								<label>City</label>
-								<input name="city" type="text" placeholder="Enter City Code Here.." class="form-control">
-							</div>
-							<div class="col-sm-4 form-group">
-								<label>State</label>
-								<input name="state" type="text" placeholder="Enter State Here.." class="form-control">
-							</div>
-							<div class="col-sm-4 form-group">
-								<label>Zip</label>
-								<input name="zip" type="text" placeholder="Enter Zip Code Here.." class="form-control">
-							</div>
-						</div>
-						<div class="form-group">
-							<label>SSN [XXX-XX-XXXX]:</label>
-							<input name="ssn" type="text" placeholder="Enter SSN here.." class="form-control">
-						</div>
-						<div class="form-group">
-							<label>Enter desired password:</label>
-							<input name="Password1" type="password" placeholder="Enter Password Here.." class="form-control">
-						</div>
-						<div class="form-group">
-							<label>Re-type password:</label>
-							<input name="Password2" type="password" placeholder="Re-type Password Here.." class="form-control">
-						</div>
-						<div class="form-group">
-							<label>Phone Number [(xxx)-xxx-xxxx]:</label>
-							<input name="phone" type="text" placeholder="Enter Phone Number Here.." class="form-control">
-						</div>		
-						<div class="form-group">
-							<label>Email Address [youremail@examplesite.com]:</label>
-							<input name="email" type="text" placeholder="Enter Email Address Here.." class="form-control">
-						</div>	
-						<div align="center">
-							<button type="button" class="btn btn-lg btn-danger" onclick="javascript:history.back();">Back</button>			
-							&nbsp;&nbsp;&nbsp;&nbsp;
-							<button type="button" class="btn btn-lg btn-info" onclick="return Button1_onclick()">Submit</button>
-						</div>
-					</div>
-				</form> 
+		<form name="myForm" action="SubmitCustomerEdit.jsp" method="get">
+		<input type="hidden" name="target" value="Customer"></input>
+			<div class="col-sm-12">
+			<div class="row">
+				<div class="col-sm-6 form-group">
+					<label>First Name</label>
+					<input hidden name = "SSN" value = "<%=request.getParameter("SSN") %>"></input>
+					<input hidden name = "customer_id" value = "<%=request.getParameter("customer_id") %>"></input>
+					<input name="fName" type="text" value = "<%=request.getParameter("fName") %>" class="form-control">
 				</div>
-	</div>
-	</div>
+				<div class="col-sm-6 form-group">
+					<label>Last Name</label>
+					<input name="lName" type="text" value = "<%=request.getParameter("lName") %>" class="form-control">
+				</div>
+			</div>					
+			<div class="form-group">
+				<label>Address</label>
+				<input name="address" type="text" value = "<%=request.getParameter("address") %>" class="form-control">
+			</div>
+			<div class="row">
+				<div class="col-sm-4 form-group">
+					<label>Zip</label>
+					<input name="zip" type="text" value = "<%=request.getParameter("zip") %>" class="form-control">
+				</div>
+				<div class="col-sm-4 form-group">
+					<label>Rating</label>
+					<input name="rating" type="text" value = "<%=request.getParameter("rating") %>" class="form-control">
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-6 form-group">
+					<label>Enter Credit Card Number <br />(with dashes xxxx-xxxx-xxxx-xxxx):</label>
+					<input name="ccn" type="text" value = "<%=request.getParameter("ccn") %>" class="form-control">
+				</div>	
+			</div>
+			<div class="form-group">
+				<label>Enter desired password:</label>
+				<input name="passwrd" type="text" value = "<%=request.getParameter("passwrd") %>" class="form-control">
+			</div>
+			<div class="form-group">
+				<label>Phone Number [(xxx)-xxx-xxxx]:</label>
+				<input name="phone" type="text" value = "<%=request.getParameter("phone") %>" class="form-control">
+			</div>		
+			<div class="form-group">
+				<label>Email Address [youremail@examplesite.com]:</label>
+				<input name="email" type="text" value = "<%=request.getParameter("email") %>" class="form-control">
+			</div>	
+				<div align="center">
+					<button type="button" class="btn btn-lg btn-danger" onclick="window.open('FacultyDetailedCourseInfo.jsp','_self');">Back</button>			
+					&nbsp;&nbsp;&nbsp;&nbsp;
+					<button type="submit" class="btn btn-lg btn-info" onclick="return Button1_onclick()">Submit</button>
+				</div>
+			</div>
+		</form> 
 
+	</div>
+</div>
 </body>
 </html>
